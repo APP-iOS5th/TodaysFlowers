@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol HomeViewUseCase {
-    func getFlowers(by date: [Date]) -> [Flower]
+    func getFlowers(by date: [Date]) -> AnyPublisher<[Flower], Never>
 }

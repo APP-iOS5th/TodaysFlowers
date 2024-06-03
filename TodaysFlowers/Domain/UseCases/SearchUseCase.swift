@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Combine
 
 protocol SearchUseCase {
-    func searchBy(name: String) -> [Flower]
-    func searchBy(flowerLang: String) -> [Flower]
+    func searchBy(name: String) -> AnyPublisher<[Flower], Never>
+    func searchBy(flowerLang: String) -> AnyPublisher<[Flower], Never>
 }

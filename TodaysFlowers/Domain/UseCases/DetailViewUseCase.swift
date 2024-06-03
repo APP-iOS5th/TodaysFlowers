@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Combine
 
 protocol DetailViewUseCase {
-    func getFlower(by id: Int) -> Flower
+    func getFlower(by id: Int) -> AnyPublisher<Flower, Never>
 }
