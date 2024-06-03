@@ -84,6 +84,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83CC5E102C0DACE800FF4E33 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		83F656DE2C0D55F800BE19DB = {
 			isa = PBXGroup;
 			children = (
@@ -107,9 +114,9 @@
 		83F656E92C0D55F800BE19DB /* TodaysFlowers */ = {
 			isa = PBXGroup;
 			children = (
-				83F6572E2C0D7CB900BE19DB /* Domain */,
-				83F657242C0D56ED00BE19DB /* Entity */,
+				83CC5E102C0DACE800FF4E33 /* Data */,
 				83F6571B2C0D567900BE19DB /* Network */,
+				83F6572E2C0D7CB900BE19DB /* Domain */,
 				83F6571A2C0D566900BE19DB /* Presentation */,
 				83F656EA2C0D55F800BE19DB /* AppDelegate.swift */,
 				83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */,
@@ -238,6 +245,7 @@
 		83F6572E2C0D7CB900BE19DB /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				83F657242C0D56ED00BE19DB /* Entity */,
 				83F657272C0D578A00BE19DB /* UseCases */,
 			);
 			path = Domain;
