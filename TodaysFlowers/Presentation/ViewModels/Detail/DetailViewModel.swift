@@ -22,6 +22,24 @@ final class DetailViewModel {
     func fetchFlower() {
         useCase
             .getFlower(by: flowerId)
+            .map { flower in
+                let replacedContent = StringHandler.separateByComma(flower.content)
+                let replacedType = StringHandler.separateByComma(flower.type)
+                let replacedGrow = StringHandler.separateByComma(flower.grow)
+                let replacedUsage = StringHandler.separateByComma(flower.usage)
+                
+                return Flower(
+                    id: flower.id,
+                    name: flower.name,
+                    lang: flower.lang,
+                    content: replacedContent,
+                    type: replacedType,
+                    grow: replacedGrow,
+                    usage: replacedUsage,
+                    imageData: flower.imageData,
+                    date: flower.date
+                )
+            }
             .assign(to: &$flower)
     }
 }
