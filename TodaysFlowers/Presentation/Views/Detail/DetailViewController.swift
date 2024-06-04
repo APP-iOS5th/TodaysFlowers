@@ -86,6 +86,9 @@ final class DetailViewController: UIViewController {
     private func stopProcessing() {
         activityIndicator.stopAnimating()
         view.isUserInteractionEnabled = true
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0) { [weak self] in
+            self?.flowerContentView.alpha = 1
+        }
     }
 }
 
