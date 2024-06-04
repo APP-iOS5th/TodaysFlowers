@@ -85,6 +85,7 @@ struct FlowerStubs {
             date: Date.retrieveDateFromToday(by: -2)
         ),
     ]
+    static let flower: Flower = flowers.first!
 }
 
 extension Date {
