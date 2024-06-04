@@ -24,6 +24,8 @@
 		83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F657282C0D579600BE19DB /* HomeViewUseCase.swift */; };
 		83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572A2C0D60B100BE19DB /* SearchUseCase.swift */; };
 		83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */; };
+		C233E3B22C0ED16700EB222E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233E3B12C0ED16700EB222E /* SearchViewController.swift */; };
+		C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		83F657282C0D579600BE19DB /* HomeViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUseCase.swift; sourceTree = "<group>"; };
 		83F6572A2C0D60B100BE19DB /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUseCase.swift; sourceTree = "<group>"; };
+		C233E3B12C0ED16700EB222E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				83CC5E1B2C0DB19500FF4E33 /* placeholder */,
+				C233E3B12C0ED16700EB222E /* SearchViewController.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				83CC5E152C0DB12C00FF4E33 /* placeholder */,
+				C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -431,7 +437,9 @@
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
+				C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
+				C233E3B22C0ED16700EB222E /* SearchViewController.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
 				83F657262C0D56FA00BE19DB /* Flower.swift in Sources */,
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
