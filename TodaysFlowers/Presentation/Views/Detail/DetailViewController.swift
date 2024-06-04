@@ -11,6 +11,13 @@ import Combine
 final class DetailViewController: UIViewController {
     
     // MARK: - Components
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        
+        return activityIndicator
+    }()
+    
     private lazy var flowerContentView = FlowerContentView()
     
     private let viewModel: DetailViewModel
@@ -33,14 +40,17 @@ final class DetailViewController: UIViewController {
         configureUI()
         bind()
         
+        startProcessing()
         viewModel.fetchFlower()
     }
     
     private func configureUI() {
         view.backgroundColor = .white
         view.addSubview(flowerContentView)
+        view.addSubview(activityIndicator)
         
         flowerContentView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         let global = view.safeAreaLayoutGuide
         
@@ -49,6 +59,9 @@ final class DetailViewController: UIViewController {
             flowerContentView.leadingAnchor.constraint(equalTo: global.leadingAnchor),
             flowerContentView.trailingAnchor.constraint(equalTo: global.trailingAnchor),
             flowerContentView.bottomAnchor.constraint(equalTo: global.bottomAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: global.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: global.centerYAnchor),
         ])
     }
     
@@ -59,8 +72,20 @@ final class DetailViewController: UIViewController {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] flower in
                 self?.flowerContentView.configureViewContents(with: flower)
+                self?.stopProcessing()
             }
             .store(in: &disposableBag)
+    }
+    
+    private func startProcessing() {
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
+        flowerContentView.alpha = 0
+    }
+    
+    private func stopProcessing() {
+        activityIndicator.stopAnimating()
+        view.isUserInteractionEnabled = true
     }
 }
 
