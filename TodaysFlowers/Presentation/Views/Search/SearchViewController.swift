@@ -6,34 +6,57 @@
 //
 
 import UIKit
+import Combine
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var viewModel = SearchViewModel()
+    private var cancellables = Set<AnyCancellable>()
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "flowerCell")
+        
+        return tableView
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupUI()
-    }
-    
-    private func setupUI() {
-        let searchButton = UIButton(type: .system)
-        searchButton.setTitle("Search", for: .normal)
-        searchButton.addTarget(self, action: #selector(clickButton), for: .touchUpInside)
         
-        view.addSubview(searchButton)
+        view.addSubview(tableView)
         
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        viewModel.$flowers
+            .receive(on: DispatchQueue.main)
+            .sink (receiveValue: { [weak self] _ in
+                self?.tableView.reloadData()
+            })
+            .store(in: &cancellables)
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        let safeArea = view.safeAreaLayoutGuide
         
         NSLayoutConstraint.activate([
-            searchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            searchButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            tableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor)
         ])
     }
     
-    @objc func clickButton() {
-        viewModel.search(inputText: "아잘레아")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel.flowers.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "flowerCell", for: indexPath) as! SearchTableViewCell
+        let flower = self.viewModel.flowers[indexPath.row]
+        
+        cell.configureCell(flower: flower)
+        
+        return cell
+    }
 }
