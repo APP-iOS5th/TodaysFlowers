@@ -11,6 +11,7 @@ struct Flower: Identifiable, Hashable {
     let id: Int
     let name: String
     let lang: String
+    let content: String
     let type: String
     let grow: String
     let usage: String
