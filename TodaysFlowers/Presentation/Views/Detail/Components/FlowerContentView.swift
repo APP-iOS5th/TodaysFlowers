@@ -9,12 +9,12 @@ import UIKit
 
 final class FlowerContentView: UIView {
     // MARK: - Components
-    private lazy var scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
+    private lazy var imageScrollView: UIScrollView = {
+        let imageScrollView = UIScrollView()
+        imageScrollView.isPagingEnabled = true
+        imageScrollView.showsHorizontalScrollIndicator = false
         
-        return scrollView
+        return imageScrollView
     }()
     
     private lazy var pageControl: UIPageControl = {
@@ -99,7 +99,7 @@ final class FlowerContentView: UIView {
         super.init(frame: frame)
         
         configureUI()
-        scrollView.delegate = self
+        imageScrollView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -108,13 +108,13 @@ final class FlowerContentView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let contentLength = scrollView.frame.width
-        scrollView.contentSize = CGSize(
+        let contentLength = imageScrollView.frame.width
+        imageScrollView.contentSize = CGSize(
             width: contentLength * CGFloat(pageControl.numberOfPages),
             height: contentLength
         )
         
-        for (index, subview) in scrollView.subviews.enumerated() {
+        for (index, subview) in imageScrollView.subviews.enumerated() {
             subview.frame = CGRect(
                 x: CGFloat(index) * contentLength,
                 y: 0,
@@ -131,7 +131,7 @@ final class FlowerContentView: UIView {
         growDescriptionLabel.text = flower.grow
         usageDescriptionLabel.text = flower.usage
         
-        for subview in scrollView.subviews {
+        for subview in imageScrollView.subviews {
             subview.removeFromSuperview()
         }
         
@@ -140,14 +140,14 @@ final class FlowerContentView: UIView {
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             
-            scrollView.addSubview(imageView)
+            imageScrollView.addSubview(imageView)
         }
         pageControl.numberOfPages = flower.imageData.count
     }
     
     private func configureUI() {
         backgroundColor = .white
-        addSubview(scrollView)
+        addSubview(imageScrollView)
         addSubview(pageControl)
         addSubview(mainTitleLabel)
         addSubview(subTitleLabel)
@@ -159,7 +159,7 @@ final class FlowerContentView: UIView {
         addSubview(usageTitleLabel)
         addSubview(usageDescriptionLabel)
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -174,16 +174,16 @@ final class FlowerContentView: UIView {
         let margin = layoutMarginsGuide
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: margin.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.heightAnchor.constraint(equalTo: widthAnchor),
+            imageScrollView.topAnchor.constraint(equalTo: margin.topAnchor),
+            imageScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageScrollView.heightAnchor.constraint(equalTo: widthAnchor),
             
-            pageControl.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -15),
+            pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -15),
             pageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 10),
             
-            mainTitleLabel.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            mainTitleLabel.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor),
             mainTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             mainTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
             
