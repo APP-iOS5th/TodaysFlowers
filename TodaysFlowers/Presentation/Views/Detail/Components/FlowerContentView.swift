@@ -9,6 +9,14 @@ import UIKit
 
 final class FlowerContentView: UIView {
     // MARK: - Components
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = UIView()
+    
     private lazy var imageScrollView: UIScrollView = {
         let imageScrollView = UIScrollView()
         imageScrollView.isPagingEnabled = true
@@ -108,7 +116,10 @@ final class FlowerContentView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         let contentLength = imageScrollView.frame.width
+        guard contentLength > 0 else { return }
+        
         imageScrollView.contentSize = CGSize(
             width: contentLength * CGFloat(pageControl.numberOfPages),
             height: contentLength
@@ -143,22 +154,27 @@ final class FlowerContentView: UIView {
             imageScrollView.addSubview(imageView)
         }
         pageControl.numberOfPages = flower.imageData.count
+        layoutSubviews()
     }
     
     private func configureUI() {
         backgroundColor = .white
-        addSubview(imageScrollView)
-        addSubview(pageControl)
-        addSubview(mainTitleLabel)
-        addSubview(subTitleLabel)
-        addSubview(mainDescriptionLabel)
-        addSubview(typeTitleLabel)
-        addSubview(typeDescriptionLabel)
-        addSubview(growTitleLabel)
-        addSubview(growDescriptionLabel)
-        addSubview(usageTitleLabel)
-        addSubview(usageDescriptionLabel)
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(imageScrollView)
+        contentView.addSubview(pageControl)
+        contentView.addSubview(mainTitleLabel)
+        contentView.addSubview(subTitleLabel)
+        contentView.addSubview(mainDescriptionLabel)
+        contentView.addSubview(typeTitleLabel)
+        contentView.addSubview(typeDescriptionLabel)
+        contentView.addSubview(growTitleLabel)
+        contentView.addSubview(growDescriptionLabel)
+        contentView.addSubview(usageTitleLabel)
+        contentView.addSubview(usageDescriptionLabel)
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -171,53 +187,63 @@ final class FlowerContentView: UIView {
         usageTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         usageDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let margin = layoutMarginsGuide
-        
         NSLayoutConstraint.activate([
-            imageScrollView.topAnchor.constraint(equalTo: margin.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            imageScrollView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageScrollView.heightAnchor.constraint(equalTo: widthAnchor),
             
             pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -15),
-            pageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 10),
             
             mainTitleLabel.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor),
-            mainTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            mainTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            mainTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             subTitleLabel.topAnchor.constraint(equalTo: mainTitleLabel.bottomAnchor),
-            subTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            subTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            subTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            subTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             mainDescriptionLabel.topAnchor.constraint(equalTo: subTitleLabel.bottomAnchor),
-            mainDescriptionLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            mainDescriptionLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            mainDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            mainDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             typeTitleLabel.topAnchor.constraint(equalTo: mainDescriptionLabel.bottomAnchor),
-            typeTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            typeTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            typeTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            typeTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
-            typeDescriptionLabel.topAnchor.constraint(equalTo: typeTitleLabel.bottomAnchor),
-            typeDescriptionLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            typeDescriptionLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            typeDescriptionLabel.topAnchor.constraint(equalTo: typeTitleLabel.bottomAnchor, constant: 400),
+            typeDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            typeDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             growTitleLabel.topAnchor.constraint(equalTo: typeDescriptionLabel.bottomAnchor),
-            growTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            growTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            growTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            growTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             growDescriptionLabel.topAnchor.constraint(equalTo: growTitleLabel.bottomAnchor),
-            growDescriptionLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            growDescriptionLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            growDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            growDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             usageTitleLabel.topAnchor.constraint(equalTo: growDescriptionLabel.bottomAnchor),
-            usageTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            usageTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            usageTitleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            usageTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
             usageDescriptionLabel.topAnchor.constraint(equalTo: usageTitleLabel.bottomAnchor),
-            usageDescriptionLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
-            usageDescriptionLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            usageDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            usageDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            usageDescriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
         ])
     }
 }
