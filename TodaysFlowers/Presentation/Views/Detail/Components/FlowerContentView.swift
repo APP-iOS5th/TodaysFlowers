@@ -47,7 +47,7 @@ final class FlowerContentView: UIView {
     
     private lazy var mainDescriptionLabel: UILabel = {
         let mainContentLabel = UILabel()
-        mainContentLabel.buildLabel(by: .description, with: "아잘레아는 사계성 품종들이 많이 나와 있으며 특히 겨울철 실내 분화용으로 많이 이용하고 있다. 꽃색은 빨간 것들이 주종을 이루며, 최근에는 끝에 흰줄이 들어가 있는 복색도 나오고 보다 연한 핑크계통인 품종들도 많다.")
+        mainContentLabel.buildLabel(by: .description, with: "")
         
         return mainContentLabel
     }()
@@ -61,7 +61,7 @@ final class FlowerContentView: UIView {
     
     private lazy var typeDescriptionLabel: UILabel = {
         let typeContentLabel = UILabel()
-        typeContentLabel.buildLabel(by: .description, with: "철쭉과에 속하는 식물은 지구상에서 극지방을 제외하고 널리 분포하여 전 세계적으로 약 100속 3000여종이 자생하고 있다. 여기서 철쭉속에 속하는 식물만 하더라도 대가족으로써 딸린 식구들이 약 800∼1000종이나 되는데 중국대륙에 자생하는 것들이 많으며 유럽에서 오래 전에 이들을 도입하어 분화용 원예품종으로 개발하여 전 세계적으로 공급하고 있다.")
+        typeContentLabel.buildLabel(by: .description, with: "")
         
         return typeContentLabel
     }()
@@ -75,7 +75,7 @@ final class FlowerContentView: UIView {
     
     private lazy var growDescriptionLabel: UILabel = {
         let growDescriptionLabel = UILabel()
-        growDescriptionLabel.buildLabel(by: .description, with: "아잘레아는 삽목이 잘 되고 생육기간도 짧으며 병충해에도 강해 현재 국내 화목류 생산량 중에서 단연 우위를 차지하고 있다. 삽목으로 번식이 용이하고 반그늘에서 마르지 않게만 관리하면 된다.")
+        growDescriptionLabel.buildLabel(by: .description, with: "")
         
         return growDescriptionLabel
     }()
@@ -89,7 +89,7 @@ final class FlowerContentView: UIView {
     
     private lazy var usageDescriptionLabel: UILabel = {
         let usageDescriptionLabel = UILabel()
-        usageDescriptionLabel.buildLabel(by: .description, with: "아잘레아는 사계성 품종들이 많이 나와 있으며 특히 겨울철 실내 분화용으로 많이 이용하고 있다. 꽃색은 빨간 것들이 주종을 이루며, 최근에는 끝에 흰줄이 들어가 있는 복색도 나오고 있고, 보다 연한 핑크계통인 품종들도 많다.")
+        usageDescriptionLabel.buildLabel(by: .description, with: "")
         
         return usageDescriptionLabel
     }()
@@ -99,6 +99,7 @@ final class FlowerContentView: UIView {
         super.init(frame: frame)
         
         configureUI()
+        scrollView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -124,7 +125,8 @@ final class FlowerContentView: UIView {
         }
     }
     
-    func setupViews(with flower: Flower) {
+    func configureViewContents(with flower: Flower) {
+        mainTitleLabel.text = flower.name
         mainDescriptionLabel.text = flower.content
         typeDescriptionLabel.text = flower.type
         growDescriptionLabel.text = flower.grow
@@ -154,6 +156,8 @@ final class FlowerContentView: UIView {
         addSubview(usageTitleLabel)
         addSubview(usageDescriptionLabel)
         
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
         mainTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         mainDescriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -167,7 +171,16 @@ final class FlowerContentView: UIView {
         let margin = layoutMarginsGuide
         
         NSLayoutConstraint.activate([
-            mainTitleLabel.topAnchor.constraint(equalTo: margin.topAnchor),
+            scrollView.topAnchor.constraint(equalTo: margin.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.heightAnchor.constraint(equalTo: widthAnchor),
+            
+            pageControl.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -15),
+            pageControl.centerXAnchor.constraint(equalTo: centerXAnchor),
+            pageControl.heightAnchor.constraint(equalToConstant: 10),
+            
+            mainTitleLabel.topAnchor.constraint(equalTo: scrollView.bottomAnchor),
             mainTitleLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
             mainTitleLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
             
@@ -206,6 +219,17 @@ final class FlowerContentView: UIView {
     }
 }
 
+extension FlowerContentView: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
+        pageControl.currentPage = Int(pageIndex)
+    }
+}
+
 #Preview {
-    FlowerContentView()
+    let vc = FlowerContentView()
+    
+    vc.configureViewContents(with: FlowerStubs.flower)
+    
+    return vc
 }
