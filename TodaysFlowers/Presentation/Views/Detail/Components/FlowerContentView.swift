@@ -105,8 +105,45 @@ final class FlowerContentView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        let contentLength = scrollView.frame.width
+        scrollView.contentSize = CGSize(
+            width: contentLength * CGFloat(pageControl.numberOfPages),
+            height: contentLength
+        )
+        
+        for (index, subview) in scrollView.subviews.enumerated() {
+            subview.frame = CGRect(
+                x: CGFloat(index) * contentLength,
+                y: 0,
+                width: contentLength,
+                height: contentLength
+            )
+        }
+    }
+    
+    func setupViews(with flower: Flower) {
+        mainDescriptionLabel.text = flower.content
+        typeDescriptionLabel.text = flower.type
+        growDescriptionLabel.text = flower.grow
+        usageDescriptionLabel.text = flower.usage
+        
+        for imageData in flower.imageData {
+            let imageView = UIImageView(image: UIImage(data: imageData))
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            
+            scrollView.addSubview(imageView)
+        }
+        pageControl.numberOfPages = flower.imageData.count
+    }
+    
     private func configureUI() {
         backgroundColor = .white
+        addSubview(scrollView)
+        addSubview(pageControl)
         addSubview(mainTitleLabel)
         addSubview(subTitleLabel)
         addSubview(mainDescriptionLabel)
