@@ -9,6 +9,24 @@ import UIKit
 
 final class FlowerContentView: UIView {
     // MARK: - Components
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isPagingEnabled = true
+        scrollView.showsHorizontalScrollIndicator = false
+        
+        return scrollView
+    }()
+    
+    private lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl()
+        pageControl.currentPage = 0
+        pageControl.pageIndicatorTintColor = .gray
+        pageControl.currentPageIndicatorTintColor = .black
+        pageControl.backgroundStyle = .prominent
+        
+        return pageControl
+    }()
+    
     private lazy var mainTitleLabel: UILabel = {
         let mainTitleLabel = UILabel()
         mainTitleLabel.text = "아젤레아"
