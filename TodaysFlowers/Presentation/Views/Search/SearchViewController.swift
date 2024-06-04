@@ -29,6 +29,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         view.addSubview(tableView)
         
+        viewModel.search(inputText: "아")
         viewModel.$flowers
             .receive(on: DispatchQueue.main)
             .sink (receiveValue: { [weak self] _ in
