@@ -108,7 +108,6 @@ final class FlowerContentView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
         let contentLength = scrollView.frame.width
         scrollView.contentSize = CGSize(
             width: contentLength * CGFloat(pageControl.numberOfPages),
@@ -131,6 +130,10 @@ final class FlowerContentView: UIView {
         typeDescriptionLabel.text = flower.type
         growDescriptionLabel.text = flower.grow
         usageDescriptionLabel.text = flower.usage
+        
+        for subview in scrollView.subviews {
+            subview.removeFromSuperview()
+        }
         
         for imageData in flower.imageData {
             let imageView = UIImageView(image: UIImage(data: imageData))
