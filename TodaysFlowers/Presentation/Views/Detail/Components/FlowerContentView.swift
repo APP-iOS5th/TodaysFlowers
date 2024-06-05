@@ -137,6 +137,7 @@ final class FlowerContentView: UIView {
     
     func configureViewContents(with flower: Flower) {
         mainTitleLabel.text = flower.name
+        subTitleLabel.text = flower.lang
         mainDescriptionLabel.text = flower.content
         typeDescriptionLabel.text = flower.type
         growDescriptionLabel.text = flower.grow
