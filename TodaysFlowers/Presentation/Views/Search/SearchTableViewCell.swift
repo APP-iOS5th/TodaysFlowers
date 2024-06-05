@@ -19,14 +19,13 @@ class SearchTableViewCell: UITableViewCell {
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        
         return nameLabel
     }()
     
     private lazy var flowerLangLabel: UILabel = {
         let flowerLangLabel = UILabel()
-        flowerLangLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        
+        flowerLangLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        flowerLangLabel.textColor = .gray
         return flowerLangLabel
     }()
     
