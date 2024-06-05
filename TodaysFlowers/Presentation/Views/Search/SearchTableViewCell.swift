@@ -23,11 +23,11 @@ class SearchTableViewCell: UITableViewCell {
         return nameLabel
     }()
     
-    private lazy var langLabel: UILabel = {
-        let langLabel = UILabel()
-        langLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+    private lazy var flowerLangLabel: UILabel = {
+        let flowerLangLabel = UILabel()
+        flowerLangLabel.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         
-        return langLabel
+        return flowerLangLabel
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -35,11 +35,11 @@ class SearchTableViewCell: UITableViewCell {
         
         addSubview(thumbnailView)
         addSubview(nameLabel)
-        addSubview(langLabel)
+        addSubview(flowerLangLabel)
         
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        langLabel.translatesAutoresizingMaskIntoConstraints = false
+        flowerLangLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let safeArea = safeAreaLayoutGuide
         let marginGuide = layoutMarginsGuide
@@ -49,15 +49,14 @@ class SearchTableViewCell: UITableViewCell {
             thumbnailView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor),
             thumbnailView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 8),
             thumbnailView.widthAnchor.constraint(equalToConstant: 90),
-            thumbnailView.heightAnchor.constraint(equalToConstant: 90),
             
             nameLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: thumbnailView.trailingAnchor, constant: 8),
             nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: -8),
             
-            langLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            langLabel.leadingAnchor.constraint(equalTo: thumbnailView.trailingAnchor, constant: 8),
-            langLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: -8),
+            flowerLangLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            flowerLangLabel.leadingAnchor.constraint(equalTo: thumbnailView.trailingAnchor, constant: 8),
+            flowerLangLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor, constant: -8),
         ])
     }
     
@@ -69,7 +68,7 @@ class SearchTableViewCell: UITableViewCell {
     func configureCell(flower: Flower) {
         thumbnailView.image = UIImage(data: flower.imageData[0])
         nameLabel.text = flower.name
-        langLabel.text = flower.lang
+        flowerLangLabel.text = flower.lang
     }
     
 }
