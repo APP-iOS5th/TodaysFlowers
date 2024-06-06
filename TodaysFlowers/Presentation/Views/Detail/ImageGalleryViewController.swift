@@ -70,8 +70,6 @@ final class ImageGalleryViewController: UIViewController {
             )
         }
         imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
-        
-        print("in layout subview will: ", pageControl.currentPage)
     }
     
     private func configureUI() {
