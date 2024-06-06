@@ -11,6 +11,7 @@ import Combine
 final class DetailViewUseCaseStub: DetailViewUseCase {
     func getFlower(by id: Int) -> AnyPublisher<Flower, Never> {
         Just(FlowerStubs.flower)
+            .delay(for: .seconds(2), scheduler: RunLoop.main)
             .eraseToAnyPublisher()
     }
 }
