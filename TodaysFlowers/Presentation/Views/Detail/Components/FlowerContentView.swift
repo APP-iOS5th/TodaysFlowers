@@ -17,7 +17,7 @@ final class FlowerContentView: UIView {
     
     private lazy var contentView: UIView = UIView()
     
-    private lazy var imageScrollView: UIScrollView = {
+    private(set) lazy var imageScrollView: UIScrollView = {
         let imageScrollView = UIScrollView()
         imageScrollView.isPagingEnabled = true
         imageScrollView.showsHorizontalScrollIndicator = false
@@ -25,7 +25,7 @@ final class FlowerContentView: UIView {
         return imageScrollView
     }()
     
-    private lazy var pageControl: UIPageControl = {
+    private(set) lazy var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
         pageControl.pageIndicatorTintColor = .gray
