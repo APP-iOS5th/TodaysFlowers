@@ -19,6 +19,7 @@ final class DetailViewController: UIViewController {
     }()
     
     private lazy var flowerContentView = FlowerContentView()
+    private(set) lazy var flowerContentView = FlowerContentView()
     
     private let viewModel: DetailViewModel
     private var disposableBag = Set<AnyCancellable>()
