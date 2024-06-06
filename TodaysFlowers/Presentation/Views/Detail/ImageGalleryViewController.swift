@@ -9,7 +9,7 @@ import UIKit
 
 final class ImageGalleryViewController: UIViewController {
     // MARK: - Components
-    private lazy var imageScrollView: UIScrollView = {
+    private(set) lazy var imageScrollView: UIScrollView = {
         let imageScrollView = UIScrollView()
         imageScrollView.isPagingEnabled = true
         imageScrollView.showsHorizontalScrollIndicator = false
