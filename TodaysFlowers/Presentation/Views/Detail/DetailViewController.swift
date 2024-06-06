@@ -18,11 +18,11 @@ final class DetailViewController: UIViewController {
         return activityIndicator
     }()
     
-    private lazy var flowerContentView = FlowerContentView()
     private(set) lazy var flowerContentView = FlowerContentView()
     
     private let viewModel: DetailViewModel
     private var disposableBag = Set<AnyCancellable>()
+    private let galleryAnimationManager = GalleryAnimationManager()
     
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
@@ -105,7 +105,8 @@ final class DetailViewController: UIViewController {
                 selectedIndex: flowerContentView.pageControl.currentPage
             )
         )
-        
+        viewController.modalPresentationStyle = .custom
+        viewController.transitioningDelegate = galleryAnimationManager
         present(viewController, animated: true)
     }
 }
