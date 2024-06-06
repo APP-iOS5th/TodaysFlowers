@@ -104,7 +104,8 @@ final class ImageGalleryViewController: UIViewController {
         
         for imageData in imagesData {
             let imageView = UIImageView(image: UIImage(data: imageData))
-            imageView.contentMode = .scaleAspectFit
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
             
             imageScrollView.addSubview(imageView)
         }

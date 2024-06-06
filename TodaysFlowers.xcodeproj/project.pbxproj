@@ -19,6 +19,8 @@
 		830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EB1362C1172AC0021F113 /* ImageGalleryViewController.swift */; };
 		830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EB1382C11743B0021F113 /* ImageGalleryViewModel.swift */; };
 		836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836BF9E82C0DD4C800C98B3D /* FlowerStubs.swift */; };
+		83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */; };
+		83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */; };
 		83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EA2C0D55F800BE19DB /* AppDelegate.swift */; };
 		83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */; };
 		83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EE2C0D55F800BE19DB /* ViewController.swift */; };
@@ -70,6 +72,8 @@
 		83CC5E1D2C0DB19C00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E1F2C0DB1A500FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E212C0DB1AD00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
+		83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAnimationManager.swift; sourceTree = "<group>"; };
+		83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresentAnimator.swift; sourceTree = "<group>"; };
 		83F656E72C0D55F800BE19DB /* TodaysFlowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysFlowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F656EA2C0D55F800BE19DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +161,15 @@
 				83CC5E212C0DB1AD00FF4E33 /* placeholder */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		83E5E9832C11D514003522EB /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */,
+				83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		83F656DE2C0D55F800BE19DB = {
@@ -271,6 +284,7 @@
 		83F657202C0D56B100BE19DB /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				83E5E9832C11D514003522EB /* Animations */,
 				83097A332C0EE1B100E7B007 /* Utils */,
 				83097A302C0EE0EB00E7B007 /* Components */,
 				83097A2E2C0ED7C700E7B007 /* DetailViewController.swift */,
@@ -463,6 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */,
+				83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */,
 				83097A2D2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift in Sources */,
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
 				83097A2F2C0ED7C700E7B007 /* DetailViewController.swift in Sources */,
@@ -477,6 +492,7 @@
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
 				83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */,
 				83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */,
+				83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */,
 				830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */,
 				83097A3B2C0F366700E7B007 /* Spacing.swift in Sources */,
 				83097A392C0EF99B00E7B007 /* DetailViewModel.swift in Sources */,
