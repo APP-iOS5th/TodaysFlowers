@@ -25,3 +25,74 @@ final class GalleryPresentAnimator: NSObject {
         return copiedImageView
     }
 }
+
+extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
+    func transitionDuration(using transitionContext: (any UIViewControllerContextTransitioning)?) -> TimeInterval {
+        transitionDuration
+    }
+    
+    func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
+        let containerView = transitionContext.containerView
+        containerView.subviews.forEach { $0.removeFromSuperview() }
+        
+        containerView.addSubview(whiteBackgroundView)
+        
+        let fromView = transitionContext.viewController(forKey: .from) as! DetailViewController
+        let toView = transitionContext.viewController(forKey: .to) as! ImageGalleryViewController
+        let imageScrollView = fromView.flowerContentView.imageScrollView
+        let currentPage = fromView.flowerContentView.pageControl.currentPage
+        
+        let copiedCurrentImageView = makeCopy(
+            of: imageScrollView,
+            from: currentPage
+        )
+        containerView.addSubview(copiedCurrentImageView)
+        imageScrollView.isHidden = true
+        
+        // TODO: Change frame calculation logic
+        var copiedImageViewFrame = imageScrollView.convert(imageScrollView.frame, to: nil)
+        copiedImageViewFrame.origin.x = 0
+        copiedCurrentImageView.frame = copiedImageViewFrame
+        whiteBackgroundView.frame = copiedImageViewFrame
+        
+        containerView.addSubview(toView.view)
+        toView.view.hideAllSubviews()
+        toView.view.layoutIfNeeded()
+        
+        let yOriginOfToView = toView.imageScrollView.frame.origin.y
+        
+        runExpandAnimator(
+            for: copiedCurrentImageView,
+            in: containerView,
+            yOrigin: yOriginOfToView
+        ) {
+            toView.pageControl.currentPage = currentPage
+            toView.view.showAllSubviews()
+            imageScrollView.isHidden = false
+            copiedCurrentImageView.removeFromSuperview()
+            transitionContext.completeTransition(true)
+        }
+    }
+    
+    private func runExpandAnimator(
+        for view: UIImageView,
+        in containerView: UIView,
+        yOrigin: CGFloat,
+        completion: @escaping () -> ()
+    ) {
+        let springTiming = UISpringTimingParameters(dampingRatio: 0.8)
+        let animator = UIViewPropertyAnimator(duration: transitionDuration, timingParameters: springTiming)
+        
+        animator.addAnimations {
+            view.frame.origin.y = yOrigin
+            self.whiteBackgroundView.frame = containerView.frame
+            containerView.layoutIfNeeded()
+        }
+        
+        animator.addCompletion { _ in
+            completion()
+        }
+        
+        animator.startAnimation()
+    }
+}
