@@ -16,6 +16,8 @@
 		83097A392C0EF99B00E7B007 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83097A382C0EF99B00E7B007 /* DetailViewModel.swift */; };
 		83097A3B2C0F366700E7B007 /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83097A3A2C0F366700E7B007 /* Spacing.swift */; };
 		83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83097A3C2C0F3AE600E7B007 /* StringHandler.swift */; };
+		830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EB1362C1172AC0021F113 /* ImageGalleryViewController.swift */; };
+		830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830EB1382C11743B0021F113 /* ImageGalleryViewModel.swift */; };
 		836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836BF9E82C0DD4C800C98B3D /* FlowerStubs.swift */; };
 		83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EA2C0D55F800BE19DB /* AppDelegate.swift */; };
 		83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */; };
@@ -59,6 +61,8 @@
 		83097A382C0EF99B00E7B007 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		83097A3A2C0F366700E7B007 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		83097A3C2C0F3AE600E7B007 /* StringHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHandler.swift; sourceTree = "<group>"; };
+		830EB1362C1172AC0021F113 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
+		830EB1382C11743B0021F113 /* ImageGalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewModel.swift; sourceTree = "<group>"; };
 		836BF9E82C0DD4C800C98B3D /* FlowerStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerStubs.swift; sourceTree = "<group>"; };
 		83CC5E152C0DB12C00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E172C0DB17100FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
@@ -270,6 +274,7 @@
 				83097A332C0EE1B100E7B007 /* Utils */,
 				83097A302C0EE0EB00E7B007 /* Components */,
 				83097A2E2C0ED7C700E7B007 /* DetailViewController.swift */,
+				830EB1362C1172AC0021F113 /* ImageGalleryViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				83097A382C0EF99B00E7B007 /* DetailViewModel.swift */,
+				830EB1382C11743B0021F113 /* ImageGalleryViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -464,12 +470,14 @@
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
+				830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
 				83F657262C0D56FA00BE19DB /* Flower.swift in Sources */,
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
 				83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */,
 				83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */,
+				830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */,
 				83097A3B2C0F366700E7B007 /* Spacing.swift in Sources */,
 				83097A392C0EF99B00E7B007 /* DetailViewModel.swift in Sources */,
 				83097A322C0EE0F900E7B007 /* FlowerContentView.swift in Sources */,
