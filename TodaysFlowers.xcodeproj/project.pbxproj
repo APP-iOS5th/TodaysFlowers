@@ -21,6 +21,7 @@
 		836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836BF9E82C0DD4C800C98B3D /* FlowerStubs.swift */; };
 		83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */; };
 		83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */; };
+		83E5E9892C11F497003522EB /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9882C11F497003522EB /* UIView+.swift */; };
 		83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EA2C0D55F800BE19DB /* AppDelegate.swift */; };
 		83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */; };
 		83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EE2C0D55F800BE19DB /* ViewController.swift */; };
@@ -74,6 +75,7 @@
 		83CC5E212C0DB1AD00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAnimationManager.swift; sourceTree = "<group>"; };
 		83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresentAnimator.swift; sourceTree = "<group>"; };
+		83E5E9882C11F497003522EB /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		83F656E72C0D55F800BE19DB /* TodaysFlowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysFlowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F656EA2C0D55F800BE19DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		83097A332C0EE1B100E7B007 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				83E5E9882C11F497003522EB /* UIView+.swift */,
 				83097A342C0EE1BA00E7B007 /* UILabel+.swift */,
 				83097A3A2C0F366700E7B007 /* Spacing.swift */,
 				83097A3C2C0F3AE600E7B007 /* StringHandler.swift */,
@@ -484,6 +487,7 @@
 				83097A352C0EE1BA00E7B007 /* UILabel+.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
+				83E5E9892C11F497003522EB /* UIView+.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
 				830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
