@@ -39,6 +39,7 @@ final class DetailViewController: UIViewController {
         
         configureUI()
         bind()
+        configureTapGesture()
         
         startProcessing()
         viewModel.fetchFlower()
@@ -89,6 +90,22 @@ final class DetailViewController: UIViewController {
         UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.3, delay: 0) { [weak self] in
             self?.flowerContentView.alpha = 1
         }
+    }
+    
+    private func configureTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        flowerContentView.imageScrollView.addGestureRecognizer(tap)
+    }
+    
+    @objc private func handleTap(_ sender: UITapGestureRecognizer) {
+        let viewController = ImageGalleryViewController(
+            viewModel: ImageGalleryViewModel(
+                imagesData: viewModel.flower.imageData,
+                selectedIndex: flowerContentView.pageControl.currentPage
+            )
+        )
+        
+        present(viewController, animated: true)
     }
 }
 
