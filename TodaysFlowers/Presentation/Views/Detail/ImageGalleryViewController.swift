@@ -28,6 +28,7 @@ final class ImageGalleryViewController: UIViewController {
     }()
     
     private let viewModel: ImageGalleryViewModel
+    private var originFrame: CGRect = .zero
     
     init(viewModel: ImageGalleryViewModel) {
         self.viewModel = viewModel
@@ -49,6 +50,9 @@ final class ImageGalleryViewController: UIViewController {
         )
         
         imageScrollView.delegate = self
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePullToDismiss(_:)))
+        view.addGestureRecognizer(panGesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -109,6 +113,33 @@ final class ImageGalleryViewController: UIViewController {
         }
         pageControl.numberOfPages = imagesData.count
         pageControl.currentPage = selectedIndex
+    }
+    
+    @objc private func handlePullToDismiss(_ gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+            case .began:
+                originFrame = view.frame
+            case .changed:
+                let translation = gesture.translation(in: view)
+                
+                if abs(translation.y) > abs(translation.x),
+                   translation.y > 0
+                {
+                    let ratio = (originFrame.height - translation.y) / originFrame.height
+                    if ratio < 0.8 {
+                        dismiss(animated: true)
+                    }
+                    view.layer.cornerRadius = 20
+                    view.transform = CGAffineTransform(scaleX: ratio, y: ratio)
+                }
+            case .ended:
+                UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.1, delay: .zero) {
+                    self.view.layer.cornerRadius = 0
+                    self.view.transform = .identity
+                }
+            default:
+                return
+        }
     }
 }
 
