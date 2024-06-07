@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		830660B62C12033900292851 /* GalleryDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 830660B52C12033900292851 /* GalleryDismissAnimator.swift */; };
 		83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83097A282C0ECAE400E7B007 /* HomeViewUseCaseStub.swift */; };
 		83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83097A2A2C0ECC6100E7B007 /* SearchUseCaseStub.swift */; };
 		83097A2D2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83097A2C2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		830660B52C12033900292851 /* GalleryDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDismissAnimator.swift; sourceTree = "<group>"; };
 		83097A282C0ECAE400E7B007 /* HomeViewUseCaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUseCaseStub.swift; sourceTree = "<group>"; };
 		83097A2A2C0ECC6100E7B007 /* SearchUseCaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCaseStub.swift; sourceTree = "<group>"; };
 		83097A2C2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUseCaseStub.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			children = (
 				83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */,
 				83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */,
+				830660B52C12033900292851 /* GalleryDismissAnimator.swift */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
 				83097A2F2C0ED7C700E7B007 /* DetailViewController.swift in Sources */,
 				83097A352C0EE1BA00E7B007 /* UILabel+.swift in Sources */,
+				830660B62C12033900292851 /* GalleryDismissAnimator.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
 				83E5E9892C11F497003522EB /* UIView+.swift in Sources */,
