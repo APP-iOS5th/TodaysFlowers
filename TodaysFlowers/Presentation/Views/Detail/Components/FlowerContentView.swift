@@ -158,6 +158,11 @@ final class FlowerContentView: UIView {
         layoutSubviews()
     }
     
+    func updateCurrentPage(to index: Int) {
+        pageControl.currentPage = index
+        imageScrollView.contentOffset.x = imageScrollView.frame.width * CGFloat(index)
+    }
+    
     private func configureUI() {
         backgroundColor = .white
         addSubview(scrollView)
