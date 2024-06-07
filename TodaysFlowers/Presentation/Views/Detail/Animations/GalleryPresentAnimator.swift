@@ -8,7 +8,7 @@
 import UIKit
 
 final class GalleryPresentAnimator: NSObject {
-    let transitionDuration: TimeInterval = 0.75
+    let transitionDuration: TimeInterval = 0.5
     
     private lazy var whiteBackgroundView: UIView = {
         let whiteBackgroundView = UIView()
