@@ -11,4 +11,8 @@ final class GalleryAnimationManager: NSObject, UIViewControllerTransitioningDele
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> (any UIViewControllerAnimatedTransitioning)? {
         GalleryPresentAnimator()
     }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> (any UIViewControllerAnimatedTransitioning)? {
+        GalleryDismissAnimator()
+    }
 }
