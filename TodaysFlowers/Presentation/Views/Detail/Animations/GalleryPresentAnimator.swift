@@ -17,6 +17,14 @@ final class GalleryPresentAnimator: NSObject {
         return whiteBackgroundView
     }()
     
+    private lazy var blurView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.alpha = 0
+        
+        return blurView
+    }()
+    
     private func makeCopy(of view: UIView, from index: Int) -> UIImageView {
         let imageView = view.subviews[index] as! UIImageView
         let copiedImageView = UIImageView(image: imageView.image)
@@ -35,7 +43,10 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let containerView = transitionContext.containerView
         containerView.subviews.forEach { $0.removeFromSuperview() }
         
+        containerView.addSubview(blurView)
         containerView.addSubview(whiteBackgroundView)
+        
+        blurView.frame = containerView.frame
         
         let fromView = transitionContext.viewController(forKey: .from) as! DetailViewController
         let toView = transitionContext.viewController(forKey: .to) as! ImageGalleryViewController
@@ -70,6 +81,7 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
             toView.view.showAllSubviews()
             imageScrollView.isHidden = false
             copiedCurrentImageView.removeFromSuperview()
+            self.whiteBackgroundView.removeFromSuperview()
             transitionContext.completeTransition(true)
         }
     }
@@ -84,6 +96,7 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let animator = UIViewPropertyAnimator(duration: transitionDuration, timingParameters: springTiming)
         
         animator.addAnimations {
+            self.blurView.alpha = 1
             view.frame.origin.y = yOrigin
             self.whiteBackgroundView.frame = containerView.frame
             containerView.layoutIfNeeded()
