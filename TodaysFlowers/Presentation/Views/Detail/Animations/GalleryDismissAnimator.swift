@@ -39,12 +39,17 @@ extension GalleryDismissAnimator: UIViewControllerAnimatedTransitioning {
 
         fromView.view.hideAllSubviews()
         
-        var destinationFrame = calculateDestinationFrame(with: toView.flowerContentView.imageScrollView.convert(toView.flowerContentView.imageScrollView.frame, to: nil))
+        var destinationFrame = calculateDestinationFrame(
+            with: toView.flowerContentView.imageScrollView.convert(
+                toView.flowerContentView.imageScrollView.frame, to: nil
+            )
+        )
         destinationFrame.origin.x = 0
         
         containerView.subviews.forEach { $0.removeFromSuperview() }
         containerView.addSubview(copiedImageView)
         toView.flowerContentView.updateCurrentPage(to: fromView.pageControl.currentPage)
+        
         runShrinkAnimator(for: copiedImageView, to: destinationFrame) {
             transitionContext.completeTransition(true)
         }
