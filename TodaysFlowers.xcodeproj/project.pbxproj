@@ -26,6 +26,7 @@
 		83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */; };
 		9FA5A44D2C16026200955C63 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5A44C2C16026200955C63 /* HomeViewModel.swift */; };
 		9FA5A44F2C1605E600955C63 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5A44E2C1605E600955C63 /* HomeViewCell.swift */; };
+		9FA5A4512C16064900955C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5A4502C16064900955C63 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUseCase.swift; sourceTree = "<group>"; };
 		9FA5A44C2C16026200955C63 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		9FA5A44E2C1605E600955C63 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
+		9FA5A4502C16064900955C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				9FA5A44E2C1605E600955C63 /* HomeViewCell.swift */,
+				9FA5A4502C16064900955C63 /* HomeViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
+				9FA5A4512C16064900955C63 /* HomeViewController.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
 				9FA5A44D2C16026200955C63 /* HomeViewModel.swift in Sources */,
