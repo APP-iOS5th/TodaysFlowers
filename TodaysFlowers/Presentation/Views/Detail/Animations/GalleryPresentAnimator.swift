@@ -106,8 +106,8 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let animator = UIViewPropertyAnimator(duration: transitionDuration, timingParameters: springTiming)
         
         animator.addAnimations {
-            self.blurView.alpha = 1
             view.frame.origin.y = yOrigin
+            self.blurView.alpha = 1
             self.whiteBackgroundView.frame = containerView.frame
         }
         
