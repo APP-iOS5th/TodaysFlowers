@@ -41,7 +41,7 @@ extension GalleryDismissAnimator: UIViewControllerAnimatedTransitioning {
 
         fromView.view.hideAllSubviews()
         
-        var destinationFrame = calculateDestinationFrame(
+        let destinationFrame = calculateDestinationFrame(
             with: toView.flowerContentView.imageScrollView.convert(
                 toView.flowerContentView.imageScrollView.frame, to: nil
             )
