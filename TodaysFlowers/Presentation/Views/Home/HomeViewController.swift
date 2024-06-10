@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
-    
+    // dateLabel 날짜
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
         let formatter = DateFormatter()
@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         dateLabel.font = UIFont.systemFont(ofSize: 24, weight:  .semibold)
         return dateLabel
     }()
+    // titleLabel 앱 제목
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "오늘의 꽃"
@@ -41,8 +42,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
+        collectionView.delegate = self
     }
-
+    // UI 레이아웃 설정
     private func setupUI() {
         
         view.backgroundColor = .white
@@ -74,7 +76,6 @@ class HomeViewController: UIViewController {
         collectionView.register(HomeViewCell.self, forCellWithReuseIdentifier: "FlowerCell")
         collectionView.dataSource = self
 
-        //self.title = "오늘의 꽃"
     }
 
     private func bindViewModel() {
@@ -99,5 +100,12 @@ extension HomeViewController: UICollectionViewDataSource {
         let flower = viewModel.flowers[indexPath.item]
         cell.configure(with: flower)
         return cell
+    }
+}
+
+// 셀 클릭했을 때 콘솔창에 "선택" 메시지 출력 (셀 선택 효과 추가하니까 안됨 수정 필요))
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("선택")
     }
 }

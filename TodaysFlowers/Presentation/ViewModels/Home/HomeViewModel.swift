@@ -11,7 +11,7 @@ import Foundation
 
 class HomeViewModel: ObservableObject {
     @Published var flowers: [Flower] = []
-    
+
     init() {
         loadFlowers()
     }
@@ -39,7 +39,19 @@ class HomeViewModel: ObservableObject {
                 usage: "Some usage",
                 imageData: [UIImage.assetToData("sample_flower4.jpeg")], // Some image data
                 date: Date.retrieveDateFromToday(by: 1)
+            ),
+            Flower(
+                id: 58,
+                name: "깽깽이풀",
+                lang: "안심하세요",
+                content: "Some content",
+                type: "Some type",
+                grow: "Some grow information",
+                usage: "Some usage",
+                imageData: [UIImage.assetToData("sample_flower7.jpeg")], // Some image data
+                date: Date.retrieveDateFromToday(by: 2)
             )
         ]
     }
+
 }

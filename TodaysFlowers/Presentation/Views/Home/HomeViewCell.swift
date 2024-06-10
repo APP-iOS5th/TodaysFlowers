@@ -16,6 +16,7 @@ class HomeViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+        setupGestureRecognizers()
     }
 
     required init?(coder: NSCoder) {
@@ -71,7 +72,44 @@ class HomeViewCell: UICollectionViewCell {
         contentView.layer.masksToBounds = true
         contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
     }
+    
+    // 셀 클릭시 확대 효과
+    private func setupGestureRecognizers() {
+        // Adding hover gesture recognizer
+        let hoverGestureRecognizer = UIHoverGestureRecognizer(target: self, action: #selector(handleHover(_:)))
+        addGestureRecognizer(hoverGestureRecognizer)
+        
+        // Adding tap gesture recognizer
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        addGestureRecognizer(tapGestureRecognizer)
+    }
 
+    @objc private func handleHover(_ gesture: UIHoverGestureRecognizer) {
+        switch gesture.state {
+        case .began, .changed:
+            UIView.animate(withDuration: 0.2) {
+                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            }
+        case .ended:
+            UIView.animate(withDuration: 0.2) {
+                self.transform = CGAffineTransform.identity
+            }
+        default:
+            break
+        }
+    }
+
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.2) {
+                self.transform = CGAffineTransform.identity
+            }
+        })
+    }
+    
+    
     func configure(with flower: Flower) {
         if let imageData = flower.imageData.first, let image = UIImage(data: imageData) {
             flowerImageView.image = image
@@ -82,7 +120,6 @@ class HomeViewCell: UICollectionViewCell {
         langLabel.text = flower.lang
         
         let dateFormatter = DateFormatter()
-//        dateFormatter.dateStyle = .medium
         dateFormatter.dateFormat = "MMM d"
         dateLabel.text = dateFormatter.string(from: flower.date)
     }
