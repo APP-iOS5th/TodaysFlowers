@@ -99,7 +99,6 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
             self.blurView.alpha = 1
             view.frame.origin.y = yOrigin
             self.whiteBackgroundView.frame = containerView.frame
-            containerView.layoutIfNeeded()
         }
         
         animator.addCompletion { _ in
