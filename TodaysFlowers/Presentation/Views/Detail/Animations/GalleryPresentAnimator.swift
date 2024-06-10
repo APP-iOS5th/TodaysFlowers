@@ -60,9 +60,9 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         containerView.addSubview(copiedImageView)
         imageScrollView.isHidden = true
         
-        // TODO: Change frame calculation logic
-        var copiedImageViewFrame = imageScrollView.convert(imageScrollView.frame, to: nil)
-        copiedImageViewFrame.origin.x = 0
+        let copiedImageViewFrame = calculateOriginalFrame(
+            with: imageScrollView.convert(imageScrollView.frame, to: nil)
+        )
         copiedImageView.frame = copiedImageViewFrame
         whiteBackgroundView.frame = copiedImageViewFrame
         
@@ -84,6 +84,16 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
             self.whiteBackgroundView.removeFromSuperview()
             transitionContext.completeTransition(true)
         }
+    }
+    
+    private func calculateOriginalFrame(with rect: CGRect) -> CGRect {
+        CGRect(
+            origin: CGPoint(
+                x: 0,
+                y: rect.origin.y
+            ),
+            size: rect.size
+        )
     }
     
     private func runExpandAnimator(
