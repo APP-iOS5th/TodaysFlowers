@@ -52,10 +52,10 @@ final class ImageGalleryViewController: UIViewController {
             selectedIndex: viewModel.selectedIndex
         )
         
-        imageScrollView.delegate = self
+        imageViews.forEach(analyze(imageView:))
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePullToDismiss(_:)))
-        view.addGestureRecognizer(panGesture)
+        configurePanGesture()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -119,6 +119,8 @@ final class ImageGalleryViewController: UIViewController {
     }
     
     private func configureImageScrollView(with imagesData: [Data], selectedIndex: Int) {
+        imageScrollView.delegate = self
+        
         for subviews in imageScrollView.subviews {
             subviews.removeFromSuperview()
         }
@@ -128,10 +130,19 @@ final class ImageGalleryViewController: UIViewController {
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             
+            imageViews.append(imageView)
             imageScrollView.addSubview(imageView)
         }
         pageControl.numberOfPages = imagesData.count
         pageControl.currentPage = selectedIndex
+    }
+    
+    private func configurePanGesture() {
+        let panGesture = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(handlePullToDismiss(_:))
+        )
+        view.addGestureRecognizer(panGesture)
     }
     
     @objc private func handlePullToDismiss(_ gesture: UIPanGestureRecognizer) {
