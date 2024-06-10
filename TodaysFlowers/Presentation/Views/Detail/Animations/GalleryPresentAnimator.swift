@@ -8,7 +8,7 @@
 import UIKit
 
 final class GalleryPresentAnimator: NSObject {
-    let transitionDuration: TimeInterval = 0.5
+    private let transitionDuration: TimeInterval = 0.5
     
     private lazy var whiteBackgroundView: UIView = {
         let whiteBackgroundView = UIView()
@@ -28,7 +28,7 @@ final class GalleryPresentAnimator: NSObject {
     private func makeCopy(of view: UIView, from index: Int) -> UIImageView {
         let imageView = view.subviews[index] as! UIImageView
         let copiedImageView = UIImageView(image: imageView.image)
-        copiedImageView.contentMode = .scaleAspectFill
+        copiedImageView.contentMode = .scaleAspectFit
         
         return copiedImageView
     }
@@ -53,17 +53,17 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let imageScrollView = fromView.flowerContentView.imageScrollView
         let currentPage = fromView.flowerContentView.pageControl.currentPage
         
-        let copiedCurrentImageView = makeCopy(
+        let copiedImageView = makeCopy(
             of: imageScrollView,
             from: currentPage
         )
-        containerView.addSubview(copiedCurrentImageView)
+        containerView.addSubview(copiedImageView)
         imageScrollView.isHidden = true
         
-        // TODO: Change frame calculation logic
-        var copiedImageViewFrame = imageScrollView.convert(imageScrollView.frame, to: nil)
-        copiedImageViewFrame.origin.x = 0
-        copiedCurrentImageView.frame = copiedImageViewFrame
+        let copiedImageViewFrame = calculateOriginalFrame(
+            with: imageScrollView.convert(imageScrollView.frame, to: nil)
+        )
+        copiedImageView.frame = copiedImageViewFrame
         whiteBackgroundView.frame = copiedImageViewFrame
         
         containerView.addSubview(toView.view)
@@ -73,17 +73,27 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let yOriginOfToView = toView.imageScrollView.frame.origin.y
         
         runExpandAnimator(
-            for: copiedCurrentImageView,
+            for: copiedImageView,
             in: containerView,
             yOrigin: yOriginOfToView
         ) {
             toView.pageControl.currentPage = currentPage
             toView.view.showAllSubviews()
             imageScrollView.isHidden = false
-            copiedCurrentImageView.removeFromSuperview()
+            copiedImageView.removeFromSuperview()
             self.whiteBackgroundView.removeFromSuperview()
             transitionContext.completeTransition(true)
         }
+    }
+    
+    private func calculateOriginalFrame(with rect: CGRect) -> CGRect {
+        CGRect(
+            origin: CGPoint(
+                x: 0,
+                y: rect.origin.y
+            ),
+            size: rect.size
+        )
     }
     
     private func runExpandAnimator(
@@ -96,10 +106,9 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let animator = UIViewPropertyAnimator(duration: transitionDuration, timingParameters: springTiming)
         
         animator.addAnimations {
-            self.blurView.alpha = 1
             view.frame.origin.y = yOrigin
+            self.blurView.alpha = 1
             self.whiteBackgroundView.frame = containerView.frame
-            containerView.layoutIfNeeded()
         }
         
         animator.addCompletion { _ in
