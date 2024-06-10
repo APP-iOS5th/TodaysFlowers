@@ -27,6 +27,8 @@ final class ImageGalleryViewController: UIViewController {
         return pageControl
     }()
     
+    private lazy var imageViews: [UIImageView] = []
+    
     private let viewModel: ImageGalleryViewModel
     private var originFrame: CGRect = .zero
     
