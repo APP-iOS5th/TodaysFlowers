@@ -11,6 +11,7 @@ import Combine
 enum SearchType {
     case name
     case flowerLang
+    case date
 }
 
 class SearchViewModel {
@@ -36,6 +37,8 @@ class SearchViewModel {
                     return self.useCase.searchBy(name: searchText)
                 case .flowerLang:
                     return self.useCase.searchBy(flowerLang: searchText)
+                case .date:
+                    return self.useCase.searchBy(date: searchText)
                 }
             }
             .sink(receiveValue: { [weak self] flowers in

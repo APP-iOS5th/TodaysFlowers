@@ -33,7 +33,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupTableView()
         setupSearchController()
         setupSegmentedControl()
-    
+        monthDayPickerView.monthDayDelegate = self
+        
         viewModel.$flowers
             .receive(on: DispatchQueue.main)
             .sink (receiveValue: { [weak self] _ in
@@ -82,8 +83,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             searchController.searchBar.placeholder = "꽃말 검색"
             viewModel.searchType = .flowerLang
         case 2:
+            // 인덱스 에러 이슈로 picker초기화
+            monthDayPickerView.selectRow(0, inComponent: 0, animated: false)
+            monthDayPickerView.selectRow(0, inComponent: 1, animated: false)
             searchController.searchBar.customInputView = monthDayPickerView
             searchController.searchBar.placeholder = "날짜 검색"
+            viewModel.searchType = .date
         default:
             break
         }
