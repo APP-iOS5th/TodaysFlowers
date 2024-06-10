@@ -44,7 +44,6 @@ extension GalleryDismissAnimator: UIViewControllerAnimatedTransitioning {
                 toView.flowerContentView.imageScrollView.frame, to: nil
             )
         )
-        destinationFrame.origin.x = 0
         
         containerView.subviews.forEach { $0.removeFromSuperview() }
         containerView.addSubview(copiedImageView)
