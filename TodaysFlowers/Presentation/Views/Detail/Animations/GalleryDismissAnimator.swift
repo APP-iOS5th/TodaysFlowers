@@ -8,7 +8,7 @@
 import UIKit
 
 final class GalleryDismissAnimator: NSObject {
-    let transitionDuration: TimeInterval = 0.3
+    private let transitionDuration: TimeInterval = 0.3
     
     private func makeCopy(of view: UIView, from index: Int) -> UIImageView {
         let imageView = view.subviews[index] as! UIImageView
