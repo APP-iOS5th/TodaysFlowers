@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import VisionKit
 
 final class ImageGalleryViewController: UIViewController {
     // MARK: - Components
@@ -78,6 +79,22 @@ final class ImageGalleryViewController: UIViewController {
         imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
     }
     
+    private func analyze(imageView: UIImageView) {
+        Task {
+            let interaction = ImageAnalysisInteraction()
+            let analyzer = ImageAnalyzer()
+            if let image = imageView.image {
+                imageView.addInteraction(interaction)
+                let configuration = ImageAnalyzer.Configuration([.visualLookUp])
+                let analysis = try? await analyzer.analyze(image, configuration: configuration)
+                if let analysis = analysis {
+                    interaction.analysis = analysis
+                    interaction.preferredInteractionTypes = .imageSubject
+                }
+            }
+        }
+    }
+
     private func configureUI() {
         view.backgroundColor = .white
         
