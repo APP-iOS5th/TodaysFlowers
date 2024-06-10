@@ -30,12 +30,14 @@ extension GalleryDismissAnimator: UIViewControllerAnimatedTransitioning {
         
         let fromView = transitionContext.viewController(forKey: .from) as! ImageGalleryViewController
         let toView = transitionContext.viewController(forKey: .to) as! DetailViewController
+        let imageScrollView = fromView.imageScrollView
+        let currentPage = fromView.pageControl.currentPage
         
         let copiedImageView = makeCopy(
-            of: fromView.imageScrollView,
-            from: fromView.pageControl.currentPage
+            of: imageScrollView,
+            from: currentPage
         )
-        copiedImageView.frame = fromView.view.convert(fromView.imageScrollView.frame, to: nil)
+        copiedImageView.frame = fromView.view.convert(imageScrollView.frame, to: nil)
 
         fromView.view.hideAllSubviews()
         
