@@ -38,7 +38,7 @@ class HomeViewModel: ObservableObject {
                 grow: "Some grow information",
                 usage: "Some usage",
                 imageData: [UIImage.assetToData("sample_flower4.jpeg")], // Some image data
-                date: Date()
+                date: Date.retrieveDateFromToday(by: 1)
             )
         ]
     }

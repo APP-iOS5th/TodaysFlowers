@@ -51,17 +51,20 @@ class HomeViewCell: UICollectionViewCell {
             flowerImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             flowerImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20), // 위쪽 여백을 8포인트로 설정하여 이름 레이블을 상단에 배치
+//            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 40), // 위쪽 여백을 8포인트로 설정하여 이름 레이블을 상단에 배치
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20), // 왼쪽 여백을 8포인트로 설정
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20), // 오른쪽 여백을 8포인트로 설정
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
             
-            langLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 4), // 이름 레이블 아래에 4포인트의 여백을 추가하여 꽃말 레이블을 배치
+            langLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5), // 이름 레이블 아래에 4포인트의 여백을 추가하여 꽃말 레이블을 배치
             langLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20), // 왼쪽 여백을 8포인트로 설정합니다.
-            langLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -20), // 날짜 레이블의 왼쪽 여백을 8포인트로 설정하여 이름 레이블과 함께 배치
+            langLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -25), // 날짜 레이블의 왼쪽 여백을 8포인트로 설정하여 이름 레이블과 함께 배치
             
-            dateLabel.topAnchor.constraint(equalTo: langLabel.topAnchor), // langLabel과 같은 수평선에 배치
+            dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 225), // langLabel과 같은 수평선에 배치
             dateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20), // 오른쪽 여백을 8포인트로 설정
-            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20) // 하단 여백을 8포인트로 설정
+//            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -25), // 하단 여백을 8포인트로 설정
+//            dateLabel.widthAnchor.constraint(equalToConstant: 50),
+//            dateLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
         
         contentView.layer.cornerRadius = 12
@@ -79,7 +82,8 @@ class HomeViewCell: UICollectionViewCell {
         langLabel.text = flower.lang
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
+//        dateFormatter.dateStyle = .medium
+        dateFormatter.dateFormat = "MMM d"
         dateLabel.text = dateFormatter.string(from: flower.date)
     }
 }
