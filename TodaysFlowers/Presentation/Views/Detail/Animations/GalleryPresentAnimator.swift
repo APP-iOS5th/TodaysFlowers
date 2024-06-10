@@ -28,7 +28,7 @@ final class GalleryPresentAnimator: NSObject {
     private func makeCopy(of view: UIView, from index: Int) -> UIImageView {
         let imageView = view.subviews[index] as! UIImageView
         let copiedImageView = UIImageView(image: imageView.image)
-        copiedImageView.contentMode = .scaleAspectFill
+        copiedImageView.contentMode = .scaleAspectFit
         
         return copiedImageView
     }
