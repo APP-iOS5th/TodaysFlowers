@@ -53,17 +53,17 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let imageScrollView = fromView.flowerContentView.imageScrollView
         let currentPage = fromView.flowerContentView.pageControl.currentPage
         
-        let copiedCurrentImageView = makeCopy(
+        let copiedImageView = makeCopy(
             of: imageScrollView,
             from: currentPage
         )
-        containerView.addSubview(copiedCurrentImageView)
+        containerView.addSubview(copiedImageView)
         imageScrollView.isHidden = true
         
         // TODO: Change frame calculation logic
         var copiedImageViewFrame = imageScrollView.convert(imageScrollView.frame, to: nil)
         copiedImageViewFrame.origin.x = 0
-        copiedCurrentImageView.frame = copiedImageViewFrame
+        copiedImageView.frame = copiedImageViewFrame
         whiteBackgroundView.frame = copiedImageViewFrame
         
         containerView.addSubview(toView.view)
@@ -73,14 +73,14 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         let yOriginOfToView = toView.imageScrollView.frame.origin.y
         
         runExpandAnimator(
-            for: copiedCurrentImageView,
+            for: copiedImageView,
             in: containerView,
             yOrigin: yOriginOfToView
         ) {
             toView.pageControl.currentPage = currentPage
             toView.view.showAllSubviews()
             imageScrollView.isHidden = false
-            copiedCurrentImageView.removeFromSuperview()
+            copiedImageView.removeFromSuperview()
             self.whiteBackgroundView.removeFromSuperview()
             transitionContext.completeTransition(true)
         }
