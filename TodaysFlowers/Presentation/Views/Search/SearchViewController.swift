@@ -8,31 +8,30 @@
 import UIKit
 import Combine
 
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+final class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
     private var viewModel = SearchViewModel()
     private var cancellables = Set<AnyCancellable>()
     private let monthDayPickerView = MonthDayPickerView()
     
+    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "날짜"])
+    private let searchController = UISearchController(searchResultsController: nil)
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "flowerCell")
+        tableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.identifier)
         
         return tableView
     }()
-    
-    private let searchController = UISearchController(searchResultsController: nil)
-    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "날짜"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        setupTableView()
-        setupSearchController()
         setupSegmentedControl()
+        setupSearchController()
+        setupTableView()
         monthDayPickerView.monthDayDelegate = self
         
         viewModel.$flowers
@@ -68,30 +67,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func setupSegmentedControl() {
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
+        // addTarget에서 변경 (iOS 14+)
+        segmentedControl.addAction(UIAction { [weak self] action in
+            let sender = action.sender as! UISegmentedControl
+            
+            switch sender.selectedSegmentIndex {
+            case 0:
+                self?.searchController.searchBar.customInputView = nil
+                self?.searchController.searchBar.placeholder = "이름 검색"
+                self?.viewModel.searchType = .name
+            case 1:
+                self?.searchController.searchBar.customInputView = nil
+                self?.searchController.searchBar.placeholder = "꽃말 검색"
+                self?.viewModel.searchType = .flowerLang
+            case 2:
+                // 인덱스 에러 이슈로 picker초기화
+                self?.monthDayPickerView.selectRow(0, inComponent: 0, animated: false)
+                self?.monthDayPickerView.selectRow(0, inComponent: 1, animated: false)
+                self?.searchController.searchBar.customInputView = self?.monthDayPickerView
+                self?.searchController.searchBar.placeholder = "날짜 검색"
+                self?.viewModel.searchType = .date
+            default:
+                break
+            }
+        }, for: .valueChanged)
         navigationItem.titleView = segmentedControl
-    }
-    
-    @objc private func segmentChanged(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            searchController.searchBar.customInputView = nil
-            searchController.searchBar.placeholder = "이름 검색"
-            viewModel.searchType = .name
-        case 1:
-            searchController.searchBar.customInputView = nil
-            searchController.searchBar.placeholder = "꽃말 검색"
-            viewModel.searchType = .flowerLang
-        case 2:
-            // 인덱스 에러 이슈로 picker초기화
-            monthDayPickerView.selectRow(0, inComponent: 0, animated: false)
-            monthDayPickerView.selectRow(0, inComponent: 1, animated: false)
-            searchController.searchBar.customInputView = monthDayPickerView
-            searchController.searchBar.placeholder = "날짜 검색"
-            viewModel.searchType = .date
-        default:
-            break
-        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,21 +120,5 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 extension SearchViewController: MonthDayPickerViewDelegate {
     func didSelectDate(month: String, day: String) {
         searchController.searchBar.text = "\(month)월 \(day)일"
-    }
-}
-
-extension UISearchBar {
-    private var textField: UITextField? {
-        return self.value(forKey: "searchField") as? UITextField
-    }
-
-    var customInputView: UIView? {
-        get {
-            return textField?.inputView
-        }
-        set {
-            textField?.inputView = newValue
-            textField?.reloadInputViews()
-        }
     }
 }

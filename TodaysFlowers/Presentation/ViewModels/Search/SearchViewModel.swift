@@ -8,17 +8,10 @@
 import Foundation
 import Combine
 
-enum SearchType {
-    case name
-    case flowerLang
-    case date
-}
-
 class SearchViewModel {
     private let useCase: any SearchUseCase
     @Published var flowers: [Flower] = []
     @Published var searchType: SearchType = .name
-    private var cancellables = Set<AnyCancellable>()
     private var searchTextPublisher = PassthroughSubject<String, Never>()
     
     init(useCase: any SearchUseCase = SearchUseCaseStub()) {
@@ -41,10 +34,7 @@ class SearchViewModel {
                     return self.useCase.searchBy(date: searchText)
                 }
             }
-            .sink(receiveValue: { [weak self] flowers in
-                self?.flowers = flowers
-            })
-            .store(in: &cancellables)
+            .assign(to: &$flowers) // Combine의 re-publish 기능
     }
     
     func search(inputText: String) {

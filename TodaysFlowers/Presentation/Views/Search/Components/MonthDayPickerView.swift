@@ -11,7 +11,7 @@ protocol MonthDayPickerViewDelegate: NSObject {
     func didSelectDate(month: String, day: String)
 }
 
-class MonthDayPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
+final class MonthDayPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDelegate {
     var months = Array(1...12).map { String($0) }
     let daysInMonth: [String: [String]] = [
         "1": Array(1...31).map { String($0) },
@@ -50,9 +50,9 @@ class MonthDayPickerView: UIPickerView, UIPickerViewDataSource, UIPickerViewDele
             return months.count
         case 1:
             let selectedMonthIdx = pickerView.selectedRow(inComponent: 0)
-            let monthKey = months[selectedMonthIdx]
+            let month = months[selectedMonthIdx]
             
-            return daysInMonth[monthKey]?.count ?? 0
+            return daysInMonth[month]?.count ?? 0
         default:
             return 0
         }

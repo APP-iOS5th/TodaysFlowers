@@ -7,11 +7,12 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
+    
+    static let identifier = "flowerCell"
     
     private lazy var thumbnailView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -59,7 +60,6 @@ class SearchTableViewCell: UITableViewCell {
         ])
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -69,5 +69,4 @@ class SearchTableViewCell: UITableViewCell {
         nameLabel.text = flower.name
         flowerLangLabel.text = flower.lang
     }
-    
 }
