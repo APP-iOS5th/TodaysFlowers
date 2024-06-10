@@ -23,12 +23,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return tableView
     }()
     
-    private lazy var textField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "날짜 검색"
-        return textField
-    }()
-    
     private let searchController = UISearchController(searchResultsController: nil)
     private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "날짜"])
     
@@ -39,8 +33,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setupTableView()
         setupSearchController()
         setupSegmentedControl()
-        setupTextField()
-        
+    
         viewModel.$flowers
             .receive(on: DispatchQueue.main)
             .sink (receiveValue: { [weak self] _ in
@@ -72,20 +65,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         definesPresentationContext = true
     }
     
-    func setupTextField() {
-        view.addSubview(textField)
-        textField.inputView = monthDayPickerView
-        textField.isHidden = true
-        monthDayPickerView.monthDayDelegate = self
-        
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        ])
-    }
-    
     func setupSegmentedControl() {
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
@@ -95,18 +74,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @objc private func segmentChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            navigationItem.searchController = searchController
-            textField.isHidden = true
+            searchController.searchBar.customInputView = nil
             searchController.searchBar.placeholder = "이름 검색"
             viewModel.searchType = .name
         case 1:
-            navigationItem.searchController = searchController
-            textField.isHidden = true
+            searchController.searchBar.customInputView = nil
             searchController.searchBar.placeholder = "꽃말 검색"
             viewModel.searchType = .flowerLang
         case 2:
-            navigationItem.searchController = nil
-            textField.isHidden = false
+            searchController.searchBar.customInputView = monthDayPickerView
+            searchController.searchBar.placeholder = "날짜 검색"
         default:
             break
         }
@@ -137,6 +114,22 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 extension SearchViewController: MonthDayPickerViewDelegate {
     func didSelectDate(month: String, day: String) {
-        textField.text = "\(month)월 \(day)일"
+        searchController.searchBar.text = "\(month)월 \(day)일"
+    }
+}
+
+extension UISearchBar {
+    private var textField: UITextField? {
+        return self.value(forKey: "searchField") as? UITextField
+    }
+
+    var customInputView: UIView? {
+        get {
+            return textField?.inputView
+        }
+        set {
+            textField?.inputView = newValue
+            textField?.reloadInputViews()
+        }
     }
 }
