@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import VisionKit
 
 final class ImageGalleryViewController: UIViewController {
     // MARK: - Components
@@ -26,6 +27,8 @@ final class ImageGalleryViewController: UIViewController {
         
         return pageControl
     }()
+    
+    private lazy var imageViews: [UIImageView] = []
     
     private let viewModel: ImageGalleryViewModel
     private var originFrame: CGRect = .zero
@@ -49,10 +52,10 @@ final class ImageGalleryViewController: UIViewController {
             selectedIndex: viewModel.selectedIndex
         )
         
-        imageScrollView.delegate = self
+        imageViews.forEach(analyze(imageView:))
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePullToDismiss(_:)))
-        view.addGestureRecognizer(panGesture)
+        configurePanGesture()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -76,6 +79,22 @@ final class ImageGalleryViewController: UIViewController {
         imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
     }
     
+    private func analyze(imageView: UIImageView) {
+        Task {
+            let interaction = ImageAnalysisInteraction()
+            let analyzer = ImageAnalyzer()
+            if let image = imageView.image {
+                imageView.addInteraction(interaction)
+                let configuration = ImageAnalyzer.Configuration([.visualLookUp])
+                let analysis = try? await analyzer.analyze(image, configuration: configuration)
+                if let analysis = analysis {
+                    interaction.analysis = analysis
+                    interaction.preferredInteractionTypes = .imageSubject
+                }
+            }
+        }
+    }
+
     private func configureUI() {
         view.backgroundColor = .white
         
@@ -100,6 +119,8 @@ final class ImageGalleryViewController: UIViewController {
     }
     
     private func configureImageScrollView(with imagesData: [Data], selectedIndex: Int) {
+        imageScrollView.delegate = self
+        
         for subviews in imageScrollView.subviews {
             subviews.removeFromSuperview()
         }
@@ -109,10 +130,19 @@ final class ImageGalleryViewController: UIViewController {
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             
+            imageViews.append(imageView)
             imageScrollView.addSubview(imageView)
         }
         pageControl.numberOfPages = imagesData.count
         pageControl.currentPage = selectedIndex
+    }
+    
+    private func configurePanGesture() {
+        let panGesture = UIPanGestureRecognizer(
+            target: self,
+            action: #selector(handlePullToDismiss(_:))
+        )
+        view.addGestureRecognizer(panGesture)
     }
     
     @objc private func handlePullToDismiss(_ gesture: UIPanGestureRecognizer) {
