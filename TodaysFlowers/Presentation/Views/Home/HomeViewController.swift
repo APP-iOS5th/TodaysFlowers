@@ -26,13 +26,14 @@ class HomeViewController: UIViewController {
         //formatter.dateStyle = .long
         formatter.dateFormat = "MMM d"
         dateLabel.text = formatter.string(from: Date())
-        dateLabel.font = UIFont.systemFont(ofSize: 24, weight:  .bold)
+        dateLabel.font = UIFont.systemFont(ofSize: 24, weight:  .semibold)
         return dateLabel
     }()
     private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.text = "오늘의 꽃"
-        titleLabel.font = UIFont.systemFont(ofSize: 32, weight: .semibold)
+        titleLabel.font = UIFont.systemFont(ofSize: 32, weight: .bold)
+        titleLabel.textColor = UIColor(named: "FlowerColor")
         return titleLabel
     }()
     
