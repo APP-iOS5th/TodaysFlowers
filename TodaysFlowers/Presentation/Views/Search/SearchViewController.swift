@@ -105,6 +105,7 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let flower = self.viewModel.flowers[indexPath.row]
         
         cell.configureCell(flower: flower)
+        cell.selectionStyle = .none
         
         return cell
     }
