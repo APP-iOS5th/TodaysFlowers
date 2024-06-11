@@ -118,6 +118,18 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         guard let searchBarText = searchController.searchBar.text else {return}
         viewModel.search(inputText: searchBarText)
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedId = viewModel.flowers[indexPath.row].id
+        let viewModel = DetailViewModel(
+            flowerId: selectedId,
+            useCase: DetailViewUseCaseStub()
+        )
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .overFullScreen
+
+        present(viewController, animated: true)
+    }
 }
 
 extension SearchViewController: MonthDayPickerViewDelegate {
