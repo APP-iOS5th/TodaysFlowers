@@ -37,7 +37,6 @@ final class FlowerContentView: UIView {
     
     private lazy var mainTitleLabel: UILabel = {
         let mainTitleLabel = UILabel()
-        mainTitleLabel.text = ""
         mainTitleLabel.textColor = UIColor(named: "FlowerColor")!
         mainTitleLabel.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         
@@ -46,7 +45,6 @@ final class FlowerContentView: UIView {
     
     private lazy var subTitleLabel: UILabel = {
         let subTitleLabel = UILabel()
-        subTitleLabel.text = ""
         subTitleLabel.textColor = UIColor(named: "FlowerColor")!
         subTitleLabel.font = UIFont.systemFont(ofSize: 26, weight: .regular)
         
