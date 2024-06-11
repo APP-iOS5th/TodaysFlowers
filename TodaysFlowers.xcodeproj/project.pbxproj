@@ -41,6 +41,9 @@
 		D861F66F2C179CC6006FBD76 /* xml2json in Frameworks */ = {isa = PBXBuildFile; productRef = D861F66E2C179CC6006FBD76 /* xml2json */; };
 		D861F6722C179F5B006FBD76 /* XMLTools in Frameworks */ = {isa = PBXBuildFile; productRef = D861F6712C179F5B006FBD76 /* XMLTools */; };
 		D861F6752C17D6F6006FBD76 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D861F6742C17D6F6006FBD76 /* XMLCoder */; };
+		D8BFCBB12C184D6A00C7B66E /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D8BFCBB02C184D6A00C7B66E /* XMLCoder */; };
+		D8BFCBB32C18932800C7B66E /* URLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBB22C18932800C7B66E /* URLType.swift */; };
+		D8BFCBB52C18935900C7B66E /* EndpointFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBB42C18935900C7B66E /* EndpointFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +103,8 @@
 		83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUseCase.swift; sourceTree = "<group>"; };
 		D861F6412C1702EA006FBD76 /* FlowerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerData.swift; sourceTree = "<group>"; };
 		D861F66B2C177118006FBD76 /* FlowersApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowersApi.swift; sourceTree = "<group>"; };
+		D8BFCBB22C18932800C7B66E /* URLType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLType.swift; sourceTree = "<group>"; };
+		D8BFCBB42C18935900C7B66E /* EndpointFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8BFCBB12C184D6A00C7B66E /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +261,8 @@
 			isa = PBXGroup;
 			children = (
 				D861F66B2C177118006FBD76 /* FlowersApi.swift */,
+				D8BFCBB42C18935900C7B66E /* EndpointFactory.swift */,
+				D8BFCBB22C18932800C7B66E /* URLType.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -398,6 +406,9 @@
 				83F656FF2C0D55F900BE19DB /* PBXTargetDependency */,
 			);
 			name = TodaysFlowersTests;
+			packageProductDependencies = (
+				D8BFCBB02C184D6A00C7B66E /* XMLCoder */,
+			);
 			productName = TodaysFlowersTests;
 			productReference = 83F656FD2C0D55F900BE19DB /* TodaysFlowersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -501,6 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */,
+				D8BFCBB32C18932800C7B66E /* URLType.swift in Sources */,
 				83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */,
 				83097A2D2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift in Sources */,
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
@@ -513,6 +525,7 @@
 				83E5E9892C11F497003522EB /* UIView+.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
 				830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */,
+				D8BFCBB52C18935900C7B66E /* EndpointFactory.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
 				D861F6422C1702EA006FBD76 /* FlowerData.swift in Sources */,
 				83F657262C0D56FA00BE19DB /* Flower.swift in Sources */,
@@ -911,6 +924,11 @@
 			productName = XMLTools;
 		};
 		D861F6742C17D6F6006FBD76 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D861F6732C17D6F6006FBD76 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+		D8BFCBB02C184D6A00C7B66E /* XMLCoder */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D861F6732C17D6F6006FBD76 /* XCRemoteSwiftPackageReference "XMLCoder" */;
 			productName = XMLCoder;
