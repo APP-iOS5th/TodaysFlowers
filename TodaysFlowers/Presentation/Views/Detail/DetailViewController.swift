@@ -40,9 +40,13 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        bind()
         configureTapGesture()
         flowerContentView.scrollView.delegate = self
+        bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         startProcessing()
         viewModel.fetchFlower()
