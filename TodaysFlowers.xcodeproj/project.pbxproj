@@ -36,6 +36,11 @@
 		83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F657282C0D579600BE19DB /* HomeViewUseCase.swift */; };
 		83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572A2C0D60B100BE19DB /* SearchUseCase.swift */; };
 		83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */; };
+		D861F6422C1702EA006FBD76 /* FlowerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861F6412C1702EA006FBD76 /* FlowerData.swift */; };
+		D861F66C2C177118006FBD76 /* FlowersApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D861F66B2C177118006FBD76 /* FlowersApi.swift */; };
+		D861F66F2C179CC6006FBD76 /* xml2json in Frameworks */ = {isa = PBXBuildFile; productRef = D861F66E2C179CC6006FBD76 /* xml2json */; };
+		D861F6722C179F5B006FBD76 /* XMLTools in Frameworks */ = {isa = PBXBuildFile; productRef = D861F6712C179F5B006FBD76 /* XMLTools */; };
+		D861F6752C17D6F6006FBD76 /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D861F6742C17D6F6006FBD76 /* XMLCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +78,6 @@
 		83CC5E172C0DB17100FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E1B2C0DB19500FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E1D2C0DB19C00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
-		83CC5E1F2C0DB1A500FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
-		83CC5E212C0DB1AD00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAnimationManager.swift; sourceTree = "<group>"; };
 		83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresentAnimator.swift; sourceTree = "<group>"; };
 		83E5E9882C11F497003522EB /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
@@ -95,6 +98,8 @@
 		83F657282C0D579600BE19DB /* HomeViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUseCase.swift; sourceTree = "<group>"; };
 		83F6572A2C0D60B100BE19DB /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUseCase.swift; sourceTree = "<group>"; };
+		D861F6412C1702EA006FBD76 /* FlowerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerData.swift; sourceTree = "<group>"; };
+		D861F66B2C177118006FBD76 /* FlowersApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowersApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +107,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D861F6752C17D6F6006FBD76 /* XMLCoder in Frameworks */,
+				D861F6722C179F5B006FBD76 /* XMLTools in Frameworks */,
+				D861F66F2C179CC6006FBD76 /* xml2json in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +171,7 @@
 		83CC5E102C0DACE800FF4E33 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				83CC5E212C0DB1AD00FF4E33 /* placeholder */,
+				D861F6412C1702EA006FBD76 /* FlowerData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -246,7 +254,7 @@
 		83F6571B2C0D567900BE19DB /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				83CC5E1F2C0DB1A500FF4E33 /* placeholder */,
+				D861F66B2C177118006FBD76 /* FlowersApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -367,6 +375,11 @@
 			dependencies = (
 			);
 			name = TodaysFlowers;
+			packageProductDependencies = (
+				D861F66E2C179CC6006FBD76 /* xml2json */,
+				D861F6712C179F5B006FBD76 /* XMLTools */,
+				D861F6742C17D6F6006FBD76 /* XMLCoder */,
+			);
 			productName = TodaysFlowers;
 			productReference = 83F656E72C0D55F800BE19DB /* TodaysFlowers.app */;
 			productType = "com.apple.product-type.application";
@@ -439,6 +452,11 @@
 				Base,
 			);
 			mainGroup = 83F656DE2C0D55F800BE19DB;
+			packageReferences = (
+				D861F66D2C179CC6006FBD76 /* XCRemoteSwiftPackageReference "xml2json" */,
+				D861F6702C179F5B006FBD76 /* XCRemoteSwiftPackageReference "SwiftXMLTools" */,
+				D861F6732C17D6F6006FBD76 /* XCRemoteSwiftPackageReference "XMLCoder" */,
+			);
 			productRefGroup = 83F656E82C0D55F800BE19DB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -491,10 +509,12 @@
 				830660B62C12033900292851 /* GalleryDismissAnimator.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
+				D861F66C2C177118006FBD76 /* FlowersApi.swift in Sources */,
 				83E5E9892C11F497003522EB /* UIView+.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
 				830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
+				D861F6422C1702EA006FBD76 /* FlowerData.swift in Sources */,
 				83F657262C0D56FA00BE19DB /* Flower.swift in Sources */,
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
@@ -851,6 +871,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D861F66D2C179CC6006FBD76 /* XCRemoteSwiftPackageReference "xml2json" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wacumov/xml2json";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
+		D861F6702C179F5B006FBD76 /* XCRemoteSwiftPackageReference "SwiftXMLTools" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spilikin/SwiftXMLTools";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
+		D861F6732C17D6F6006FBD76 /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/XMLCoder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.17.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D861F66E2C179CC6006FBD76 /* xml2json */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D861F66D2C179CC6006FBD76 /* XCRemoteSwiftPackageReference "xml2json" */;
+			productName = xml2json;
+		};
+		D861F6712C179F5B006FBD76 /* XMLTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D861F6702C179F5B006FBD76 /* XCRemoteSwiftPackageReference "SwiftXMLTools" */;
+			productName = XMLTools;
+		};
+		D861F6742C17D6F6006FBD76 /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D861F6732C17D6F6006FBD76 /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83F656DF2C0D55F800BE19DB /* Project object */;
 }

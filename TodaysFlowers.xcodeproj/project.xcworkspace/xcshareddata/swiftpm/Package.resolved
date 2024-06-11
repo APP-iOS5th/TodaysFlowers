@@ -1,0 +1,33 @@
+{
+  "originHash" : "1a45ad9897ef2a4dd9da63649b344ba9275b104a384e31b98a0d3bb84cfaf12a",
+  "pins" : [
+    {
+      "identity" : "swiftxmltools",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/spilikin/SwiftXMLTools",
+      "state" : {
+        "revision" : "83b37c331cc1212c805d25a24bb84da79dac5814",
+        "version" : "0.6.1"
+      }
+    },
+    {
+      "identity" : "xml2json",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wacumov/xml2json",
+      "state" : {
+        "revision" : "b2a8a6f9114a61c2a1c939c3ad4a6466c6f644b4",
+        "version" : "0.0.1"
+      }
+    },
+    {
+      "identity" : "xmlcoder",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CoreOffice/XMLCoder",
+      "state" : {
+        "revision" : "b1e944cbd0ef33787b13f639a5418d55b3bed501",
+        "version" : "0.17.1"
+      }
+    }
+  ],
+  "version" : 3
+}
