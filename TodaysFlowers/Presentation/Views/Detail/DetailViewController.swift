@@ -126,7 +126,7 @@ extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 0 {
             let ratio = (originFrame.height + scrollView.contentOffset.y) / originFrame.height
-            if ratio < 0.85 {
+            if ratio < 0.88 {
                 dismiss(animated: true)
             }
             view.layer.cornerRadius = 20
