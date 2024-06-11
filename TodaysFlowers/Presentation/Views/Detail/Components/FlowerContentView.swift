@@ -37,7 +37,6 @@ final class FlowerContentView: UIView {
     
     private lazy var mainTitleLabel: UILabel = {
         let mainTitleLabel = UILabel()
-        mainTitleLabel.text = "아젤레아"
         mainTitleLabel.textColor = UIColor(named: "FlowerColor")!
         mainTitleLabel.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         
@@ -46,7 +45,6 @@ final class FlowerContentView: UIView {
     
     private lazy var subTitleLabel: UILabel = {
         let subTitleLabel = UILabel()
-        subTitleLabel.text = "사랑의 기쁨"
         subTitleLabel.textColor = UIColor(named: "FlowerColor")!
         subTitleLabel.font = UIFont.systemFont(ofSize: 26, weight: .regular)
         
@@ -55,49 +53,49 @@ final class FlowerContentView: UIView {
     
     private lazy var mainDescriptionLabel: UILabel = {
         let mainContentLabel = UILabel()
-        mainContentLabel.buildLabel(by: .description, with: "")
+        mainContentLabel.buildLabel(by: .description, with: .empty)
         
         return mainContentLabel
     }()
     
     private lazy var typeTitleLabel: UILabel = {
         let typeTitleLabel = UILabel()
-        typeTitleLabel.buildLabel(by: .title, with: "꽃 자생처")
+        typeTitleLabel.buildLabel(by: .title, with: .typeTitle)
         
         return typeTitleLabel
     }()
     
     private lazy var typeDescriptionLabel: UILabel = {
         let typeContentLabel = UILabel()
-        typeContentLabel.buildLabel(by: .description, with: "")
+        typeContentLabel.buildLabel(by: .description, with: .empty)
         
         return typeContentLabel
     }()
     
     private lazy var growTitleLabel: UILabel = {
         let growTitleLabel = UILabel()
-        growTitleLabel.buildLabel(by: .title, with: "꽃 기르는 법")
+        growTitleLabel.buildLabel(by: .title, with: .growTitle)
         
         return growTitleLabel
     }()
     
     private lazy var growDescriptionLabel: UILabel = {
         let growDescriptionLabel = UILabel()
-        growDescriptionLabel.buildLabel(by: .description, with: "")
+        growDescriptionLabel.buildLabel(by: .description, with: .empty)
         
         return growDescriptionLabel
     }()
     
     private lazy var usageTitleLabel: UILabel = {
         let usageTitleLabel = UILabel()
-        usageTitleLabel.buildLabel(by: .title, with: "꽃 용도")
+        usageTitleLabel.buildLabel(by: .title, with: .usageTitle)
         
         return usageTitleLabel
     }()
     
     private lazy var usageDescriptionLabel: UILabel = {
         let usageDescriptionLabel = UILabel()
-        usageDescriptionLabel.buildLabel(by: .description, with: "")
+        usageDescriptionLabel.buildLabel(by: .description, with: .empty)
         
         return usageDescriptionLabel
     }()
