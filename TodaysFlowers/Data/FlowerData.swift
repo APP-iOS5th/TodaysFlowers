@@ -18,6 +18,7 @@ struct Root: Codable {
     let resultMsg: String
     let repcategory: String
     let result: Result
+    let result: [Result]
 }
 
 struct Result: Codable {
@@ -27,6 +28,8 @@ struct Result: Codable {
     let flowNm: String
     let fSctNm: String
     let fEngNm: String
+    let fSctNm: String?
+    let fEngNm: String?
     let flowLang: String
     let fContent: String
     let fUse: String
@@ -35,8 +38,13 @@ struct Result: Codable {
     let fileName1: String
     let fileName2: String
     let fileName3: String
+    let fContent: String?
+    let fUse: String?
+    let fGrow: String?
+    let fType: String?
     let imgUrl1: String
     let imgUrl2: String
     let imgUrl3: String
     let publishOrg: String
 }
+
