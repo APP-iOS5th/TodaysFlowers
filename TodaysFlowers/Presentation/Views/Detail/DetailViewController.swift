@@ -86,6 +86,7 @@ final class DetailViewController: UIViewController {
             .sink { [weak self] flower in
                 self?.flowerContentView.configureViewContents(with: flower)
                 self?.stopProcessing()
+                self?.flowerContentView.setNeedsLayout()
             }
             .store(in: &disposableBag)
     }
