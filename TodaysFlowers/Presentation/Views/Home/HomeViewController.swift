@@ -116,6 +116,14 @@ extension HomeViewController: UICollectionViewDataSource {
 // 셀 클릭했을 때 콘솔창에 "선택" 메시지 출력 (셀 선택 효과 추가하니까 안됨 수정 필요))
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("선택")
+        let selectedId = viewModel.flowers[indexPath.row].id
+        let viewModel = DetailViewModel(
+            flowerId: selectedId,
+            useCase: DetailViewUseCaseStub()
+        )
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .overFullScreen
+
+        present(viewController, animated: true)
     }
 }
