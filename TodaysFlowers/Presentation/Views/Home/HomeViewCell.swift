@@ -29,7 +29,7 @@ class HomeViewCell: UICollectionViewCell {
         flowerImageView.layer.cornerRadius = 12
         contentView.addSubview(flowerImageView)
         
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         nameLabel.textColor = .white
         contentView.addSubview(nameLabel)
         
@@ -37,7 +37,7 @@ class HomeViewCell: UICollectionViewCell {
         langLabel.textColor = .white
         contentView.addSubview(langLabel)
         
-        dateLabel.font = UIFont.systemFont(ofSize: 12)
+        dateLabel.font = UIFont.systemFont(ofSize: 14)
         dateLabel.textColor = .white
         contentView.addSubview(dateLabel)
         
@@ -58,7 +58,7 @@ class HomeViewCell: UICollectionViewCell {
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -30),
             
             langLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5), // 이름 레이블 아래에 4포인트의 여백을 추가하여 꽃말 레이블을 배치
-            langLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20), // 왼쪽 여백을 8포인트로 설정합니다.
+            langLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20), // 왼쪽 여백을 8포인트로 설정
             langLabel.trailingAnchor.constraint(equalTo: dateLabel.leadingAnchor, constant: -25), // 날짜 레이블의 왼쪽 여백을 8포인트로 설정하여 이름 레이블과 함께 배치
             
             dateLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 225), // langLabel과 같은 수평선에 배치

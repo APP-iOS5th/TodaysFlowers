@@ -66,7 +66,7 @@ class HomeViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            dateLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
