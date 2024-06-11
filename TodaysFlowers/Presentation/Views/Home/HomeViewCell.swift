@@ -16,7 +16,7 @@ class HomeViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        setupGestureRecognizers()
+//        setupGestureRecognizers()
     }
 
     required init?(coder: NSCoder) {
