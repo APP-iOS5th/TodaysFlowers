@@ -30,8 +30,6 @@ class SearchViewModel {
                     return self.useCase.searchBy(name: searchText)
                 case .flowerLang:
                     return self.useCase.searchBy(flowerLang: searchText)
-                case .date:
-                    return self.useCase.searchBy(date: searchText)
                 }
             }
             .assign(to: &$flowers) // Combine의 re-publish 기능

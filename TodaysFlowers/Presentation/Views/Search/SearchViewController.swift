@@ -14,7 +14,7 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
     private var cancellables = Set<AnyCancellable>()
     private let monthDayPickerView = MonthDayPickerView()
     
-    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "날짜"])
+    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말"])
     private let searchController = UISearchController(searchResultsController: nil)
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -80,13 +80,6 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
                 self?.searchController.searchBar.customInputView = nil
                 self?.searchController.searchBar.placeholder = "꽃말 검색"
                 self?.viewModel.searchType = .flowerLang
-            case 2:
-                // 인덱스 에러 이슈로 picker초기화
-                self?.monthDayPickerView.selectRow(0, inComponent: 0, animated: false)
-                self?.monthDayPickerView.selectRow(0, inComponent: 1, animated: false)
-                self?.searchController.searchBar.customInputView = self?.monthDayPickerView
-                self?.searchController.searchBar.placeholder = "날짜 검색"
-                self?.viewModel.searchType = .date
             default:
                 break
             }

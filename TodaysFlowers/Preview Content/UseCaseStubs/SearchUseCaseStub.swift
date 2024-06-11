@@ -24,20 +24,4 @@ final class SearchUseCaseStub: SearchUseCase {
             }
             .eraseToAnyPublisher()
     }
-    
-    func searchBy(date: String) -> AnyPublisher<[Flower], Never> {
-        let components = date.split { !$0.isNumber }
-        let month = components.first.map { String($0) }
-        let day = components.last.map { String($0) }
-        
-        return Just(FlowerStubs.flowers)
-            .map { flowers in
-                guard let month = month, let day = day else {
-                    return []
-                }
-//                return flowers.filter { $0.fMonth == month && $0.fDay == day }
-                return []
-            }
-            .eraseToAnyPublisher()
-    }
 }
