@@ -28,27 +28,27 @@ final class RootTabBarController: UITabBarController {
     }
     
     private func configureTabController(_ page: TabBarPage) -> UINavigationController {
-        let navController = UINavigationController()
+        let navController = {
+            switch page {
+            case .home:
+                let homeViewController = HomeViewController(
+                    viewModel: HomeViewModel(useCase: HomeViewUseCaseStub())
+                )
+                return UINavigationController(rootViewController: homeViewController)
+            case .search:
+                let searchViewController = SearchViewController(
+                    viewModel: SearchViewModel(useCase: SearchUseCaseStub())
+                )
+                return UINavigationController(rootViewController: searchViewController)
+            }
+        }()
         navController.setNavigationBarHidden(false, animated: false)
         navController.tabBarItem = UITabBarItem(
             title: page.pageTitle,
             image: UIImage(systemName: page.pageIconString),
             tag: page.pageOrderNumber
         )
-        
-        switch page {
-            case .home:
-                let homeViewController = HomeViewController(
-                    viewModel: HomeViewModel(useCase: HomeViewUseCaseStub())
-                )
-                navController.pushViewController(homeViewController, animated: false)
-            case .search:
-                let searchViewController = SearchViewController(
-                    viewModel: SearchViewModel(useCase: SearchUseCaseStub())
-                )
-                navController.pushViewController(searchViewController, animated: false)
-        }
-        
+
         return navController
     }
 }
