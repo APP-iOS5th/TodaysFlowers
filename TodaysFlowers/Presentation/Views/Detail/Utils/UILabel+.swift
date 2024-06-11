@@ -14,6 +14,13 @@ extension UILabel {
     }
     
     func buildLabel(by type: LabelType, with content: String) {
+    enum LabelContent: String {
+        case typeTitle = "꽃 자생처"
+        case growTitle = "꽃 기르는 법"
+        case usageTitle = "꽃 용도"
+        
+        case empty = ""
+    }
         switch type {
             case .title:
                 self.text = content
