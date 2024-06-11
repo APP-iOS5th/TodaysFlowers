@@ -9,7 +9,7 @@ import UIKit
 import Combine
 
 class HomeViewController: UIViewController {
-    private var viewModel = HomeViewModel()
+    private let viewModel: HomeViewModel
     private var cancellables: Set<AnyCancellable> = []
 
     private let collectionView: UICollectionView = {
@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
     private lazy var dateLabel: UILabel = {
         let dateLabel = UILabel()
         let formatter = DateFormatter()
-        //formatter.dateStyle = .long
         formatter.dateFormat = "MMM d"
         dateLabel.text = formatter.string(from: Date())
         dateLabel.font = UIFont.systemFont(ofSize: 24, weight:  .semibold)
@@ -37,12 +36,22 @@ class HomeViewController: UIViewController {
         titleLabel.textColor = UIColor(named: "FlowerColor")
         return titleLabel
     }()
+    // 초기화 메서드 추가
+    init(viewModel: HomeViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
         collectionView.delegate = self
+        viewModel.viewDidLoad()
     }
     // UI 레이아웃 설정
     private func setupUI() {
@@ -79,9 +88,10 @@ class HomeViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        viewModel.$flowers
+        viewModel
+            .$flowers
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
+            .sink { [weak self] (flowers: [Flower]) in
                 self?.collectionView.reloadData()
             }
             .store(in: &cancellables)
