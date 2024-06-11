@@ -36,6 +36,12 @@
 		83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F657282C0D579600BE19DB /* HomeViewUseCase.swift */; };
 		83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572A2C0D60B100BE19DB /* SearchUseCase.swift */; };
 		83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */; };
+		C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2223B582C102926005BC35C /* MonthDayPickerView.swift */; };
+		C233E3B22C0ED16700EB222E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233E3B12C0ED16700EB222E /* SearchViewController.swift */; };
+		C279E83C2C16D68200EF751A /* UISearchBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83B2C16D68200EF751A /* UISearchBar+.swift */; };
+		C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83E2C16D74C00EF751A /* SearchType.swift */; };
+		C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */; };
+		C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,9 +75,7 @@
 		830EB1362C1172AC0021F113 /* ImageGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewController.swift; sourceTree = "<group>"; };
 		830EB1382C11743B0021F113 /* ImageGalleryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewModel.swift; sourceTree = "<group>"; };
 		836BF9E82C0DD4C800C98B3D /* FlowerStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerStubs.swift; sourceTree = "<group>"; };
-		83CC5E152C0DB12C00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E172C0DB17100FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
-		83CC5E1B2C0DB19500FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E1D2C0DB19C00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E1F2C0DB1A500FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83CC5E212C0DB1AD00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
@@ -95,6 +99,12 @@
 		83F657282C0D579600BE19DB /* HomeViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewUseCase.swift; sourceTree = "<group>"; };
 		83F6572A2C0D60B100BE19DB /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		83F6572C2C0D614200BE19DB /* DetailViewUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewUseCase.swift; sourceTree = "<group>"; };
+		C2223B582C102926005BC35C /* MonthDayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDayPickerView.swift; sourceTree = "<group>"; };
+		C233E3B12C0ED16700EB222E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C279E83B2C16D68200EF751A /* UISearchBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+.swift"; sourceTree = "<group>"; };
+		C279E83E2C16D74C00EF751A /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
+		C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,7 +292,10 @@
 		83F6571F2C0D56AC00BE19DB /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				83CC5E1B2C0DB19500FF4E33 /* placeholder */,
+				C279E83D2C16D6F700EF751A /* Components */,
+				C279E83A2C16D66900EF751A /* Utils */,
+				C233E3B12C0ED16700EB222E /* SearchViewController.swift */,
+				C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -310,7 +323,7 @@
 		83F657222C0D56BB00BE19DB /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				83CC5E152C0DB12C00FF4E33 /* placeholder */,
+				C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -349,6 +362,23 @@
 				83F657272C0D578A00BE19DB /* UseCases */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		C279E83A2C16D66900EF751A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C279E83B2C16D68200EF751A /* UISearchBar+.swift */,
+				C279E83E2C16D74C00EF751A /* SearchType.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C279E83D2C16D6F700EF751A /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C2223B582C102926005BC35C /* MonthDayPickerView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,23 +517,29 @@
 				83097A2D2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift in Sources */,
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
 				83097A2F2C0ED7C700E7B007 /* DetailViewController.swift in Sources */,
+				C279E83C2C16D68200EF751A /* UISearchBar+.swift in Sources */,
 				83097A352C0EE1BA00E7B007 /* UILabel+.swift in Sources */,
 				830660B62C12033900292851 /* GalleryDismissAnimator.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
-				83E5E9892C11F497003522EB /* UIView+.swift in Sources */,
+				C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */,
 				83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */,
+				C233E3B22C0ED16700EB222E /* SearchViewController.swift in Sources */,
+				83E5E9892C11F497003522EB /* UIView+.swift in Sources */,
 				830EB1392C11743B0021F113 /* ImageGalleryViewModel.swift in Sources */,
 				836BF9E92C0DD4C800C98B3D /* FlowerStubs.swift in Sources */,
 				83F657262C0D56FA00BE19DB /* Flower.swift in Sources */,
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
-				83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */,
+				C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */,
 				83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */,
+				C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */,
+				83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */,
 				83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */,
 				830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */,
 				83097A3B2C0F366700E7B007 /* Spacing.swift in Sources */,
 				83097A392C0EF99B00E7B007 /* DetailViewModel.swift in Sources */,
+				C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */,
 				83097A322C0EE0F900E7B007 /* FlowerContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
