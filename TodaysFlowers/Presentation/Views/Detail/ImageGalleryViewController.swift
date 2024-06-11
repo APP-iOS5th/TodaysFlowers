@@ -62,28 +62,8 @@ final class ImageGalleryViewController: UIViewController {
         imageViews.forEach(analyze(imageView:))
         
         configurePanGesture()
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        let contentLength = imageScrollView.frame.width
-        
-        imageScrollView.contentSize = CGSize(
-            width: contentLength * CGFloat(3),
-            height: contentLength
-        )
-        
-        for (index, subview) in imageScrollView.subviews.enumerated() {
-            subview.frame = CGRect(
-                x: CGFloat(index) * contentLength,
-                y: 0,
-                width: contentLength,
-                height: contentLength
-            )
-        }
-        imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
+        configureButton()
+        configureImageViews()
     }
     
     private func analyze(imageView: UIImageView) {
@@ -172,6 +152,27 @@ final class ImageGalleryViewController: UIViewController {
             for: .touchUpInside
         )
     }
+    
+    private func configureImageViews() {
+        imageScrollView.layoutIfNeeded()
+        let contentLength = imageScrollView.frame.width
+        
+        imageScrollView.contentSize = CGSize(
+            width: contentLength * CGFloat(3),
+            height: contentLength
+        )
+        
+        for (index, subview) in imageScrollView.subviews.enumerated() {
+            subview.frame = CGRect(
+                x: CGFloat(index) * contentLength,
+                y: 0,
+                width: contentLength,
+                height: contentLength
+            )
+        }
+        imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
+    }
+    
     @objc private func handlePullToDismiss(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
             case .began:
