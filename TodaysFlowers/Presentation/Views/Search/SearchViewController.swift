@@ -7,15 +7,18 @@
 
 import UIKit
 import Combine
+import PhotosUI
 
-final class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+final class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
-    private var viewModel = SearchViewModel()
+    private var searchViewModel = SearchViewModel()
+    private var imageDetectionViewModel = ImageDetectionViewModel()
     private var cancellables = Set<AnyCancellable>()
     private let monthDayPickerView = MonthDayPickerView()
     
-    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말"])
+    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "날짜", "이미지"])
     private let searchController = UISearchController(searchResultsController: nil)
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -34,15 +37,99 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         setupTableView()
         monthDayPickerView.monthDayDelegate = self
         
-        viewModel.$flowers
-            .receive(on: DispatchQueue.main)
+        searchViewModel.$flowers
+            .receive(on: DispatchQueue.main) // UI 업데이트를 위해 메인스레드로 전환
             .sink (receiveValue: { [weak self] _ in
                 self?.tableView.reloadData()
             })
             .store(in: &cancellables)
     }
     
-    func setupTableView() {
+    // MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchViewModel.flowers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "flowerCell", for: indexPath) as! SearchTableViewCell
+        let flower = searchViewModel.flowers[indexPath.row]
+        
+        cell.configureCell(flower: flower)
+        
+        return cell
+    }
+    
+    // 선택시 디테일뷰로 이동
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        CGFloat(90)
+    }
+    
+    // MARK: - UISearchResultsUpdating
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchBarText = searchController.searchBar.text else {return}
+        searchViewModel.search(inputText: searchBarText)
+    }
+    
+    // MARK: - UISearchBarDelegate
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        switch searchViewModel.searchType {
+        case .name, .flowerLang:
+            searchBar.customInputView = nil
+        case .date:
+            // 인덱스 에러 이슈로 picker초기화
+            monthDayPickerView.selectRow(0, inComponent: 0, animated: false)
+            monthDayPickerView.selectRow(0, inComponent: 1, animated: false)
+            searchBar.customInputView = monthDayPickerView
+        case .image:
+            searchBar.resignFirstResponder() // 키보드 숨기기
+            presentPHPicker()
+        }
+    }
+    
+    // MARK: - Methods
+    private func setupSegmentedControl() {
+        segmentedControl.selectedSegmentIndex = 0
+        // addTarget에서 변경 (iOS 14+)
+        segmentedControl.addAction(UIAction { [weak self] action in
+            let sender = action.sender as! UISegmentedControl
+            
+            switch sender.selectedSegmentIndex {
+            case 0:
+                self?.searchController.searchBar.placeholder = "이름 검색"
+                self?.searchViewModel.searchType = .name
+            case 1:
+                self?.searchController.searchBar.placeholder = "꽃말 검색"
+                self?.searchViewModel.searchType = .flowerLang
+            case 2:
+                self?.searchController.searchBar.placeholder = "날짜 검색"
+                self?.searchViewModel.searchType = .date
+            case 3:
+                self?.searchController.searchBar.placeholder = "이미지 검색"
+                self?.searchViewModel.searchType = .image
+                
+            default:
+                break
+            }
+        }, for: .valueChanged)
+        navigationItem.titleView = segmentedControl
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "이름 검색"
+        searchController.searchBar.delegate = self
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
+    }
+    
+    private func setupTableView() {
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -56,62 +143,42 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         ])
     }
     
-    func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "이름 검색"
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        definesPresentationContext = true
-    }
-    
-    func setupSegmentedControl() {
-        segmentedControl.selectedSegmentIndex = 0
-        // addTarget에서 변경 (iOS 14+)
-        segmentedControl.addAction(UIAction { [weak self] action in
-            let sender = action.sender as! UISegmentedControl
-            
-            switch sender.selectedSegmentIndex {
-            case 0:
-                self?.searchController.searchBar.customInputView = nil
-                self?.searchController.searchBar.placeholder = "이름 검색"
-                self?.viewModel.searchType = .name
-            case 1:
-                self?.searchController.searchBar.customInputView = nil
-                self?.searchController.searchBar.placeholder = "꽃말 검색"
-                self?.viewModel.searchType = .flowerLang
-            default:
-                break
-            }
-        }, for: .valueChanged)
-        navigationItem.titleView = segmentedControl
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel.flowers.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "flowerCell", for: indexPath) as! SearchTableViewCell
-        let flower = self.viewModel.flowers[indexPath.row]
+    private func presentPHPicker() {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
         
-        cell.configureCell(flower: flower)
-        
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        CGFloat(90)
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchBarText = searchController.searchBar.text else {return}
-        viewModel.search(inputText: searchBarText)
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
     }
 }
 
 extension SearchViewController: MonthDayPickerViewDelegate {
     func didSelectDate(month: String, day: String) {
         searchController.searchBar.text = "\(month)월 \(day)일"
+    }
+}
+
+extension SearchViewController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+ 
+        let itemProvider = results.first?.itemProvider
+        
+        if let itemProvider = itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                guard let uiImage = image as? UIImage else { return }
+                
+                DispatchQueue.main.async {
+                    guard let coreImage = CIImage(image: uiImage) else {
+                        fatalError("Failed convert to CIImage")
+                    }
+                    
+                    self?.imageDetectionViewModel.detect(image: coreImage)
+                }
+            }
+        }
     }
 }

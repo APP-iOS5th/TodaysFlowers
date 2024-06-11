@@ -8,11 +8,11 @@
 import Foundation
 import Combine
 
-class SearchViewModel {
+final class SearchViewModel {
     private let useCase: any SearchUseCase
-    @Published var flowers: [Flower] = []
-    @Published var searchType: SearchType = .name
     private var searchTextPublisher = PassthroughSubject<String, Never>()
+    @Published var flowers: [Flower] = []
+    @Published var searchType: SearchType = .name // default는 이름으로 검색
     
     init(useCase: any SearchUseCase = SearchUseCaseStub()) {
         self.useCase = useCase
@@ -21,7 +21,7 @@ class SearchViewModel {
     
     private func setupSearchPublisher() {
         searchTextPublisher
-            .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+            .debounce(for: .milliseconds(500), scheduler: RunLoop.main) // 검색 텍스트 디바운싱
             .removeDuplicates()
             .flatMap { [weak self] searchText -> AnyPublisher<[Flower], Never> in
                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
@@ -30,6 +30,10 @@ class SearchViewModel {
                     return self.useCase.searchBy(name: searchText)
                 case .flowerLang:
                     return self.useCase.searchBy(flowerLang: searchText)
+                case .date:
+                    return self.useCase.searchBy(date: searchText)
+                case .image:
+                    return self.useCase.searchBy(name: searchText)
                 }
             }
             .assign(to: &$flowers) // Combine의 re-publish 기능

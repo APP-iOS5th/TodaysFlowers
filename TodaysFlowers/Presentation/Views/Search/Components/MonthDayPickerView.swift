@@ -40,6 +40,7 @@ final class MonthDayPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - UIPickerViewDataSource
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
@@ -58,6 +59,7 @@ final class MonthDayPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
         }
     }
     
+    // MARK: - UIPickerViewDelegate
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch component {
         case 0:

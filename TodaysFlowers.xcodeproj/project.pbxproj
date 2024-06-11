@@ -42,6 +42,8 @@
 		C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83E2C16D74C00EF751A /* SearchType.swift */; };
 		C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */; };
 		C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */; };
+		C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */; };
+		C2DD700C2C181B70001F007F /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C2DD700B2C181B70001F007F /* FlowerClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		C279E83E2C16D74C00EF751A /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionViewModel.swift; sourceTree = "<group>"; };
+		C2DD700B2C181B70001F007F /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 				83F656EE2C0D55F800BE19DB /* ViewController.swift */,
 				83F656F02C0D55F800BE19DB /* Main.storyboard */,
 				83F656F32C0D55F900BE19DB /* Assets.xcassets */,
+				C2DD700B2C181B70001F007F /* FlowerClassifier.mlmodel */,
 				83F656F52C0D55F900BE19DB /* LaunchScreen.storyboard */,
 				83F656F82C0D55F900BE19DB /* Info.plist */,
 			);
@@ -324,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */,
+				C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -532,8 +538,10 @@
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
 				C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */,
+				C2DD700C2C181B70001F007F /* FlowerClassifier.mlmodel in Sources */,
 				83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */,
 				C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */,
+				C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */,
 				83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */,
 				83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */,
 				830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */,
