@@ -9,7 +9,7 @@ import UIKit
 
 final class FlowerContentView: UIView {
     // MARK: - Components
-    private lazy var scrollView: UIScrollView = {
+    private(set) lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
         return scrollView
@@ -153,7 +153,7 @@ final class FlowerContentView: UIView {
             imageScrollView.addSubview(imageView)
         }
         pageControl.numberOfPages = flower.imageData.count
-        layoutSubviews()
+        layoutIfNeeded()
     }
     
     func updateCurrentPage(to index: Int) {
