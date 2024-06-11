@@ -1,0 +1,83 @@
+//
+//  RootTabBarController.swift
+//  TodaysFlowers
+//
+//  Created by jinwoong Kim on 6/11/24.
+//
+
+import UIKit
+
+final class RootTabBarController: UITabBarController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        start()
+    }
+    
+    private func start() {
+        let pages: [TabBarPage] = TabBarPage.allCases
+        let viewControllers = pages.map(configureTabController(_:))
+        
+        prepareTabBarController(with: viewControllers)
+    }
+    
+    private func prepareTabBarController(
+        with viewControllers: [UIViewController]
+    ) {
+        setViewControllers(viewControllers, animated: false)
+        selectedIndex = TabBarPage.home.pageOrderNumber
+    }
+    
+    private func configureTabController(_ page: TabBarPage) -> UINavigationController {
+        let navController = UINavigationController()
+        navController.setNavigationBarHidden(false, animated: false)
+        navController.tabBarItem = UITabBarItem(
+            title: page.pageTitle,
+            image: UIImage(systemName: page.pageIconString),
+            tag: page.pageOrderNumber
+        )
+        
+        switch page {
+            case .home:
+                let homeViewController = HomeViewController(
+                    viewModel: HomeViewModel(useCase: HomeViewUseCaseStub())
+                )
+                navController.pushViewController(homeViewController, animated: false)
+            case .search:
+                let searchViewController = SearchViewController(
+                    viewModel: SearchViewModel(useCase: SearchUseCaseStub())
+                )
+                navController.pushViewController(searchViewController, animated: false)
+        }
+        
+        return navController
+    }
+}
+
+private extension RootTabBarController {
+    enum TabBarPage: String, CaseIterable {
+        case home
+        case search
+        
+        var pageTitle: String {
+            rawValue.capitalized
+        }
+        
+        var pageOrderNumber: Int {
+            switch self {
+                case .home:
+                    return 0
+                case .search:
+                    return 1
+            }
+        }
+        
+        var pageIconString: String {
+            switch self {
+                case .home:
+                    return "house"
+                case .search:
+                    return "magnifyingglass"
+            }
+        }
+    }
+}
