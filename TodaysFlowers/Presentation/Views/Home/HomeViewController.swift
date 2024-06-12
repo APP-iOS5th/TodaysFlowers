@@ -82,7 +82,7 @@ class HomeViewController: UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        collectionView.register(HomeViewCell.self, forCellWithReuseIdentifier: "FlowerCell")
+        collectionView.register(HomeViewCell.self, forCellWithReuseIdentifier: HomeViewCell.identifier)
         collectionView.dataSource = self
 
     }

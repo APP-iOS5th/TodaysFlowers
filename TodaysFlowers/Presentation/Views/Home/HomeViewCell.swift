@@ -8,6 +8,7 @@
 import UIKit
 
 class HomeViewCell: UICollectionViewCell {
+    static let identifier = "FlowerCell"
     private let flowerImageView = UIImageView()
     private let nameLabel = UILabel()
     private let langLabel = UILabel()
