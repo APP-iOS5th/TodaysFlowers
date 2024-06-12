@@ -28,6 +28,13 @@ final class ImageGalleryViewController: UIViewController {
         return pageControl
     }()
     
+    private lazy var editButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "edit"
+        
+        return UIButton(configuration: configuration)
+    }()
+    
     private lazy var imageViews: [UIImageView] = []
     
     private let viewModel: ImageGalleryViewModel
@@ -55,28 +62,8 @@ final class ImageGalleryViewController: UIViewController {
         imageViews.forEach(analyze(imageView:))
         
         configurePanGesture()
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        let contentLength = imageScrollView.frame.width
-        
-        imageScrollView.contentSize = CGSize(
-            width: contentLength * CGFloat(3),
-            height: contentLength
-        )
-        
-        for (index, subview) in imageScrollView.subviews.enumerated() {
-            subview.frame = CGRect(
-                x: CGFloat(index) * contentLength,
-                y: 0,
-                width: contentLength,
-                height: contentLength
-            )
-        }
-        imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
+        configureButton()
+        configureImageViews()
     }
     
     private func analyze(imageView: UIImageView) {
@@ -100,9 +87,11 @@ final class ImageGalleryViewController: UIViewController {
         
         view.addSubview(imageScrollView)
         view.addSubview(pageControl)
+        view.addSubview(editButton)
         
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        editButton.translatesAutoresizingMaskIntoConstraints = false
         
         let global = view.safeAreaLayoutGuide
         
@@ -115,6 +104,9 @@ final class ImageGalleryViewController: UIViewController {
             pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  -15),
             pageControl.centerXAnchor.constraint(equalTo: global.centerXAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 10),
+            
+            editButton.centerXAnchor.constraint(equalTo: global.centerXAnchor),
+            editButton.bottomAnchor.constraint(equalTo: global.bottomAnchor, constant: -30),
         ])
     }
     
@@ -143,6 +135,42 @@ final class ImageGalleryViewController: UIViewController {
             action: #selector(handlePullToDismiss(_:))
         )
         view.addGestureRecognizer(panGesture)
+    }
+    
+    private func configureButton() {
+        editButton.addAction(
+            UIAction { [weak self] _ in
+                guard let self else { return }
+                let currentPage = self.pageControl.currentPage
+                guard let currentImage = imageViews[currentPage].image else {
+                    return
+                }
+                let viewModel = ImageEditViewModel(originalImage: currentImage)
+                let viewController = ImageEditViewController(viewModel: viewModel)
+                self.present(viewController, animated: true)
+            },
+            for: .touchUpInside
+        )
+    }
+    
+    private func configureImageViews() {
+        imageScrollView.layoutIfNeeded()
+        let contentLength = imageScrollView.frame.width
+        
+        imageScrollView.contentSize = CGSize(
+            width: contentLength * CGFloat(3),
+            height: contentLength
+        )
+        
+        for (index, subview) in imageScrollView.subviews.enumerated() {
+            subview.frame = CGRect(
+                x: CGFloat(index) * contentLength,
+                y: 0,
+                width: contentLength,
+                height: contentLength
+            )
+        }
+        imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
     }
     
     @objc private func handlePullToDismiss(_ gesture: UIPanGestureRecognizer) {
