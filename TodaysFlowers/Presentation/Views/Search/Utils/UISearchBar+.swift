@@ -7,6 +7,9 @@
 
 import UIKit
 
+/**
+    SearchBar의 inputView를 CustomView로 세팅하기 위함
+ */
 extension UISearchBar {
     private var textField: UITextField? {
         return self.value(forKey: "searchField") as? UITextField
