@@ -91,7 +91,7 @@ class HomeViewController: UIViewController {
         viewModel
             .$flowers
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] (flowers: [Flower]) in
+            .sink { [weak self] _ in
                 self?.collectionView.reloadData()
             }
             .store(in: &cancellables)

@@ -37,7 +37,6 @@ class HomeViewModel: ObservableObject {
                     )
                 }
             }
-            .replaceError(with: [])  // 오류 발생 시 빈 배열로 대체
             .assign(to: &$flowers)
     }
 }
