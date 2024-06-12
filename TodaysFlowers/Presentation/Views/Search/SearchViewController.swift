@@ -92,7 +92,6 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let selectedId = searchViewModel.flowers[indexPath.row].id
         let viewModel = DetailViewModel(
             flowerId: selectedId,
-            useCase: DetailViewUseCaseStub()
             useCase: FlowersApi()
         )
         let viewController = DetailViewController(viewModel: viewModel)

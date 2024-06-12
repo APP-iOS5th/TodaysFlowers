@@ -32,7 +32,6 @@ final class RootTabBarController: UITabBarController {
             switch page {
             case .home:
                 let homeViewController = HomeViewController(
-                    viewModel: HomeViewModel(useCase: HomeViewUseCaseStub())
                     viewModel: HomeViewModel(useCase: FlowersApi())
                 )
                 return UINavigationController(rootViewController: homeViewController)
