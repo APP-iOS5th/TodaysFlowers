@@ -28,8 +28,6 @@ extension UILabel {
                 self.textColor = UIColor(named: "FlowerColor")!
                 self.font = UIFont.systemFont(ofSize: 24, weight: .bold)
             case .description:
-                self.text = content.rawValue
-                self.font = UIFont.systemFont(ofSize: 16, weight: .light)
                 self.numberOfLines = 0
         }
     }
