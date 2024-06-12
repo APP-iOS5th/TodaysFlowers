@@ -8,7 +8,7 @@
 import UIKit
 
 final class GalleryDismissAnimator: NSObject {
-    let transitionDuration: TimeInterval = 0.3
+    private let transitionDuration: TimeInterval = 0.3
     
     private func makeCopy(of view: UIView, from index: Int) -> UIImageView {
         let imageView = view.subviews[index] as! UIImageView
@@ -30,21 +30,22 @@ extension GalleryDismissAnimator: UIViewControllerAnimatedTransitioning {
         
         let fromView = transitionContext.viewController(forKey: .from) as! ImageGalleryViewController
         let toView = transitionContext.viewController(forKey: .to) as! DetailViewController
+        let imageScrollView = fromView.imageScrollView
+        let currentPage = fromView.pageControl.currentPage
         
         let copiedImageView = makeCopy(
-            of: fromView.imageScrollView,
-            from: fromView.pageControl.currentPage
+            of: imageScrollView,
+            from: currentPage
         )
-        copiedImageView.frame = fromView.view.convert(fromView.imageScrollView.frame, to: nil)
+        copiedImageView.frame = fromView.view.convert(imageScrollView.frame, to: nil)
 
         fromView.view.hideAllSubviews()
         
-        var destinationFrame = calculateDestinationFrame(
+        let destinationFrame = calculateDestinationFrame(
             with: toView.flowerContentView.imageScrollView.convert(
                 toView.flowerContentView.imageScrollView.frame, to: nil
             )
         )
-        destinationFrame.origin.x = 0
         
         containerView.subviews.forEach { $0.removeFromSuperview() }
         containerView.addSubview(copiedImageView)
