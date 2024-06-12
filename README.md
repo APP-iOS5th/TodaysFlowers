@@ -30,16 +30,18 @@ MVVM의 View와 ViewModel의 바인드와 각 의존성들 사이의 비동기 �
 
 <table width="100%">
     <tr>
-        <td width="25%"  align="center"><img src="./Resources/gif/detail.GIF" /></td>
-        <td width="25%"  align="center"><img src="./Resources/gif/imageLifting.GIF" /></td>
-        <td width="25%"  align="center"><img src="./Resources/gif/imageEdting.GIF" /></td>
-        <td width="25%"  align="center"><img src="./Resources/gif/imageSearch.GIF" /></td>
+        <td width="20%"  align="center"><img src="./Resources/gif/home.GIF" /></td>
+        <td width="20%"  align="center"><img src="./Resources/gif/detail.GIF" /></td>
+        <td width="20%"  align="center"><img src="./Resources/gif/imageLifting.GIF" /></td>
+        <td width="20%"  align="center"><img src="./Resources/gif/imageEdting.GIF" /></td>
+        <td width="20%"  align="center"><img src="./Resources/gif/imageSearch.GIF" /></td>
     </tr>
     <tr>
-        <td width="25%"  align="center">꽃 상세 화면</td>
-        <td width="25%"  align="center">꽃 갤러리(이미지 리프팅)</td>
-        <td width="25%"  align="center">이미지 수정</td>
-        <td width="25%"  align="center">이미지로 검색</td>
+        <td width="20%"  align="center">홈 화면</td>
+        <td width="20%"  align="center">꽃 상세 화면</td>
+        <td width="20%"  align="center">이미지 리프팅</td>
+        <td width="20%"  align="center">이미지 수정</td>
+        <td width="20%"  align="center">이미지로 검색</td>
     </tr>
 </table>
 
