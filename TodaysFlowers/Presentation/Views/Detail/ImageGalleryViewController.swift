@@ -10,6 +10,13 @@ import VisionKit
 
 final class ImageGalleryViewController: UIViewController {
     // MARK: - Components
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        
+        return activityIndicator
+    }()
+    
     private(set) lazy var imageScrollView: UIScrollView = {
         let imageScrollView = UIScrollView()
         imageScrollView.isPagingEnabled = true
@@ -81,6 +88,15 @@ final class ImageGalleryViewController: UIViewController {
             }
         }
     }
+    private func startProcessing() {
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    
+    private func stopProcessing() {
+        activityIndicator.stopAnimating()
+        view.isUserInteractionEnabled = true
+    }
 
     private func configureUI() {
         view.backgroundColor = .white
@@ -88,10 +104,12 @@ final class ImageGalleryViewController: UIViewController {
         view.addSubview(imageScrollView)
         view.addSubview(pageControl)
         view.addSubview(editButton)
+        view.addSubview(activityIndicator)
         
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         editButton.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         let global = view.safeAreaLayoutGuide
         
@@ -107,6 +125,9 @@ final class ImageGalleryViewController: UIViewController {
             
             editButton.centerXAnchor.constraint(equalTo: global.centerXAnchor),
             editButton.bottomAnchor.constraint(equalTo: global.bottomAnchor, constant: -30),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: global.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: global.centerYAnchor),
         ])
     }
     
