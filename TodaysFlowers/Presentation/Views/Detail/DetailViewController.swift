@@ -23,7 +23,6 @@ final class DetailViewController: UIViewController {
     private let viewModel: DetailViewModel
     private var disposableBag = Set<AnyCancellable>()
     private let galleryAnimationManager = GalleryAnimationManager()
-    private var originFrame: CGRect = .zero
     
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
@@ -49,11 +48,6 @@ final class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        originFrame = view.frame
     }
     
     private func configureUI() {
