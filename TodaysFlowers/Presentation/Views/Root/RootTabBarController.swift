@@ -33,11 +33,13 @@ final class RootTabBarController: UITabBarController {
             case .home:
                 let homeViewController = HomeViewController(
                     viewModel: HomeViewModel(useCase: HomeViewUseCaseStub())
+                    viewModel: HomeViewModel(useCase: FlowersApi())
                 )
                 return UINavigationController(rootViewController: homeViewController)
             case .search:
                 let searchViewController = SearchViewController(
                     viewModel: SearchViewModel(useCase: SearchUseCaseStub())
+                    viewModel: SearchViewModel(useCase: FlowersApi())
                 )
                 return UINavigationController(rootViewController: searchViewController)
             }

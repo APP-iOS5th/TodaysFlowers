@@ -15,6 +15,7 @@ class SearchViewModel {
     private var searchTextPublisher = PassthroughSubject<String, Never>()
     
     init(useCase: any SearchUseCase = SearchUseCaseStub()) {
+    init(useCase: any SearchUseCase = FlowersApi()) {
         self.useCase = useCase
         setupSearchPublisher()
     }

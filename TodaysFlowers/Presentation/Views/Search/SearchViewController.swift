@@ -124,6 +124,7 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let viewModel = DetailViewModel(
             flowerId: selectedId,
             useCase: DetailViewUseCaseStub()
+            useCase: FlowersApi()
         )
         let viewController = DetailViewController(viewModel: viewModel)
         viewController.modalPresentationStyle = .overFullScreen
