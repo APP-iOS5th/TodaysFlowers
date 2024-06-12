@@ -11,7 +11,7 @@ import PhotosUI
 
 final class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
-    private var searchViewModel = SearchViewModel()
+    private var searchViewModel: SearchViewModel
     private var imageDetectionViewModel = ImageDetectionViewModel()
     private var cancellables = Set<AnyCancellable>()
     private let monthDayPickerView = MonthDayPickerView()
@@ -27,6 +27,15 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         
         return tableView
     }()
+    
+    init(searchViewModel: SearchViewModel) {
+        self.searchViewModel = searchViewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +64,8 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let flower = searchViewModel.flowers[indexPath.row]
         
         cell.configureCell(flower: flower)
-        
+        cell.selectionStyle = .none
+
         return cell
     }
     
@@ -151,6 +161,27 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        CGFloat(90)
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchBarText = searchController.searchBar.text else {return}
+        viewModel.search(inputText: searchBarText)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedId = viewModel.flowers[indexPath.row].id
+        let viewModel = DetailViewModel(
+            flowerId: selectedId,
+            useCase: DetailViewUseCaseStub()
+        )
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .overFullScreen
+
+        present(viewController, animated: true)
     }
 }
 
