@@ -10,7 +10,7 @@ import Combine
 
 final class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     
-    private var viewModel = SearchViewModel()
+    private var viewModel: SearchViewModel
     private var cancellables = Set<AnyCancellable>()
     private let monthDayPickerView = MonthDayPickerView()
     
@@ -24,6 +24,15 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         
         return tableView
     }()
+    
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,6 +105,7 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let flower = self.viewModel.flowers[indexPath.row]
         
         cell.configureCell(flower: flower)
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -107,6 +117,18 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchBarText = searchController.searchBar.text else {return}
         viewModel.search(inputText: searchBarText)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedId = viewModel.flowers[indexPath.row].id
+        let viewModel = DetailViewModel(
+            flowerId: selectedId,
+            useCase: DetailViewUseCaseStub()
+        )
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .overFullScreen
+
+        present(viewController, animated: true)
     }
 }
 

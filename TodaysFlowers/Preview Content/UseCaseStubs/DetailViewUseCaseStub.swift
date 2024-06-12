@@ -10,8 +10,9 @@ import Combine
 
 final class DetailViewUseCaseStub: DetailViewUseCase {
     func getFlower(by id: Int) -> AnyPublisher<Flower, Never> {
-        Just(FlowerStubs.flower)
-            .delay(for: .seconds(2), scheduler: RunLoop.main)
+        Just(FlowerStubs.flowers.first { $0.id == id })
+            .compactMap { $0 }
+            .delay(for: .seconds(0.5), scheduler: RunLoop.main)
             .eraseToAnyPublisher()
     }
 }

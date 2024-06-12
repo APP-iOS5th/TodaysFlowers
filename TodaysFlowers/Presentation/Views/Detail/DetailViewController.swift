@@ -23,6 +23,7 @@ final class DetailViewController: UIViewController {
     private let viewModel: DetailViewModel
     private var disposableBag = Set<AnyCancellable>()
     private let galleryAnimationManager = GalleryAnimationManager()
+    private var originFrame: CGRect = .zero
     
     init(viewModel: DetailViewModel) {
         self.viewModel = viewModel
@@ -39,11 +40,21 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         configureUI()
-        bind()
         configureTapGesture()
+        flowerContentView.scrollView.delegate = self
+        bind()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         startProcessing()
         viewModel.fetchFlower()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        originFrame = view.frame
     }
     
     private func configureUI() {
@@ -75,6 +86,7 @@ final class DetailViewController: UIViewController {
             .sink { [weak self] flower in
                 self?.flowerContentView.configureViewContents(with: flower)
                 self?.stopProcessing()
+                self?.flowerContentView.setNeedsLayout()
             }
             .store(in: &disposableBag)
     }
@@ -111,9 +123,24 @@ final class DetailViewController: UIViewController {
     }
 }
 
-#Preview {
-    let viewModel = DetailViewModel(flowerId: 45, useCase: DetailViewUseCaseStub())
-    let viewController = DetailViewController(viewModel: viewModel)
+extension DetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            let ratio = (originFrame.height + scrollView.contentOffset.y) / originFrame.height
+            if ratio < 0.88 {
+                dismiss(animated: true)
+            }
+            view.layer.cornerRadius = 20
+            view.transform = CGAffineTransform(scaleX: ratio, y: ratio)
+            view.alpha = ratio
+        }
+    }
     
-    return viewController
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.1, delay: .zero) {
+            self.view.layer.cornerRadius = 0
+            self.view.transform = .identity
+            self.view.alpha = 1.0
+        }
+    }
 }
