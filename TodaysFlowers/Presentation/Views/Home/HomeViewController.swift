@@ -122,8 +122,6 @@ extension HomeViewController: UICollectionViewDelegate {
             useCase: FlowersApi()
         )
         let viewController = DetailViewController(viewModel: viewModel)
-        viewController.modalPresentationStyle = .overFullScreen
-
-        present(viewController, animated: true)
+        show(viewController, sender: self)
     }
 }
