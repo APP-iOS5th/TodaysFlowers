@@ -28,58 +28,14 @@ MVVM의 View와 ViewModel의 바인드와 각 의존성들 사이의 비동기 �
 
 ## Features 🎱
 
-<div style="display: flex; align-items: center; margin: 20px 0;">
-  <div style="flex: 0 0 200px; margin-right: 20px;">
-    <img src="./Resources/gif/detail.GIF" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  </div>
-  <div style="flex: 1; font-size: 16px; line-height: 1.6;">
-    <p>상세화면에서는 Id를 기반으로 해당 꽃의 정보를 얻어 사용자에게 보여줄 수 있습니다.</p>
-    <p>TBA</p>
-  </div>
-</div>
-<br />
-<br />
-<div style="display: flex; align-items: center; margin: 20px 0;">
-  <div style="flex: 1; font-size: 16px; line-height: 1.6; padding-right: 20px; text-align: right">
-    <p>iOS 17+ 이상에서는 VisionKit을 통해 이미지를 하이라이트하고 배경을 제거한 이미지를 얻을 수 있습니다.</p>
-    <p>TBA</p>
-  </div>
-  <div style="flex: 0 0 200px;">
-    <img src="./Resources/gif/imageLifting.GIF" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  </div>
-</div>
-<br />
-<br />
-<div style="display: flex; align-items: center; margin: 20px 0;">
-  <div style="flex: 0 0 200px; margin-right: 20px;">
-    <img src="./Resources/gif/imageEdting.GIF" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  </div>
-  <div style="flex: 1; font-size: 16px; line-height: 1.6;">
-    <p>iOS 17+ 이상에서는 Vision에도 새로운 기능이 추가되어 있습니다.
-    VNGenerateForegroundInstanceMaskRequest을 사용하면 foreground 이미지와 background 이미지를 분리할 수 있습니다.
-    </p>
-    <p>TBA</p>
-  </div>
-</div>
-<br />
-<br />
-<div style="display: flex; align-items: center; margin: 20px 0;">
-  <div style="flex: 1; font-size: 16px; line-height: 1.6; padding-right: 20px; text-align: right">
-    <p>CreateML을 사용하면 Swift로 머신러닝 모델을 훈련하고 생성할 수 있습니다. CoreML과 Vision을 사용하면 훈련된 모델을 통해 이미지로 부터 꽃의 이름을 알아낼 수 있습니다. 그것을 기반으로 검색을 진행합니다.</p>
-    <p>TBA</p>
-  </div>
-  <div style="flex: 0 0 200px;">
-    <img src="./Resources/gif/imageSearch.GIF" style="width: 100%; height: auto; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-  </div>
-</div>
-
-<!-- Home Feature: Collection View -->
-
-<!-- Detail Feature: Animation, ImageLifting, PageControl -->
-
-<!-- Search Feature: Segment -->
-
-<!-- Data Feature: Data Handling -->
+<table width="100%">
+    <tr>
+      <td width="25%"  align="center"><img src="./Resources/gif/detail.GIF" /></td>
+      <td width="25%"  align="center"><img src="./Resources/gif/imageLifting.GIF" /></td>
+      <td width="25%"  align="center"><img src="./Resources/gif/imageEdting.GIF" /></td>
+      <td width="25%"  align="center"><img src="./Resources/gif/imageSearch.GIF" /></td>
+    </tr>
+</table>
 
 
 ## Futrue Directions 🗒️
