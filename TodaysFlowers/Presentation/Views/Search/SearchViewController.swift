@@ -12,11 +12,11 @@ import PhotosUI
 final class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
     private var searchViewModel: SearchViewModel
-    private var imageDetectionViewModel = ImageDetectionViewModel()
+    private var imageDetectionViewModel: ImageDetectionViewModel
     private var cancellables = Set<AnyCancellable>()
     private let monthDayPickerView = MonthDayPickerView()
     
-    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "날짜", "이미지"])
+    private let segmentedControl = UISegmentedControl(items: ["이름", "꽃말", "이미지"])
     private let searchController = UISearchController(searchResultsController: nil)
     
     private lazy var tableView: UITableView = {
@@ -28,8 +28,9 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         return tableView
     }()
     
-    init(searchViewModel: SearchViewModel) {
+    init(searchViewModel: SearchViewModel, imageDetectionViewModel: ImageDetectionViewModel) {
         self.searchViewModel = searchViewModel
+        self.imageDetectionViewModel = imageDetectionViewModel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,6 +53,13 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
                 self?.tableView.reloadData()
             })
             .store(in: &cancellables)
+        
+        imageDetectionViewModel.$flowerName
+            .sink(receiveValue: { [weak self] flowerName in
+                self?.searchViewModel.search(inputText: flowerName ?? "")
+            })
+            .store(in: &cancellables)
+
     }
     
     // MARK: - UITableViewDataSource
@@ -97,11 +105,6 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         switch searchViewModel.searchType {
         case .name, .flowerLang:
             searchBar.customInputView = nil
-        case .date:
-            // 인덱스 에러 이슈로 picker초기화
-            monthDayPickerView.selectRow(0, inComponent: 0, animated: false)
-            monthDayPickerView.selectRow(0, inComponent: 1, animated: false)
-            searchBar.customInputView = monthDayPickerView
         case .image:
             searchBar.resignFirstResponder() // 키보드 숨기기
             presentPHPicker()
@@ -115,6 +118,10 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         segmentedControl.addAction(UIAction { [weak self] action in
             let sender = action.sender as! UISegmentedControl
             
+            // 검색 타입 바꿀때마다 테이블 초기화
+            self?.searchViewModel.flowers = []
+            self?.tableView.reloadData()
+            
             switch sender.selectedSegmentIndex {
             case 0:
                 self?.searchController.searchBar.placeholder = "이름 검색"
@@ -123,12 +130,8 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
                 self?.searchController.searchBar.placeholder = "꽃말 검색"
                 self?.searchViewModel.searchType = .flowerLang
             case 2:
-                self?.searchController.searchBar.placeholder = "날짜 검색"
-                self?.searchViewModel.searchType = .date
-            case 3:
                 self?.searchController.searchBar.placeholder = "이미지 검색"
                 self?.searchViewModel.searchType = .image
-                
             default:
                 break
             }

@@ -30,8 +30,6 @@ final class SearchViewModel {
                     return self.useCase.searchBy(name: searchText)
                 case .flowerLang:
                     return self.useCase.searchBy(flowerLang: searchText)
-                case .date:
-                    return self.useCase.searchBy(date: searchText)
                 case .image:
                     return self.useCase.searchBy(name: searchText)
                 }

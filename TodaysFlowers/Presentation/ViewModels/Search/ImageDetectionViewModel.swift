@@ -30,7 +30,7 @@ final class ImageDetectionViewModel {
             }
             
             if let firstItem = classification.first {
-                self.flowerName = firstItem.identifier.capitalized
+                self.flowerName = firstItem.identifier
             }
         }
         

@@ -10,6 +10,5 @@ import Foundation
 enum SearchType {
     case name
     case flowerLang
-    case date
     case image
 }

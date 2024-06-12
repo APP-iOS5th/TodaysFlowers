@@ -45,12 +45,12 @@
 		9FA5A4512C16064900955C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5A4502C16064900955C63 /* HomeViewController.swift */; };
 		C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2223B582C102926005BC35C /* MonthDayPickerView.swift */; };
 		C233E3B22C0ED16700EB222E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233E3B12C0ED16700EB222E /* SearchViewController.swift */; };
+		C259FB6D2C192D840040AEC1 /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C259FB6C2C192D830040AEC1 /* FlowerClassifier.mlmodel */; };
 		C279E83C2C16D68200EF751A /* UISearchBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83B2C16D68200EF751A /* UISearchBar+.swift */; };
 		C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83E2C16D74C00EF751A /* SearchType.swift */; };
 		C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */; };
 		C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */; };
 		C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */; };
-		C2DD700C2C181B70001F007F /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C2DD700B2C181B70001F007F /* FlowerClassifier.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,12 +115,12 @@
 		9FA5A4502C16064900955C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C2223B582C102926005BC35C /* MonthDayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDayPickerView.swift; sourceTree = "<group>"; };
 		C233E3B12C0ED16700EB222E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C259FB6C2C192D830040AEC1 /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
 		C279E83B2C16D68200EF751A /* UISearchBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+.swift"; sourceTree = "<group>"; };
 		C279E83E2C16D74C00EF751A /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionViewModel.swift; sourceTree = "<group>"; };
-		C2DD700B2C181B70001F007F /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,7 +254,7 @@
 				83F656EE2C0D55F800BE19DB /* ViewController.swift */,
 				83F656F02C0D55F800BE19DB /* Main.storyboard */,
 				83F656F32C0D55F900BE19DB /* Assets.xcassets */,
-				C2DD700B2C181B70001F007F /* FlowerClassifier.mlmodel */,
+				C259FB6C2C192D830040AEC1 /* FlowerClassifier.mlmodel */,
 				83F656F52C0D55F900BE19DB /* LaunchScreen.storyboard */,
 				83F656F82C0D55F900BE19DB /* Info.plist */,
 			);
@@ -577,8 +577,8 @@
 				8306EB442C180DC300D432B0 /* ImageEditViewModel.swift in Sources */,
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
+				C259FB6D2C192D840040AEC1 /* FlowerClassifier.mlmodel in Sources */,
 				C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */,
-				C2DD700C2C181B70001F007F /* FlowerClassifier.mlmodel in Sources */,
 				83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */,
 				C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */,
 				C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */,
