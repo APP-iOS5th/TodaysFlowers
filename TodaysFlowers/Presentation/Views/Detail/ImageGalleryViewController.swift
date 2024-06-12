@@ -10,6 +10,13 @@ import VisionKit
 
 final class ImageGalleryViewController: UIViewController {
     // MARK: - Components
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        
+        return activityIndicator
+    }()
+    
     private(set) lazy var imageScrollView: UIScrollView = {
         let imageScrollView = UIScrollView()
         imageScrollView.isPagingEnabled = true
@@ -26,6 +33,13 @@ final class ImageGalleryViewController: UIViewController {
         pageControl.backgroundStyle = .prominent
         
         return pageControl
+    }()
+    
+    private lazy var editButton: UIButton = {
+        var configuration = UIButton.Configuration.filled()
+        configuration.title = "edit"
+        
+        return UIButton(configuration: configuration)
     }()
     
     private lazy var imageViews: [UIImageView] = []
@@ -52,47 +66,54 @@ final class ImageGalleryViewController: UIViewController {
             selectedIndex: viewModel.selectedIndex
         )
         
-        imageViews.forEach(analyze(imageView:))
         
         configurePanGesture()
-        
+        configureButton()
+        configureImageViews()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        let contentLength = imageScrollView.frame.width
-        
-        imageScrollView.contentSize = CGSize(
-            width: contentLength * CGFloat(3),
-            height: contentLength
-        )
-        
-        for (index, subview) in imageScrollView.subviews.enumerated() {
-            subview.frame = CGRect(
-                x: CGFloat(index) * contentLength,
-                y: 0,
-                width: contentLength,
-                height: contentLength
-            )
-        }
-        imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
-    }
-    
-    private func analyze(imageView: UIImageView) {
         Task {
-            let interaction = ImageAnalysisInteraction()
-            let analyzer = ImageAnalyzer()
-            if let image = imageView.image {
-                imageView.addInteraction(interaction)
-                let configuration = ImageAnalyzer.Configuration([.visualLookUp])
-                let analysis = try? await analyzer.analyze(image, configuration: configuration)
-                if let analysis = analysis {
-                    interaction.analysis = analysis
-                    interaction.preferredInteractionTypes = .imageSubject
+            startProcessing()
+            await analyze(imageViews: imageViews)
+            stopProcessing()
+        }
+    }
+    
+    private func analyze(imageViews: [UIImageView]) async {
+        await withTaskGroup(of: Void.self) { group in
+            for imageView in imageViews {
+                group.addTask {
+                    await self.analyze(imageView: imageView)
                 }
             }
         }
+    }
+    
+    private func analyze(imageView: UIImageView) async {
+        let interaction = ImageAnalysisInteraction()
+        let analyzer = ImageAnalyzer()
+        if let image = imageView.image {
+            imageView.addInteraction(interaction)
+            let configuration = ImageAnalyzer.Configuration([.visualLookUp])
+            let analysis = try? await analyzer.analyze(image, configuration: configuration)
+            if let analysis = analysis {
+                interaction.analysis = analysis
+                interaction.preferredInteractionTypes = .imageSubject
+            }
+        }
+    }
+    
+    private func startProcessing() {
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    
+    private func stopProcessing() {
+        activityIndicator.stopAnimating()
+        view.isUserInteractionEnabled = true
     }
 
     private func configureUI() {
@@ -100,9 +121,13 @@ final class ImageGalleryViewController: UIViewController {
         
         view.addSubview(imageScrollView)
         view.addSubview(pageControl)
+        view.addSubview(editButton)
+        view.addSubview(activityIndicator)
         
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         let global = view.safeAreaLayoutGuide
         
@@ -115,6 +140,12 @@ final class ImageGalleryViewController: UIViewController {
             pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  -15),
             pageControl.centerXAnchor.constraint(equalTo: global.centerXAnchor),
             pageControl.heightAnchor.constraint(equalToConstant: 10),
+            
+            editButton.centerXAnchor.constraint(equalTo: global.centerXAnchor),
+            editButton.bottomAnchor.constraint(equalTo: global.bottomAnchor, constant: -30),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: global.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: global.centerYAnchor),
         ])
     }
     
@@ -143,6 +174,42 @@ final class ImageGalleryViewController: UIViewController {
             action: #selector(handlePullToDismiss(_:))
         )
         view.addGestureRecognizer(panGesture)
+    }
+    
+    private func configureButton() {
+        editButton.addAction(
+            UIAction { [weak self] _ in
+                guard let self else { return }
+                let currentPage = self.pageControl.currentPage
+                guard let currentImage = imageViews[currentPage].image else {
+                    return
+                }
+                let viewModel = ImageEditViewModel(originalImage: currentImage)
+                let viewController = ImageEditViewController(viewModel: viewModel)
+                self.present(viewController, animated: true)
+            },
+            for: .touchUpInside
+        )
+    }
+    
+    private func configureImageViews() {
+        imageScrollView.layoutIfNeeded()
+        let contentLength = imageScrollView.frame.width
+        
+        imageScrollView.contentSize = CGSize(
+            width: contentLength * CGFloat(3),
+            height: contentLength
+        )
+        
+        for (index, subview) in imageScrollView.subviews.enumerated() {
+            subview.frame = CGRect(
+                x: CGFloat(index) * contentLength,
+                y: 0,
+                width: contentLength,
+                height: contentLength
+            )
+        }
+        imageScrollView.contentOffset.x =  contentLength * CGFloat(viewModel.selectedIndex)
     }
     
     @objc private func handlePullToDismiss(_ gesture: UIPanGestureRecognizer) {
