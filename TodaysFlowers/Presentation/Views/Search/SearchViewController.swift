@@ -69,11 +69,6 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
-    // 선택시 디테일뷰로 이동
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-    }
-    
     // MARK: - UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         CGFloat(90)
@@ -83,6 +78,18 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchBarText = searchController.searchBar.text else {return}
         searchViewModel.search(inputText: searchBarText)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedId = searchViewModel.flowers[indexPath.row].id
+        let viewModel = DetailViewModel(
+            flowerId: selectedId,
+            useCase: DetailViewUseCaseStub()
+        )
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.modalPresentationStyle = .overFullScreen
+
+        present(viewController, animated: true)
     }
     
     // MARK: - UISearchBarDelegate
@@ -161,27 +168,6 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        CGFloat(90)
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchBarText = searchController.searchBar.text else {return}
-        viewModel.search(inputText: searchBarText)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedId = viewModel.flowers[indexPath.row].id
-        let viewModel = DetailViewModel(
-            flowerId: selectedId,
-            useCase: DetailViewUseCaseStub()
-        )
-        let viewController = DetailViewController(viewModel: viewModel)
-        viewController.modalPresentationStyle = .overFullScreen
-
-        present(viewController, animated: true)
     }
 }
 
