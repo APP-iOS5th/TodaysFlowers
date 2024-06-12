@@ -27,6 +27,7 @@
 		83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */; };
 		83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */; };
 		83E5E9892C11F497003522EB /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9882C11F497003522EB /* UIView+.swift */; };
+		83EA50942C19C6FF00B0FAF6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA50932C19C6FF00B0FAF6 /* String+.swift */; };
 		83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EA2C0D55F800BE19DB /* AppDelegate.swift */; };
 		83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */; };
 		83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EE2C0D55F800BE19DB /* ViewController.swift */; };
@@ -50,13 +51,13 @@
 		C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83E2C16D74C00EF751A /* SearchType.swift */; };
 		C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */; };
 		C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */; };
+		C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */; };
 		D8BFCBC22C19258700C7B66E /* FlowerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBC12C19258700C7B66E /* FlowerData.swift */; };
 		D8BFCBC52C19259E00C7B66E /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D8BFCBC42C19259E00C7B66E /* XMLCoder */; };
 		D8BFCBC72C1925B800C7B66E /* FlowersApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBC62C1925B800C7B66E /* FlowersApi.swift */; };
 		D8BFCBC92C1925E500C7B66E /* URLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBC82C1925E500C7B66E /* URLType.swift */; };
 		D8BFCBCB2C19263200C7B66E /* EndpointFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBCA2C19263200C7B66E /* EndpointFactory.swift */; };
 		D8BFCBCD2C192B8000C7B66E /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D8BFCBCC2C192B8000C7B66E /* XMLCoder */; };
-		C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAnimationManager.swift; sourceTree = "<group>"; };
 		83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresentAnimator.swift; sourceTree = "<group>"; };
 		83E5E9882C11F497003522EB /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		83EA50932C19C6FF00B0FAF6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		83F656E72C0D55F800BE19DB /* TodaysFlowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysFlowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F656EA2C0D55F800BE19DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -124,11 +126,11 @@
 		C279E83E2C16D74C00EF751A /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionViewModel.swift; sourceTree = "<group>"; };
 		D8BFCBC12C19258700C7B66E /* FlowerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerData.swift; sourceTree = "<group>"; };
 		D8BFCBC62C1925B800C7B66E /* FlowersApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowersApi.swift; sourceTree = "<group>"; };
 		D8BFCBC82C1925E500C7B66E /* URLType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLType.swift; sourceTree = "<group>"; };
 		D8BFCBCA2C19263200C7B66E /* EndpointFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointFactory.swift; sourceTree = "<group>"; };
-		C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 				83097A342C0EE1BA00E7B007 /* UILabel+.swift */,
 				83097A3A2C0F366700E7B007 /* Spacing.swift */,
 				83097A3C2C0F3AE600E7B007 /* StringHandler.swift */,
+				83EA50932C19C6FF00B0FAF6 /* String+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */,
+				83EA50942C19C6FF00B0FAF6 /* String+.swift in Sources */,
 				83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */,
 				83097A2D2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift in Sources */,
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
