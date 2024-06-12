@@ -66,28 +66,46 @@ final class ImageGalleryViewController: UIViewController {
             selectedIndex: viewModel.selectedIndex
         )
         
-        imageViews.forEach(analyze(imageView:))
         
         configurePanGesture()
         configureButton()
         configureImageViews()
     }
     
-    private func analyze(imageView: UIImageView) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         Task {
-            let interaction = ImageAnalysisInteraction()
-            let analyzer = ImageAnalyzer()
-            if let image = imageView.image {
-                imageView.addInteraction(interaction)
-                let configuration = ImageAnalyzer.Configuration([.visualLookUp])
-                let analysis = try? await analyzer.analyze(image, configuration: configuration)
-                if let analysis = analysis {
-                    interaction.analysis = analysis
-                    interaction.preferredInteractionTypes = .imageSubject
+            startProcessing()
+            await analyze(imageViews: imageViews)
+            stopProcessing()
+        }
+    }
+    
+    private func analyze(imageViews: [UIImageView]) async {
+        await withTaskGroup(of: Void.self) { group in
+            for imageView in imageViews {
+                group.addTask {
+                    await self.analyze(imageView: imageView)
                 }
             }
         }
     }
+    
+    private func analyze(imageView: UIImageView) async {
+        let interaction = ImageAnalysisInteraction()
+        let analyzer = ImageAnalyzer()
+        if let image = imageView.image {
+            imageView.addInteraction(interaction)
+            let configuration = ImageAnalyzer.Configuration([.visualLookUp])
+            let analysis = try? await analyzer.analyze(image, configuration: configuration)
+            if let analysis = analysis {
+                interaction.analysis = analysis
+                interaction.preferredInteractionTypes = .imageSubject
+            }
+        }
+    }
+    
     private func startProcessing() {
         activityIndicator.startAnimating()
         view.isUserInteractionEnabled = false
