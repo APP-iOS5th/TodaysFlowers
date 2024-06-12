@@ -18,7 +18,6 @@ class HomeViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-//        setupGestureRecognizers()
     }
 
     required init?(coder: NSCoder) {
@@ -31,7 +30,7 @@ class HomeViewCell: UICollectionViewCell {
         flowerImageView.layer.cornerRadius = 12
         contentView.addSubview(flowerImageView)
         
-        barView.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        barView.backgroundColor = UIColor(white: 0, alpha: 0.4)
         contentView.addSubview(barView)
         
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
@@ -77,42 +76,6 @@ class HomeViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 12
         contentView.layer.masksToBounds = true
         contentView.backgroundColor = UIColor.white.withAlphaComponent(0.5)
-    }
-    
-    // 셀 클릭시 확대 효과
-    private func setupGestureRecognizers() {
-        // Adding hover gesture recognizer
-        let hoverGestureRecognizer = UIHoverGestureRecognizer(target: self, action: #selector(handleHover(_:)))
-        addGestureRecognizer(hoverGestureRecognizer)
-        
-        // Adding tap gesture recognizer
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        addGestureRecognizer(tapGestureRecognizer)
-    }
-
-    @objc private func handleHover(_ gesture: UIHoverGestureRecognizer) {
-        switch gesture.state {
-        case .began, .changed:
-            UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-            }
-        case .ended:
-            UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform.identity
-            }
-        default:
-            break
-        }
-    }
-
-    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-        }, completion: { _ in
-            UIView.animate(withDuration: 0.2) {
-                self.transform = CGAffineTransform.identity
-            }
-        })
     }
     
     

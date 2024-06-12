@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d"
         dateLabel.text = formatter.string(from: Date())
+        dateLabel.textColor = UIColor.black
         dateLabel.font = UIFont.systemFont(ofSize: 24, weight:  .semibold)
         return dateLabel
     }()
@@ -113,7 +114,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
-// 셀 클릭했을 때 콘솔창에 "선택" 메시지 출력 (셀 선택 효과 추가하니까 안됨 수정 필요))
+// 셀 클릭했을 때 DetailView로 전환
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedId = viewModel.flowers[indexPath.row].id
