@@ -9,17 +9,18 @@ import UIKit
 import os
 
 protocol Cachable {
-    var memoryCache: NSCache<NSString, UIImage> { get }
+    associatedtype Content: AnyObject
+    var memoryCache: NSCache<NSString, Content> { get }
     
-    func loadData(with key: String) async -> UIImage?
+    func loadData(with key: String) async -> Content?
 }
 
 extension Cachable {
-    func checkCache(with key: String) -> UIImage? {
+    func checkCache(with key: String) -> Content? {
         memoryCache.object(forKey: key as NSString)
     }
     
-    func save(object: UIImage, for key: String) {
+    func save(object: Content, for key: String) {
         memoryCache.setObject(object, forKey: key as NSString)
     }
 }
