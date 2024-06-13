@@ -23,6 +23,10 @@ class HomeViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        flowerImageView.image = nil
+    }
 
     private func setupUI() {
         flowerImageView.contentMode = .scaleAspectFill
