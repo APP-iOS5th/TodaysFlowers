@@ -95,9 +95,7 @@ final class SearchViewController: UIViewController, UITableViewDelegate, UITable
             useCase: FlowersApi()
         )
         let viewController = DetailViewController(viewModel: viewModel)
-        viewController.modalPresentationStyle = .overFullScreen
-
-        present(viewController, animated: true)
+        show(viewController, sender: self)
     }
     
     // MARK: - UISearchBarDelegate

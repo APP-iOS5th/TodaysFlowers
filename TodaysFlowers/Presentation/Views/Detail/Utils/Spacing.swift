@@ -10,5 +10,5 @@ import Foundation
 enum Spacing: CGFloat {
     case small = 5
     case medium = 20
-    case large = 53
+    case large = 44
 }

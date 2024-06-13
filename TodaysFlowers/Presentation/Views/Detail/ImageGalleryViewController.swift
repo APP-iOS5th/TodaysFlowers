@@ -66,7 +66,6 @@ final class ImageGalleryViewController: UIViewController {
             selectedIndex: viewModel.selectedIndex
         )
         
-        
         configurePanGesture()
         configureButton()
         configureImageViews()
