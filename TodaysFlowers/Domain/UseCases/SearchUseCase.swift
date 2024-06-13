@@ -11,4 +11,5 @@ import Combine
 protocol SearchUseCase {
     func searchBy(name: String) -> AnyPublisher<[Flower], Never>
     func searchBy(flowerLang: String) -> AnyPublisher<[Flower], Never>
+    func searchBy(month: String, day: String) -> AnyPublisher<[Flower], Never>
 }

@@ -14,7 +14,7 @@ final class SearchViewModel {
     @Published var flowers: [Flower] = []
     @Published var searchType: SearchType = .name // default는 이름으로 검색
     
-    init(useCase: any SearchUseCase = SearchUseCaseStub()) {
+    init(useCase: any SearchUseCase = FlowersApi()) {
         self.useCase = useCase
         setupSearchPublisher()
     }

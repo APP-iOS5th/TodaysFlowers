@@ -257,7 +257,76 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
             .eraseToAnyPublisher()
     }
     
-    
+    func searchBy(month: String, day: String) -> AnyPublisher<[Flower], Never> {
+           let urlString = EndpointFactory.buildEndpoint(
+               with: .info,
+               keyValue: [
+                   "serviceKey": apikey,
+                   "pageNo": "1",
+                   "numOfRows": "366",
+                   "fMonth": month,
+                   "fDay": day
+               ]
+           )
+           
+           guard let url = URL(string: urlString) else {
+               fatalError("Invalid URL")
+           }
+           
+           let flowers = URLSession.shared.dataTaskPublisher(for: url)
+               .tryMap() { element -> Data in
+                   guard let httpResponse = element.response as? HTTPURLResponse,
+                         httpResponse.statusCode == 200 else {
+                       throw URLError(.badServerResponse)
+                   }
+                   return element.data
+               }
+               .print()
+               .decode(type: Document.self, decoder: XMLDecoder())
+               .map { document -> Flower in
+                   
+                   let result = document.root.result.first!
+                   
+                   let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
+                   var imageData: [Data] = []
+                   
+                   for imageUrl in imageUrls {
+                       guard let url = URL(string: imageUrl),
+                             let data = try? Data(contentsOf: url) else {
+                           fatalError("Failed to load image data from URL: \(imageUrl)")
+                       }
+                       imageData.append(data)
+                   }
+                   
+                   
+                   let dateFormatter = DateFormatter()
+                   dateFormatter.dateFormat = "MM-dd"
+                   let dateString = "\(result.fMonth)-\(result.fDay)"
+                   guard let date = dateFormatter.date(from: dateString) else {
+                       fatalError("Failed to convert date: \(dateString)")
+                   }
+                   
+                   return Flower(id: Int(result.dataNo) ?? 0,
+                                 name: result.flowNm,
+                                 lang: result.flowLang,
+                                 content: result.fContent ?? "",
+                                 type: result.fType ?? "",
+                                 grow: result.fGrow ?? "",
+                                 usage: result.fUse ?? "",
+                                 imageData: imageData,
+                                 date: date)
+               }
+               .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageData: [], date: Date()))
+               .eraseToAnyPublisher()
+           
+         let merged = Publishers
+             .MergeMany(
+                 flowers
+             )
+         let collectedPublisher = merged.collect()
+         let anyPublisher: AnyPublisher<[Flower], Never> = collectedPublisher.eraseToAnyPublisher()
+         return anyPublisher
+     }
     
     
     
