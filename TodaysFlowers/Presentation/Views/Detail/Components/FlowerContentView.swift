@@ -145,14 +145,15 @@ final class FlowerContentView: UIView {
             subview.removeFromSuperview()
         }
         
-        for imageData in flower.imageData {
-            let imageView = UIImageView(image: UIImage(data: imageData))
+        for imageUrlString in flower.imageUrlString {
+            let imageView = UIImageView()
+            imageView.asyncImage(urlString: imageUrlString)
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             
             imageScrollView.addSubview(imageView)
         }
-        pageControl.numberOfPages = flower.imageData.count
+        pageControl.numberOfPages = flower.imageUrlString.count
         layoutIfNeeded()
     }
     
@@ -260,12 +261,4 @@ extension FlowerContentView: UIScrollViewDelegate {
         let pageIndex = round(scrollView.contentOffset.x / scrollView.frame.width)
         pageControl.currentPage = Int(pageIndex)
     }
-}
-
-#Preview {
-    let vc = FlowerContentView()
-    
-    vc.configureViewContents(with: FlowerStubs.flower)
-    
-    return vc
 }
