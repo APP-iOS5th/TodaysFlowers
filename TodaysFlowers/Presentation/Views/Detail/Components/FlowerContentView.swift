@@ -100,6 +100,8 @@ final class FlowerContentView: UIView {
         return usageDescriptionLabel
     }()
     
+    private(set) lazy var imageViews: [UIImageView] = []
+    
     // MARK: - Methods
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -150,7 +152,7 @@ final class FlowerContentView: UIView {
             imageView.asyncImage(urlString: imageUrlString)
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
-            
+            self.imageViews.append(imageView)
             imageScrollView.addSubview(imageView)
         }
         pageControl.numberOfPages = flower.imageUrlString.count
