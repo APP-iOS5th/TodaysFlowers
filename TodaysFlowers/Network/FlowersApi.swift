@@ -12,7 +12,7 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
     
     let apikey = "FByld3CLZFH7McV%2B9rrh55h%2F0vqtm0im9vy8Cl16wQOU57mFDm6KkfdwmbW%2FdovSFTlH0KFSroxN7XjFLnIyKg%3D%3D"
     
-    func retrieveFlower(by date: Date) -> AnyPublisher<Flower, Never> {
+    func getFlower(by date: Date) -> AnyPublisher<Flower, Never> {
         let calender = Calendar.current
         let month = calender.component(.month, from: date)
         let day = calender.component(.day, from: date)
@@ -72,18 +72,20 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
             .eraseToAnyPublisher()
     }
     
+   
+    
     func getFlowers(by date: [Date]) -> AnyPublisher<[Flower], Never> {
-        let merged = Publishers
-          .Merge5(
-            retrieveFlower(by: Date.retrieveDateFromToday(by: -2)),
-         retrieveFlower(by: Date.retrieveDateFromToday(by: -1)),
-         retrieveFlower(by: Date.now),
-         retrieveFlower(by: Date.retrieveDateFromToday(by: 1)),
-            retrieveFlower(by: Date.retrieveDateFromToday(by: 2))
+        let merged: AnyPublisher<[Flower], Never> =
+        Publishers
+            .MergeMany (
+                date.map {
+                    getFlower(by: $0)
+                }
           )
-        let collectedPublisher = merged.collect()
-        let anyPublisher: AnyPublisher<[Flower], Never> = collectedPublisher.eraseToAnyPublisher()
-       return anyPublisher
+            .collect()
+            .eraseToAnyPublisher()
+
+       return merged
     }
     
     
@@ -256,12 +258,4 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
-    
-    
-    
-    
-    
-    
-    
-    
 }

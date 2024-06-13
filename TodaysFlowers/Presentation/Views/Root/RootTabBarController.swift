@@ -37,7 +37,7 @@ final class RootTabBarController: UITabBarController {
                 return UINavigationController(rootViewController: homeViewController)
             case .search:
                 let searchViewController = SearchViewController(
-                    searchViewModel: SearchViewModel(useCase: SearchUseCaseStub()),
+                    searchViewModel: SearchViewModel(useCase: FlowersApi()),
                     imageDetectionViewModel: ImageDetectionViewModel()
                 )
                 return UINavigationController(rootViewController: searchViewController)
