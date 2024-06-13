@@ -89,4 +89,9 @@ final class MonthDayPickerView: UIPickerView, UIPickerViewDataSource, UIPickerVi
             self.monthDayDelegate?.didSelectDate(month: month, day: day)
         }
     }
+    
+    func initializePicker() {
+        self.selectRow(0, inComponent: 0, animated: false)
+        self.selectRow(0, inComponent: 1, animated: false)
+    }
 }

@@ -19,7 +19,8 @@ final class SearchTableViewCell: UITableViewCell {
     
     private lazy var nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        nameLabel.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        nameLabel.textColor = UIColor(named: "FlowerColor")!
         return nameLabel
     }()
     
