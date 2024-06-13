@@ -62,7 +62,7 @@ final class ImageGalleryViewController: UIViewController {
         
         configureUI()
         configureImageScrollView(
-            with: viewModel.imagesData,
+            with: viewModel.imageViews,
             selectedIndex: viewModel.selectedIndex
         )
         
@@ -148,22 +148,21 @@ final class ImageGalleryViewController: UIViewController {
         ])
     }
     
-    private func configureImageScrollView(with imagesData: [Data], selectedIndex: Int) {
+    private func configureImageScrollView(with imageViews: [UIImageView], selectedIndex: Int) {
         imageScrollView.delegate = self
         
         for subviews in imageScrollView.subviews {
             subviews.removeFromSuperview()
         }
-        
-        for imageData in imagesData {
-            let imageView = UIImageView(image: UIImage(data: imageData))
+
+        for imageView in imageViews {
             imageView.contentMode = .scaleAspectFit
             imageView.clipsToBounds = true
             
-            imageViews.append(imageView)
+            self.imageViews.append(imageView)
             imageScrollView.addSubview(imageView)
         }
-        pageControl.numberOfPages = imagesData.count
+        pageControl.numberOfPages = imageViews.count
         pageControl.currentPage = selectedIndex
     }
     
