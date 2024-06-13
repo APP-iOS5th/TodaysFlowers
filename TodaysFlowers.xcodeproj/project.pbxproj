@@ -27,6 +27,7 @@
 		83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */; };
 		83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */; };
 		83E5E9892C11F497003522EB /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E5E9882C11F497003522EB /* UIView+.swift */; };
+		83EA50942C19C6FF00B0FAF6 /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83EA50932C19C6FF00B0FAF6 /* String+.swift */; };
 		83F656EB2C0D55F800BE19DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EA2C0D55F800BE19DB /* AppDelegate.swift */; };
 		83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */; };
 		83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F656EE2C0D55F800BE19DB /* ViewController.swift */; };
@@ -45,10 +46,18 @@
 		9FA5A4512C16064900955C63 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA5A4502C16064900955C63 /* HomeViewController.swift */; };
 		C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2223B582C102926005BC35C /* MonthDayPickerView.swift */; };
 		C233E3B22C0ED16700EB222E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C233E3B12C0ED16700EB222E /* SearchViewController.swift */; };
+		C259FB6D2C192D840040AEC1 /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C259FB6C2C192D830040AEC1 /* FlowerClassifier.mlmodel */; };
 		C279E83C2C16D68200EF751A /* UISearchBar+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83B2C16D68200EF751A /* UISearchBar+.swift */; };
 		C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C279E83E2C16D74C00EF751A /* SearchType.swift */; };
 		C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */; };
 		C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */; };
+		C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */; };
+		D8BFCBC22C19258700C7B66E /* FlowerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBC12C19258700C7B66E /* FlowerData.swift */; };
+		D8BFCBC52C19259E00C7B66E /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D8BFCBC42C19259E00C7B66E /* XMLCoder */; };
+		D8BFCBC72C1925B800C7B66E /* FlowersApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBC62C1925B800C7B66E /* FlowersApi.swift */; };
+		D8BFCBC92C1925E500C7B66E /* URLType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBC82C1925E500C7B66E /* URLType.swift */; };
+		D8BFCBCB2C19263200C7B66E /* EndpointFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFCBCA2C19263200C7B66E /* EndpointFactory.swift */; };
+		D8BFCBCD2C192B8000C7B66E /* XMLCoder in Frameworks */ = {isa = PBXBuildFile; productRef = D8BFCBCC2C192B8000C7B66E /* XMLCoder */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,11 +95,10 @@
 		835C11542C1877C000F09ADD /* RootTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabBarController.swift; sourceTree = "<group>"; };
 		835C11572C1879DE00F09ADD /* AppAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		836BF9E82C0DD4C800C98B3D /* FlowerStubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerStubs.swift; sourceTree = "<group>"; };
-		83CC5E1F2C0DB1A500FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
-		83CC5E212C0DB1AD00FF4E33 /* placeholder */ = {isa = PBXFileReference; lastKnownFileType = text; path = placeholder; sourceTree = "<group>"; };
 		83E5E9842C11D5CE003522EB /* GalleryAnimationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryAnimationManager.swift; sourceTree = "<group>"; };
 		83E5E9862C11D61D003522EB /* GalleryPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPresentAnimator.swift; sourceTree = "<group>"; };
 		83E5E9882C11F497003522EB /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		83EA50932C19C6FF00B0FAF6 /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		83F656E72C0D55F800BE19DB /* TodaysFlowers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodaysFlowers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83F656EA2C0D55F800BE19DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		83F656EC2C0D55F800BE19DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,10 +121,16 @@
 		9FA5A4502C16064900955C63 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C2223B582C102926005BC35C /* MonthDayPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthDayPickerView.swift; sourceTree = "<group>"; };
 		C233E3B12C0ED16700EB222E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		C259FB6C2C192D830040AEC1 /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
 		C279E83B2C16D68200EF751A /* UISearchBar+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+.swift"; sourceTree = "<group>"; };
 		C279E83E2C16D74C00EF751A /* SearchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchType.swift; sourceTree = "<group>"; };
 		C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C2ADDAEA2C0EF9F200B770A6 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
+		C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetectionViewModel.swift; sourceTree = "<group>"; };
+		D8BFCBC12C19258700C7B66E /* FlowerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerData.swift; sourceTree = "<group>"; };
+		D8BFCBC62C1925B800C7B66E /* FlowersApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowersApi.swift; sourceTree = "<group>"; };
+		D8BFCBC82C1925E500C7B66E /* URLType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLType.swift; sourceTree = "<group>"; };
+		D8BFCBCA2C19263200C7B66E /* EndpointFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndpointFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8BFCBC52C19259E00C7B66E /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8BFCBCD2C192B8000C7B66E /* XMLCoder in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +185,7 @@
 				83097A342C0EE1BA00E7B007 /* UILabel+.swift */,
 				83097A3A2C0F366700E7B007 /* Spacing.swift */,
 				83097A3C2C0F3AE600E7B007 /* StringHandler.swift */,
+				83EA50932C19C6FF00B0FAF6 /* String+.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -203,7 +220,7 @@
 		83CC5E102C0DACE800FF4E33 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				83CC5E212C0DB1AD00FF4E33 /* placeholder */,
+				D8BFCBC12C19258700C7B66E /* FlowerData.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -250,6 +267,7 @@
 				83F656EE2C0D55F800BE19DB /* ViewController.swift */,
 				83F656F02C0D55F800BE19DB /* Main.storyboard */,
 				83F656F32C0D55F900BE19DB /* Assets.xcassets */,
+				C259FB6C2C192D830040AEC1 /* FlowerClassifier.mlmodel */,
 				83F656F52C0D55F900BE19DB /* LaunchScreen.storyboard */,
 				83F656F82C0D55F900BE19DB /* Info.plist */,
 			);
@@ -285,7 +303,9 @@
 		83F6571B2C0D567900BE19DB /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				83CC5E1F2C0DB1A500FF4E33 /* placeholder */,
+				D8BFCBC62C1925B800C7B66E /* FlowersApi.swift */,
+				D8BFCBC82C1925E500C7B66E /* URLType.swift */,
+				D8BFCBCA2C19263200C7B66E /* EndpointFactory.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -356,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				C2ADDAE82C0EE5E000B770A6 /* SearchViewModel.swift */,
+				C2DD70072C17E2CA001F007F /* ImageDetectionViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -430,6 +451,9 @@
 			dependencies = (
 			);
 			name = TodaysFlowers;
+			packageProductDependencies = (
+				D8BFCBC42C19259E00C7B66E /* XMLCoder */,
+			);
 			productName = TodaysFlowers;
 			productReference = 83F656E72C0D55F800BE19DB /* TodaysFlowers.app */;
 			productType = "com.apple.product-type.application";
@@ -448,6 +472,9 @@
 				83F656FF2C0D55F900BE19DB /* PBXTargetDependency */,
 			);
 			name = TodaysFlowersTests;
+			packageProductDependencies = (
+				D8BFCBCC2C192B8000C7B66E /* XMLCoder */,
+			);
 			productName = TodaysFlowersTests;
 			productReference = 83F656FD2C0D55F900BE19DB /* TodaysFlowersTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -502,6 +529,9 @@
 				Base,
 			);
 			mainGroup = 83F656DE2C0D55F800BE19DB;
+			packageReferences = (
+				D8BFCBC32C19259E00C7B66E /* XCRemoteSwiftPackageReference "XMLCoder" */,
+			);
 			productRefGroup = 83F656E82C0D55F800BE19DB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -546,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F657292C0D579600BE19DB /* HomeViewUseCase.swift in Sources */,
+				83EA50942C19C6FF00B0FAF6 /* String+.swift in Sources */,
 				83E5E9872C11D61D003522EB /* GalleryPresentAnimator.swift in Sources */,
 				83097A2D2C0ECD3900E7B007 /* DetailViewUseCaseStub.swift in Sources */,
 				83F6572D2C0D614200BE19DB /* DetailViewUseCase.swift in Sources */,
@@ -557,6 +588,7 @@
 				830660B62C12033900292851 /* GalleryDismissAnimator.swift in Sources */,
 				83097A292C0ECAE400E7B007 /* HomeViewUseCaseStub.swift in Sources */,
 				83F656EF2C0D55F800BE19DB /* ViewController.swift in Sources */,
+				D8BFCBC92C1925E500C7B66E /* URLType.swift in Sources */,
 				835C11552C1877C000F09ADD /* RootTabBarController.swift in Sources */,
 				9FA5A4512C16064900955C63 /* HomeViewController.swift in Sources */,
 				C2ADDAE92C0EE5E000B770A6 /* SearchViewModel.swift in Sources */,
@@ -571,9 +603,13 @@
 				8306EB442C180DC300D432B0 /* ImageEditViewModel.swift in Sources */,
 				83F656ED2C0D55F800BE19DB /* SceneDelegate.swift in Sources */,
 				83F6572B2C0D60B100BE19DB /* SearchUseCase.swift in Sources */,
+				C259FB6D2C192D840040AEC1 /* FlowerClassifier.mlmodel in Sources */,
 				C2223B592C102926005BC35C /* MonthDayPickerView.swift in Sources */,
+				D8BFCBC22C19258700C7B66E /* FlowerData.swift in Sources */,
 				83097A2B2C0ECC6100E7B007 /* SearchUseCaseStub.swift in Sources */,
+				D8BFCBC72C1925B800C7B66E /* FlowersApi.swift in Sources */,
 				C2ADDAEB2C0EF9F200B770A6 /* SearchTableViewCell.swift in Sources */,
+				C2DD70082C17E2CA001F007F /* ImageDetectionViewModel.swift in Sources */,
 				83097A3D2C0F3AE600E7B007 /* StringHandler.swift in Sources */,
 				83E5E9852C11D5CE003522EB /* GalleryAnimationManager.swift in Sources */,
 				830EB1372C1172AC0021F113 /* ImageGalleryViewController.swift in Sources */,
@@ -581,6 +617,7 @@
 				83097A392C0EF99B00E7B007 /* DetailViewModel.swift in Sources */,
 				C279E83F2C16D74C00EF751A /* SearchType.swift in Sources */,
 				83097A322C0EE0F900E7B007 /* FlowerContentView.swift in Sources */,
+				D8BFCBCB2C19263200C7B66E /* EndpointFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,7 +799,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 59FP2PXRXK;
+				DEVELOPMENT_TEAM = 8URBBSVL95;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodaysFlowers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -791,7 +828,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 59FP2PXRXK;
+				DEVELOPMENT_TEAM = 8URBBSVL95;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TodaysFlowers/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -929,6 +966,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D8BFCBC32C19259E00C7B66E /* XCRemoteSwiftPackageReference "XMLCoder" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CoreOffice/XMLCoder";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.17.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D8BFCBC42C19259E00C7B66E /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8BFCBC32C19259E00C7B66E /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+		D8BFCBCC2C192B8000C7B66E /* XMLCoder */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D8BFCBC32C19259E00C7B66E /* XCRemoteSwiftPackageReference "XMLCoder" */;
+			productName = XMLCoder;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83F656DF2C0D55F800BE19DB /* Project object */;
 }

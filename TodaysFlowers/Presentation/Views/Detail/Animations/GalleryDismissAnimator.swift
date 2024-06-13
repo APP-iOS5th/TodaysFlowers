@@ -28,8 +28,12 @@ extension GalleryDismissAnimator: UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: any UIViewControllerContextTransitioning) {
         let containerView = transitionContext.containerView
         
+        let rootViewController = transitionContext.viewController(forKey: .to) as! UITabBarController
+        let selectedViewController = rootViewController.selectedViewController as! UINavigationController
         let fromView = transitionContext.viewController(forKey: .from) as! ImageGalleryViewController
-        let toView = transitionContext.viewController(forKey: .to) as! DetailViewController
+        let toView = selectedViewController.topViewController as! DetailViewController
+        
+        
         let imageScrollView = fromView.imageScrollView
         let currentPage = fromView.pageControl.currentPage
         

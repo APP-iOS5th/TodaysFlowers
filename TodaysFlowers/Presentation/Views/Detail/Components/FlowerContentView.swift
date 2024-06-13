@@ -136,10 +136,10 @@ final class FlowerContentView: UIView {
     func configureViewContents(with flower: Flower) {
         mainTitleLabel.text = flower.name
         subTitleLabel.text = flower.lang
-        mainDescriptionLabel.text = flower.content
-        typeDescriptionLabel.text = flower.type
-        growDescriptionLabel.text = flower.grow
-        usageDescriptionLabel.text = flower.usage
+        mainDescriptionLabel.attributedText = flower.content.lineHeight(withFontSize: 16)
+        typeDescriptionLabel.attributedText = flower.type.lineHeight(withFontSize: 16)
+        growDescriptionLabel.attributedText = flower.grow.lineHeight(withFontSize: 16)
+        usageDescriptionLabel.attributedText = flower.usage.lineHeight(withFontSize: 16)
         
         for subview in imageScrollView.subviews {
             subview.removeFromSuperview()

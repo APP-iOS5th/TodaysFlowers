@@ -120,11 +120,9 @@ extension HomeViewController: UICollectionViewDelegate {
         let selectedId = viewModel.flowers[indexPath.row].id
         let viewModel = DetailViewModel(
             flowerId: selectedId,
-            useCase: DetailViewUseCaseStub()
+            useCase: FlowersApi()
         )
         let viewController = DetailViewController(viewModel: viewModel)
-        viewController.modalPresentationStyle = .overFullScreen
-
-        present(viewController, animated: true)
+        show(viewController, sender: self)
     }
 }

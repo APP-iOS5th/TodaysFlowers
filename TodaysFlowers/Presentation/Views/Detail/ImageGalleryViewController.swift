@@ -10,6 +10,13 @@ import VisionKit
 
 final class ImageGalleryViewController: UIViewController {
     // MARK: - Components
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        
+        return activityIndicator
+    }()
+    
     private(set) lazy var imageScrollView: UIScrollView = {
         let imageScrollView = UIScrollView()
         imageScrollView.isPagingEnabled = true
@@ -59,27 +66,53 @@ final class ImageGalleryViewController: UIViewController {
             selectedIndex: viewModel.selectedIndex
         )
         
-        imageViews.forEach(analyze(imageView:))
-        
         configurePanGesture()
         configureButton()
         configureImageViews()
     }
     
-    private func analyze(imageView: UIImageView) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         Task {
-            let interaction = ImageAnalysisInteraction()
-            let analyzer = ImageAnalyzer()
-            if let image = imageView.image {
-                imageView.addInteraction(interaction)
-                let configuration = ImageAnalyzer.Configuration([.visualLookUp])
-                let analysis = try? await analyzer.analyze(image, configuration: configuration)
-                if let analysis = analysis {
-                    interaction.analysis = analysis
-                    interaction.preferredInteractionTypes = .imageSubject
+            startProcessing()
+            await analyze(imageViews: imageViews)
+            stopProcessing()
+        }
+    }
+    
+    private func analyze(imageViews: [UIImageView]) async {
+        await withTaskGroup(of: Void.self) { group in
+            for imageView in imageViews {
+                group.addTask {
+                    await self.analyze(imageView: imageView)
                 }
             }
         }
+    }
+    
+    private func analyze(imageView: UIImageView) async {
+        let interaction = ImageAnalysisInteraction()
+        let analyzer = ImageAnalyzer()
+        if let image = imageView.image {
+            imageView.addInteraction(interaction)
+            let configuration = ImageAnalyzer.Configuration([.visualLookUp])
+            let analysis = try? await analyzer.analyze(image, configuration: configuration)
+            if let analysis = analysis {
+                interaction.analysis = analysis
+                interaction.preferredInteractionTypes = .imageSubject
+            }
+        }
+    }
+    
+    private func startProcessing() {
+        activityIndicator.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    
+    private func stopProcessing() {
+        activityIndicator.stopAnimating()
+        view.isUserInteractionEnabled = true
     }
 
     private func configureUI() {
@@ -88,10 +121,12 @@ final class ImageGalleryViewController: UIViewController {
         view.addSubview(imageScrollView)
         view.addSubview(pageControl)
         view.addSubview(editButton)
+        view.addSubview(activityIndicator)
         
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         editButton.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         let global = view.safeAreaLayoutGuide
         
@@ -107,6 +142,9 @@ final class ImageGalleryViewController: UIViewController {
             
             editButton.centerXAnchor.constraint(equalTo: global.centerXAnchor),
             editButton.bottomAnchor.constraint(equalTo: global.bottomAnchor, constant: -30),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: global.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: global.centerYAnchor),
         ])
     }
     

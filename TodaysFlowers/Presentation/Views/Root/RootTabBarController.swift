@@ -32,12 +32,13 @@ final class RootTabBarController: UITabBarController {
             switch page {
             case .home:
                 let homeViewController = HomeViewController(
-                    viewModel: HomeViewModel(useCase: HomeViewUseCaseStub())
+                    viewModel: HomeViewModel(useCase: FlowersApi())
                 )
                 return UINavigationController(rootViewController: homeViewController)
             case .search:
                 let searchViewController = SearchViewController(
-                    viewModel: SearchViewModel(useCase: SearchUseCaseStub())
+                    searchViewModel: SearchViewModel(useCase: FlowersApi()),
+                    imageDetectionViewModel: ImageDetectionViewModel()
                 )
                 return UINavigationController(rootViewController: searchViewController)
             }

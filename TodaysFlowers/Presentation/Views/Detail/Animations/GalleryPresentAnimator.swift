@@ -48,7 +48,9 @@ extension GalleryPresentAnimator: UIViewControllerAnimatedTransitioning {
         
         blurView.frame = containerView.frame
         
-        let fromView = transitionContext.viewController(forKey: .from) as! DetailViewController
+        let rootViewController = transitionContext.viewController(forKey: .from) as! UITabBarController
+        let selectedViewController = rootViewController.selectedViewController as! UINavigationController
+        let fromView = selectedViewController.topViewController as! DetailViewController
         let toView = transitionContext.viewController(forKey: .to) as! ImageGalleryViewController
         let imageScrollView = fromView.flowerContentView.imageScrollView
         let currentPage = fromView.flowerContentView.pageControl.currentPage
