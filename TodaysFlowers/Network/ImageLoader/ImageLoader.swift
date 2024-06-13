@@ -65,11 +65,3 @@ final class ImageLoader: Cachable {
         }
     }
 }
-
-extension UIImageView {    
-    func asyncImage(urlString: String) {
-        Task { @MainActor in
-            self.image = await ImageLoader.shared.loadData(with: urlString)
-        }
-    }
-}
