@@ -39,7 +39,7 @@ class HomeViewModel: ObservableObject {
                                type: "",
                                grow: "", 
                                usage: "",
-                               imageData: flower.imageData,
+                               imageUrlString: flower.imageUrlString,
                                date: flower.date)
                     }
             }
