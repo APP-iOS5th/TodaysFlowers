@@ -29,19 +29,19 @@ class HomeViewModel: ObservableObject {
         useCase
             .getFlowers(by: dateArray)
             .map { flowers in
-                flowers.map { flower in
-                    Flower(
-                        id: flower.id,
-                        name: flower.name,
-                        lang: flower.lang,
-                        content: "",
-                        type: "",
-                        grow: "",
-                        usage: "",
-                        imageData: flower.imageData,
-                        date: flower.date
-                    )
-                }
+                flowers
+                    .sorted(by: {$0.date > $1.date})
+                    .map { flower in
+                        Flower(id: flower.id,
+                               name: flower.name,
+                               lang: flower.lang,
+                               content: "", 
+                               type: "",
+                               grow: "", 
+                               usage: "",
+                               imageData: flower.imageData,
+                               date: flower.date)
+                    }
             }
             .assign(to: &$flowers)
     }
