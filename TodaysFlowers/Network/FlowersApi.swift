@@ -31,26 +31,17 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
         
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
-            .handleEvents(receiveCompletion: {
-                print($0)
-            })
+            .handleEvents(
+                receiveSubscription: { _ in print("subscribed") },
+                receiveOutput: { _ in print("received") }
+            )
             .decode(type: Document.self, decoder: XMLDecoder())
             .map { document -> Flower in
                 
                 let result = document.root.result.first!
                 
                 let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-                var imageData: [Data] = []
-                
-                for imageUrl in imageUrls {
-                    guard let url = URL(string: imageUrl),
-                          let data = try? Data(contentsOf: url) else {
-                        fatalError("Failed to load image data from URL: \(imageUrl)")
-                    }
-                    imageData.append(data)
-                }
-                
-                
+            
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM-dd"
                 let dateString = "\(result.fMonth)-\(result.fDay)"
@@ -65,14 +56,12 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                               type: result.fType ?? "",
                               grow: result.fGrow ?? "",
                               usage: result.fUse ?? "",
-                              imageData: imageData,
+                              imageUrlString: imageUrls,
                               date: date)
             }
-            .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageData: [], date: Date()))
+            .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageUrlString: [], date: Date()))
             .eraseToAnyPublisher()
     }
-    
-   
     
     func getFlowers(by date: [Date]) -> AnyPublisher<[Flower], Never> {
         let merged: AnyPublisher<[Flower], Never> =
@@ -81,8 +70,9 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 date.map {
                     getFlower(by: $0)
                 }
-          )
+            )
             .collect()
+            .print("after collect")
             .eraseToAnyPublisher()
 
        return merged
@@ -114,15 +104,15 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 let result = document.root.result.first!
                 
                 let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-                var imageData: [Data] = []
+//                var imageData: [Data] = []
                 
-                for imageUrl in imageUrls {
-                    guard let url = URL(string: imageUrl),
-                          let data = try? Data(contentsOf: url) else {
-                        fatalError("Failed to load image data from URL: \(imageUrl)")
-                    }
-                    imageData.append(data)
-                }
+//                for imageUrl in imageUrls {
+//                    guard let url = URL(string: imageUrl),
+//                          let data = try? Data(contentsOf: url) else {
+//                        fatalError("Failed to load image data from URL: \(imageUrl)")
+//                    }
+//                    imageData.append(data)
+//                }
                 
                 
                 let dateFormatter = DateFormatter()
@@ -139,10 +129,10 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                               type: result.fType ?? "",
                               grow: result.fGrow ?? "",
                               usage: result.fUse ?? "",
-                              imageData: imageData,
+                              imageUrlString: imageUrls,
                               date: date)
             }
-            .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageData: [], date: Date()))
+            .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageUrlString: [], date: Date()))
             .eraseToAnyPublisher()
     }
     
@@ -175,13 +165,13 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                     let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
                     var imageData: [Data] = []
                     
-                    for imageUrl in imageUrls {
-                        guard let url = URL(string: imageUrl),
-                              let data = try? Data(contentsOf: url) else {
-                            fatalError("Failed to load image data from URL: \(imageUrl)")
-                        }
-                        imageData.append(data)
-                    }
+//                    for imageUrl in imageUrls {
+//                        guard let url = URL(string: imageUrl),
+//                              let data = try? Data(contentsOf: url) else {
+//                            fatalError("Failed to load image data from URL: \(imageUrl)")
+//                        }
+//                        imageData.append(data)
+//                    }
                     
                     // Convert fMonth and fDay to Date
                     let dateFormatter = DateFormatter()
@@ -191,7 +181,7 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                         fatalError("Failed to convert date: \(dateString)")
                     }
                     
-                    return Flower(id: Int(result.dataNo)!, name: result.flowNm, lang: result.flowLang, content: result.fContent ?? "", type: result.fType ?? "", grow: result.fGrow ?? "", usage: result.fUse ?? "", imageData: imageData, date: date)
+                    return Flower(id: Int(result.dataNo)!, name: result.flowNm, lang: result.flowLang, content: result.fContent ?? "", type: result.fType ?? "", grow: result.fGrow ?? "", usage: result.fUse ?? "", imageUrlString: imageUrls, date: date)
                 }
             }
             .replaceError(with: [])
@@ -226,15 +216,15 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 return results.map { result -> Flower in
                     // Convert image URLs to Data
                     let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-                    var imageData: [Data] = []
-                    
-                    for imageUrl in imageUrls {
-                        guard let url = URL(string: imageUrl),
-                              let data = try? Data(contentsOf: url) else {
-                            fatalError("Failed to load image data from URL: \(imageUrl)")
-                        }
-                        imageData.append(data)
-                    }
+//                    var imageData: [Data] = []
+//                    
+//                    for imageUrl in imageUrls {
+//                        guard let url = URL(string: imageUrl),
+//                              let data = try? Data(contentsOf: url) else {
+//                            fatalError("Failed to load image data from URL: \(imageUrl)")
+//                        }
+//                        imageData.append(data)
+//                    }
                     
                     // Convert fMonth and fDay to Date
                     let dateFormatter = DateFormatter()
@@ -251,7 +241,7 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                                   type: result.fType ?? "",
                                   grow: result.fGrow ?? "",
                                   usage: result.fUse ?? "",
-                                  imageData: imageData,
+                                  imageUrlString: imageUrls,
                                   date: date)
                 }
             }
@@ -290,15 +280,15 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                    let result = document.root.result.first!
                    
                    let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-                   var imageData: [Data] = []
-                   
-                   for imageUrl in imageUrls {
-                       guard let url = URL(string: imageUrl),
-                             let data = try? Data(contentsOf: url) else {
-                           fatalError("Failed to load image data from URL: \(imageUrl)")
-                       }
-                       imageData.append(data)
-                   }
+//                   var imageData: [Data] = []
+//                   
+//                   for imageUrl in imageUrls {
+//                       guard let url = URL(string: imageUrl),
+//                             let data = try? Data(contentsOf: url) else {
+//                           fatalError("Failed to load image data from URL: \(imageUrl)")
+//                       }
+//                       imageData.append(data)
+//                   }
                    
                    
                    let dateFormatter = DateFormatter()
@@ -315,10 +305,10 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                                  type: result.fType ?? "",
                                  grow: result.fGrow ?? "",
                                  usage: result.fUse ?? "",
-                                 imageData: imageData,
+                                 imageUrlString: imageUrls,
                                  date: date)
                }
-               .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageData: [], date: Date()))
+               .replaceError(with: Flower(id: -1, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageUrlString: [], date: Date()))
                .eraseToAnyPublisher()
            
          let merged = Publishers
