@@ -9,6 +9,11 @@ import Foundation
 import Combine
 
 final class SearchUseCaseStub: SearchUseCase {
+    func searchBy(month: String, day: String) -> AnyPublisher<[Flower], Never> {
+        Just(FlowerStubs.flowers)
+            .eraseToAnyPublisher()
+    }
+    
     func searchBy(name: String) -> AnyPublisher<[Flower], Never> {
         Just(FlowerStubs.flowers)
             .map { flowers in
