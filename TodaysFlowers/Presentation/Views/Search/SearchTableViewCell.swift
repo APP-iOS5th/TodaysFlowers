@@ -66,7 +66,7 @@ final class SearchTableViewCell: UITableViewCell {
     }
     
     func configureCell(flower: Flower) {
-        thumbnailView.image = UIImage(data: flower.imageData[0])
+        thumbnailView.asyncImage(urlString: flower.imageUrlString[0])
         nameLabel.text = flower.name
         flowerLangLabel.text = flower.lang
     }
