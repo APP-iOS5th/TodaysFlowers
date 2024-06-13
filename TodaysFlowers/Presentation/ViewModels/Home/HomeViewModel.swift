@@ -19,7 +19,13 @@ class HomeViewModel: ObservableObject {
     
     @Published var flowers: [Flower] = []
     func viewDidLoad() {
-        let dateArray = [Date.now]
+        let dateArray = [
+            Date.now,
+            Date.retrieveDateFromToday(by: -1),
+            Date.retrieveDateFromToday(by: -2),
+            Date.retrieveDateFromToday(by: -3),
+            Date.retrieveDateFromToday(by: -4),
+        ]
         useCase
             .getFlowers(by: dateArray)
             .map { flowers in
@@ -37,7 +43,6 @@ class HomeViewModel: ObservableObject {
                     )
                 }
             }
-            .replaceError(with: [])  // 오류 발생 시 빈 배열로 대체
             .assign(to: &$flowers)
     }
 }
