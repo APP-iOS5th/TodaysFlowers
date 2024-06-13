@@ -31,10 +31,6 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
         
         return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
-            .handleEvents(
-                receiveSubscription: { _ in print("subscribed") },
-                receiveOutput: { _ in print("received") }
-            )
             .decode(type: Document.self, decoder: XMLDecoder())
             .map { document -> Flower in
                 
@@ -72,13 +68,10 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 }
             )
             .collect()
-            .print("after collect")
             .eraseToAnyPublisher()
 
        return merged
     }
-    
-    
     
     func getFlower(by id: Int) -> AnyPublisher<Flower, Never> {
         let urlString = EndpointFactory.buildEndpoint(
@@ -104,16 +97,6 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 let result = document.root.result.first!
                 
                 let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-//                var imageData: [Data] = []
-                
-//                for imageUrl in imageUrls {
-//                    guard let url = URL(string: imageUrl),
-//                          let data = try? Data(contentsOf: url) else {
-//                        fatalError("Failed to load image data from URL: \(imageUrl)")
-//                    }
-//                    imageData.append(data)
-//                }
-                
                 
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "MM-dd"
@@ -163,15 +146,6 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 return results.map { result -> Flower in
                     // Convert image URLs to Data
                     let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-                    var imageData: [Data] = []
-                    
-//                    for imageUrl in imageUrls {
-//                        guard let url = URL(string: imageUrl),
-//                              let data = try? Data(contentsOf: url) else {
-//                            fatalError("Failed to load image data from URL: \(imageUrl)")
-//                        }
-//                        imageData.append(data)
-//                    }
                     
                     // Convert fMonth and fDay to Date
                     let dateFormatter = DateFormatter()
@@ -216,15 +190,6 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                 return results.map { result -> Flower in
                     // Convert image URLs to Data
                     let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-//                    var imageData: [Data] = []
-//                    
-//                    for imageUrl in imageUrls {
-//                        guard let url = URL(string: imageUrl),
-//                              let data = try? Data(contentsOf: url) else {
-//                            fatalError("Failed to load image data from URL: \(imageUrl)")
-//                        }
-//                        imageData.append(data)
-//                    }
                     
                     // Convert fMonth and fDay to Date
                     let dateFormatter = DateFormatter()
@@ -280,16 +245,6 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
                    let result = document.root.result.first!
                    
                    let imageUrls = [result.imgUrl1, result.imgUrl2, result.imgUrl3]
-//                   var imageData: [Data] = []
-//                   
-//                   for imageUrl in imageUrls {
-//                       guard let url = URL(string: imageUrl),
-//                             let data = try? Data(contentsOf: url) else {
-//                           fatalError("Failed to load image data from URL: \(imageUrl)")
-//                       }
-//                       imageData.append(data)
-//                   }
-                   
                    
                    let dateFormatter = DateFormatter()
                    dateFormatter.dateFormat = "MM-dd"
@@ -319,10 +274,4 @@ final class FlowersApi: DetailViewUseCase, SearchUseCase, HomeViewUseCase  {
          let anyPublisher: AnyPublisher<[Flower], Never> = collectedPublisher.eraseToAnyPublisher()
          return anyPublisher
      }
-    
-    
-    
-    
-    
-
 }
