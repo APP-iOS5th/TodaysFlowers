@@ -31,7 +31,7 @@ MVVM의 View와 ViewModel의 바인드와 각 의존성들 사이의 비동기 �
     <tr>
         <td width="33%" align="center"><img src="./Resources/gif/home.GIF" /></td>
         <td width="33%" align="center"><img src="./Resources/gif/detail.GIF" /></td>
-        <td width="33%" align="center"><img src="./Resources/gif/imageSearch.GIF" /></td>
+        <td width="33%" align="center"><img src="./Resources/gif/imageUpdatedSearch.GIF" /></td>
     </tr>
     <tr>
         <td width="33%" align="center">홈 화면</td>
