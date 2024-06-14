@@ -61,7 +61,7 @@ MVVM의 View와 ViewModel의 바인드와 각 의존성들 사이의 비동기 �
 - CoreML 사용
     - [x] VisionKit
     - [x] Vision
-- [ ] 성능개선
+- [x] 성능개선
 
 ## Team 👥
 |5.김진웅|5.안성근|5.이인호|5.황민경|
