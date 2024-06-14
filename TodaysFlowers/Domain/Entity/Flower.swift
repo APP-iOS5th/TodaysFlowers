@@ -15,6 +15,6 @@ struct Flower: Identifiable, Hashable {
     let type: String
     let grow: String
     let usage: String
-    let imageData: [Data]
+    let imageUrlString: [String]
     let date: Date
 }

@@ -65,8 +65,12 @@ final class SearchTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        thumbnailView.image = nil
+    }
+    
     func configureCell(flower: Flower) {
-        thumbnailView.image = UIImage(data: flower.imageData[0])
+        thumbnailView.asyncImage(urlString: flower.imageUrlString[0])
         nameLabel.text = flower.name
         flowerLangLabel.text = flower.lang
     }

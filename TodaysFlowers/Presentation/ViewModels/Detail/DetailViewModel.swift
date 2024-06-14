@@ -36,7 +36,7 @@ final class DetailViewModel {
                     type: replacedType,
                     grow: replacedGrow,
                     usage: replacedUsage,
-                    imageData: flower.imageData,
+                    imageUrlString: flower.imageUrlString,
                     date: flower.date
                 )
             }
@@ -46,6 +46,6 @@ final class DetailViewModel {
 
 extension Flower {
     static var placeholder: Flower {
-        .init(id: 0, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageData: [], date: Date.now)
+        .init(id: 0, name: "", lang: "", content: "", type: "", grow: "", usage: "", imageUrlString: [], date: Date.now)
     }
 }

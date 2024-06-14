@@ -106,7 +106,7 @@ final class DetailViewController: UIViewController {
     @objc private func handleTap(_ sender: UITapGestureRecognizer) {
         let viewController = ImageGalleryViewController(
             viewModel: ImageGalleryViewModel(
-                imagesData: viewModel.flower.imageData,
+                imageViews: flowerContentView.imageViews.map { $0.clone() },
                 selectedIndex: flowerContentView.pageControl.currentPage
             )
         )

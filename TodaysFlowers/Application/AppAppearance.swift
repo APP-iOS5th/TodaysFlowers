@@ -12,5 +12,6 @@ final class AppAppearance {
         UITabBar.appearance().backgroundColor = .white
         UITabBar.appearance().tintColor = UIColor(named: "FlowerColor")
         UINavigationBar.appearance().backgroundColor = .white
+        UINavigationBar.appearance().tintColor = UIColor(named: "FlowerColor")
     }
 }

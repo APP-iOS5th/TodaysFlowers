@@ -5,14 +5,14 @@
 //  Created by jinwoong Kim on 6/6/24.
 //
 
-import Foundation
+import UIKit
 
 final class ImageGalleryViewModel {
-    private(set) var imagesData: [Data]
+    private(set) var imageViews: [UIImageView]
     private(set) var selectedIndex: Int
     
-    init(imagesData: [Data], selectedIndex: Int) {
-        self.imagesData = imagesData
+    init(imageViews: [UIImageView], selectedIndex: Int) {
+        self.imageViews = imageViews
         self.selectedIndex = selectedIndex
     }
 }

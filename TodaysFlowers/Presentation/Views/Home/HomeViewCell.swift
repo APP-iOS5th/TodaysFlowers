@@ -23,6 +23,10 @@ class HomeViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+        flowerImageView.image = nil
+    }
 
     private func setupUI() {
         flowerImageView.contentMode = .scaleAspectFill
@@ -80,11 +84,7 @@ class HomeViewCell: UICollectionViewCell {
     
     
     func configure(with flower: Flower) {
-        if let imageData = flower.imageData.first, let image = UIImage(data: imageData) {
-            flowerImageView.image = image
-        } else {
-            flowerImageView.image = UIImage(named: "defaultImage") // 기본 이미지 설정
-        }
+        flowerImageView.asyncImage(urlString: flower.imageUrlString[0])
         nameLabel.text = flower.name
         langLabel.text = flower.lang
         
