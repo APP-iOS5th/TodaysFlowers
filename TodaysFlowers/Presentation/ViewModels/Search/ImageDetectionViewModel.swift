@@ -31,8 +31,8 @@ final class ImageDetectionViewModel {
             }
             
             if let firstItem = classification.first {
-                // 신뢰도 0.9 이상
-                if firstItem.confidence > 0.9 {
+                
+                if firstItem.confidence > 0.5 {
                     self.flowerName = firstItem.identifier.precomposedStringWithCanonicalMapping // CoreML이 반환한 문자열이 NFD여서 NFC형태로 변환해줘야 URL인코딩이 정상적으로 처리됨
                 } else {
                     self.imageNotFound = true // 신뢰도가 낮다(ML 모델에 찾고자 하는 이미지가 없음)
